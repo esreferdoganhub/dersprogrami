@@ -24,6 +24,10 @@
             --hoca-zateri-border: #00cccc;
             --hoca-zateri-text: #81ecec;
 
+            --hoca-aksaker-bg: rgba(9, 132, 227, 0.12);
+            --hoca-aksaker-border: #0984e3;
+            --hoca-aksaker-text: #74b9ff;
+
             --hoca-cikan-bg: rgba(255, 0, 255, 0.12);
             --hoca-cikan-border: #cc00cc;
             --hoca-cikan-text: #fd79a8;
@@ -192,6 +196,12 @@
             background: var(--hoca-zateri-bg);
             border-color: var(--hoca-zateri-border);
             color: var(--hoca-zateri-text);
+        }
+
+        .legend-item.hoca-aksaker {
+            background: var(--hoca-aksaker-bg);
+            border-color: var(--hoca-aksaker-border);
+            color: var(--hoca-aksaker-text);
         }
         
         .legend-item.hoca-cikan {
@@ -369,6 +379,12 @@
             border-color: var(--hoca-zateri-border);
         }
 
+        .filter-btn[data-hoca="aksaker"] {
+            background: var(--hoca-aksaker-bg);
+            color: var(--hoca-aksaker-text);
+            border-color: var(--hoca-aksaker-border);
+        }
+
         .filter-btn[data-hoca="cikan"] {
             background: var(--hoca-cikan-bg);
             color: var(--hoca-cikan-text);
@@ -525,6 +541,11 @@
             border-left-color: var(--hoca-zateri-border);
         }
 
+        .ders-block.hoca-aksaker {
+            background: var(--hoca-aksaker-bg);
+            border-left-color: var(--hoca-aksaker-border);
+        }
+
         .ders-block.hoca-cikan {
             background: var(--hoca-cikan-bg);
             border-left-color: var(--hoca-cikan-border);
@@ -558,6 +579,10 @@
 
         .hoca-zateri .ders-kod {
             color: var(--hoca-zateri-text);
+        }
+
+        .hoca-aksaker .ders-kod {
+            color: var(--hoca-aksaker-text);
         }
 
         .hoca-cikan .ders-kod {
@@ -911,6 +936,10 @@
             --hoca-zateri-border: #00a8a8;
             --hoca-zateri-text: #007373;
 
+            --hoca-aksaker-bg: rgba(9, 132, 227, 0.12);
+            --hoca-aksaker-border: #0984e3;
+            --hoca-aksaker-text: #0984e3;
+
             --hoca-cikan-bg: rgba(255, 0, 255, 0.12);
             --hoca-cikan-border: #cc00cc;
             --hoca-cikan-text: #990099;
@@ -1205,6 +1234,7 @@
                 -webkit-print-color-adjust: exact !important;
             }
             .legend-item.hoca-zateri, .ders-block.hoca-zateri { background-color: rgba(0, 255, 255, 0.12) !important; color: #007373 !important; border-color: #00a8a8 !important; }
+            .legend-item.hoca-aksaker, .ders-block.hoca-aksaker { background-color: rgba(9, 132, 227, 0.12) !important; color: #0984e3 !important; border-color: #0984e3 !important; }
             .legend-item.hoca-cikan, .ders-block.hoca-cikan { background-color: rgba(255, 0, 255, 0.12) !important; color: #990099 !important; border-color: #cc00cc !important; }
             .legend-item.hoca-erdogan, .ders-block.hoca-erdogan { background-color: rgba(180, 180, 180, 0.15) !important; color: #444444 !important; border-color: #999999 !important; }
             .legend-item.hoca-atal, .ders-block.hoca-atal { background-color: rgba(0, 255, 0, 0.12) !important; color: #006600 !important; border-color: #00b300 !important; }
@@ -1243,6 +1273,7 @@
 
         <div class="legend">
             <div class="legend-item hoca-zateri">MİNE TÜLİN ZATEROĞLU</div>
+            <div class="legend-item hoca-aksaker">NAZIM AKSAKER</div>
             <div class="legend-item hoca-cikan">MURAT ÇIKAN</div>
             <div class="legend-item hoca-erdogan">EŞREF ERDOĞAN</div>
             <div class="legend-item hoca-atal">TUĞBA ATAL</div>
@@ -1275,12 +1306,13 @@
         <div id="hoca-view-selector" style="display: none; text-align: center; margin-bottom: 25px;">
             <label for="hoca-select" style="font-weight: 600; margin-right: 10px; color: var(--text-secondary); font-size: 0.9rem;">Öğretmen Seçin:</label>
             <select id="hoca-select" onchange="window.renderSchedule()" style="padding: 8px 16px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); font-family: 'Inter', sans-serif; cursor: pointer; outline: none; font-size: 0.85rem;">
-                <option value="zateri">Doç. Dr. Mine Tülin Zateroğlu</option>
-                <option value="cikan">Doç. Dr. Murat Çıkan</option>
-                <option value="erdogan">Öğr. Gör. Eşref Erdoğan</option>
-                <option value="atal">Öğr. Gör. Tuğba Atal</option>
-                <option value="sonmez">Öğr. Gör. Aykut Sönmez</option>
-                <option value="ortak">Ortak / Üniversite Dersleri</option>
+                <option value="zateri">MİNE TÜLİN ZATEROĞLU</option>
+                <option value="aksaker">NAZIM AKSAKER</option>
+                <option value="cikan">MURAT ÇIKAN</option>
+                <option value="erdogan">EŞREF ERDOĞAN</option>
+                <option value="atal">TUĞBA ATAL</option>
+                <option value="sonmez">AYKUT SÖNMEZ</option>
+                <option value="ortak">ORTAK DERSLER</option>
             </select>
             <div id="hoca-stats-container" style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;"></div>
         </div>
@@ -1288,6 +1320,7 @@
         <div class="filter-bar">
             <button class="filter-btn active" data-hoca="all" onclick="filterHoca('all')">Tümü</button>
             <button class="filter-btn active" data-hoca="zateri" onclick="filterHoca('zateri')">Zateroğlu</button>
+            <button class="filter-btn active" data-hoca="aksaker" onclick="filterHoca('aksaker')">Aksaker</button>
             <button class="filter-btn active" data-hoca="cikan" onclick="filterHoca('cikan')">Çıkan</button>
             <button class="filter-btn active" data-hoca="erdogan" onclick="filterHoca('erdogan')">Erdoğan</button>
             <button class="filter-btn active" data-hoca="atal" onclick="filterHoca('atal')">Atal</button>
@@ -1378,14 +1411,14 @@
     "4": [
       {
         "kod": "ELS 113",
-        "ad": "Haberleşme Teknikleri",
+        "ad": "Haberleşme Teknolojisi",
         "sinif": 1,
-        "hoca": "zateri",
+        "hoca": "atal",
         "mekan": "d4"
       },
       {
         "kod": "ELS 225",
-        "ad": "Elektromekanik Kumanda Sist.",
+        "ad": "Elektromekanik Kumanda Sistemleri",
         "sinif": 2,
         "hoca": "sonmez",
         "mekan": "eel"
@@ -1411,45 +1444,11 @@
     ],
     "7": [
       {
-        "kod": "ELS 123",
-        "ad": "Yenilenebilir Enerji Sistemleri",
-        "sinif": 1,
-        "hoca": "cikan",
-        "mekan": "d4"
-      },
-      {
-        "kod": "ELS 213",
-        "ad": "Mesleki İngilizce",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "ttl"
-      }
-    ],
-    "8": [
-      {
-        "kod": "ELS 123",
-        "ad": "Yenilenebilir Enerji Sistemleri",
-        "sinif": 1,
-        "hoca": "cikan",
-        "mekan": "d4"
-      }
-    ],
-    "10": [
-      {
         "kod": "ELT 245",
         "ad": "Güç Elektroniği",
         "sinif": 2,
         "hoca": "cikan",
-        "mekan": "d4"
-      }
-    ],
-    "11": [
-      {
-        "kod": "ELT 245",
-        "ad": "Güç Elektroniği",
-        "sinif": 2,
-        "hoca": "cikan",
-        "mekan": "d4"
+        "mekan": "d6"
       }
     ],
     "12": [
@@ -1457,15 +1456,8 @@
         "kod": "ELT 145",
         "ad": "Matematik I",
         "sinif": 1,
-        "hoca": "atal",
-        "mekan": "eel"
-      },
-      {
-        "kod": "ELT 247",
-        "ad": "Asenkron ve Senkron Makineler",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "ttl"
+        "hoca": "aksaker",
+        "mekan": "d4"
       }
     ],
     "13": [
@@ -1473,92 +1465,85 @@
         "kod": "ELT 145",
         "ad": "Matematik I",
         "sinif": 1,
-        "hoca": "atal",
-        "mekan": "eel"
-      },
-      {
-        "kod": "ELT 247",
-        "ad": "Asenkron ve Senkron Makineler",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "ttl"
+        "hoca": "aksaker",
+        "mekan": "d4"
       }
     ],
     "14": [
       {
-        "kod": "ELS 101",
-        "ad": "Üniversitede Yaşam Kültürü",
-        "sinif": 1,
-        "hoca": "atal",
-        "mekan": "eel"
+        "kod": "ELT 247",
+        "ad": "Asenkron Motorlar",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d4"
       },
       {
-        "kod": "ELS 225",
-        "ad": "Elektromekanik Kumanda Sist.",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "ttl"
+        "kod": "ELS 123",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "d6"
       }
     ],
     "15": [
       {
-        "kod": "ELS 101",
-        "ad": "Üniversitede Yaşam Kültürü",
-        "sinif": 1,
-        "hoca": "atal",
-        "mekan": "eel"
+        "kod": "ELT 247",
+        "ad": "Asenkron Motorlar",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d4"
       },
       {
-        "kod": "ELS 225",
-        "ad": "Elektromekanik Kumanda Sist.",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "ttl"
+        "kod": "ELS 123",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "d6"
       }
     ],
     "16": [
       {
-        "kod": "ELS 113",
-        "ad": "Haberleşme Teknikleri",
-        "sinif": 1,
-        "hoca": "zateri",
-        "mekan": "ttl"
+        "kod": "ELT 277",
+        "ad": "Elektrik Enerjisi İletim ve Dağıtımı",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "d4"
       },
       {
-        "kod": "ELS 225",
-        "ad": "Elektromekanik Kumanda Sist.",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "eel"
+        "kod": "ELS 113",
+        "ad": "Haberleşme Teknolojisi",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "bos"
       }
     ],
     "17": [
       {
-        "kod": "ELS 113",
-        "ad": "Haberleşme Teknikleri",
-        "sinif": 1,
-        "hoca": "zateri",
-        "mekan": "ttl"
+        "kod": "ELT 277",
+        "ad": "Elektrik Enerjisi İletim ve Dağıtımı",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "d4"
       },
       {
-        "kod": "ELS 213",
-        "ad": "Mesleki İngilizce",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "eel"
+        "kod": "ELS 113",
+        "ad": "Haberleşme Teknolojisi",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "bos"
       }
     ],
     "19": [
       {
         "kod": "ELT 263",
-        "ad": "Endüstriye Dayalı Eğitim",
+        "ad": "Endüstriyel Kontrol",
         "sinif": 2,
-        "hoca": "zateri",
+        "hoca": "cikan",
         "mekan": "bl"
       },
       {
         "kod": "ELT 119",
-        "ad": "Tesisata Giriş",
+        "ad": "Tesisat Tekniği",
         "sinif": 1,
         "hoca": "sonmez",
         "mekan": "ttl"
@@ -1567,14 +1552,14 @@
     "20": [
       {
         "kod": "ELT 263",
-        "ad": "Endüstriye Dayalı Eğitim",
+        "ad": "Endüstriyel Kontrol",
         "sinif": 2,
-        "hoca": "zateri",
+        "hoca": "cikan",
         "mekan": "bl"
       },
       {
         "kod": "ELT 119",
-        "ad": "Tesisata Giriş",
+        "ad": "Tesisat Tekniği",
         "sinif": 1,
         "hoca": "sonmez",
         "mekan": "ttl"
@@ -1583,19 +1568,19 @@
     "21": [
       {
         "kod": "ELS 223",
-        "ad": "Proje Geliştirme Teknikleri-II",
+        "ad": "Proje Geliştirme Teknikleri II",
         "sinif": 2,
         "hoca": "sonmez",
-        "mekan": "d4"
+        "mekan": "bos"
       }
     ],
     "22": [
       {
         "kod": "ELS 223",
-        "ad": "Proje Geliştirme Teknikleri-II",
+        "ad": "Proje Geliştirme Teknikleri II",
         "sinif": 2,
         "hoca": "sonmez",
-        "mekan": "d4"
+        "mekan": "bos"
       }
     ],
     "23": [
@@ -1604,13 +1589,6 @@
         "ad": "Ölçme Tekniği",
         "sinif": 1,
         "hoca": "atal",
-        "mekan": "ttl"
-      },
-      {
-        "kod": "ELT 277",
-        "ad": "Elektrik Enerjisi İletimi ve Dağıtımı",
-        "sinif": 2,
-        "hoca": "sonmez",
         "mekan": "ttl"
       }
     ],
@@ -1621,48 +1599,32 @@
         "sinif": 1,
         "hoca": "atal",
         "mekan": "ttl"
-      },
-      {
-        "kod": "ELT 277",
-        "ad": "Elektrik Enerjisi İletimi ve Dağıtımı",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "ttl"
       }
     ],
     "25": [
       {
-        "kod": "ELT 247",
-        "ad": "Asenkron ve Senkron Makineler",
-        "sinif": 2,
-        "hoca": "sonmez",
+        "kod": "ELS 101",
+        "ad": "Üniversitede Yaşam Kültürü",
+        "sinif": 1,
+        "hoca": "ortak",
         "mekan": "ttl"
       }
     ],
     "26": [
       {
-        "kod": "ELT 247",
-        "ad": "Asenkron ve Senkron Makineler",
-        "sinif": 2,
-        "hoca": "sonmez",
+        "kod": "ELS 101",
+        "ad": "Üniversitede Yaşam Kültürü",
+        "sinif": 1,
+        "hoca": "ortak",
         "mekan": "ttl"
-      }
-    ],
-    "28": [
-      {
-        "kod": "ELT 231",
-        "ad": "Sensörler ve Dönüştürücüler",
-        "sinif": 2,
-        "hoca": "sonmez",
-        "mekan": "d4"
       }
     ],
     "29": [
       {
         "kod": "ELS 219",
-        "ad": "Telekomünikasyon Teknolojileri",
+        "ad": "Telekomünikasyon Teknolojisi",
         "sinif": 2,
-        "hoca": "zateri",
+        "hoca": "atal",
         "mekan": "ttl"
       },
       {
@@ -1670,38 +1632,38 @@
         "ad": "Yenilenebilir Enerji Sistemleri",
         "sinif": 1,
         "hoca": "cikan",
-        "mekan": "d6"
+        "mekan": "bos"
       }
     ],
     "30": [
       {
         "kod": "ELS 219",
-        "ad": "Telekomünikasyon Teknolojileri",
+        "ad": "Telekomünikasyon Teknolojisi",
         "sinif": 2,
-        "hoca": "zateri",
+        "hoca": "atal",
         "mekan": "ttl"
       },
       {
         "kod": "ELS 117",
         "ad": "Ofis Yazılımları",
         "sinif": 1,
-        "hoca": "sonmez",
+        "hoca": "erdogan",
         "mekan": "bl"
       }
     ],
     "31": [
       {
         "kod": "ELS 219",
-        "ad": "Telekomünikasyon Teknolojileri",
+        "ad": "Telekomünikasyon Teknolojisi",
         "sinif": 2,
-        "hoca": "zateri",
+        "hoca": "atal",
         "mekan": "ttl"
       },
       {
         "kod": "ELS 117",
         "ad": "Ofis Yazılımları",
         "sinif": 1,
-        "hoca": "sonmez",
+        "hoca": "erdogan",
         "mekan": "bl"
       }
     ],
@@ -1711,7 +1673,7 @@
         "ad": "Mikrodenetleyiciler",
         "sinif": 2,
         "hoca": "erdogan",
-        "mekan": "d4"
+        "mekan": "bl"
       }
     ],
     "33": [
@@ -1720,7 +1682,7 @@
         "ad": "Mikrodenetleyiciler",
         "sinif": 2,
         "hoca": "erdogan",
-        "mekan": "d4"
+        "mekan": "bl"
       }
     ],
     "34": [
@@ -1729,7 +1691,7 @@
         "ad": "Mikrodenetleyiciler",
         "sinif": 2,
         "hoca": "erdogan",
-        "mekan": "d4"
+        "mekan": "bl"
       }
     ],
     "35": [
@@ -1745,75 +1707,84 @@
         "ad": "Mikrodenetleyiciler",
         "sinif": 2,
         "hoca": "erdogan",
-        "mekan": "d4"
+        "mekan": "bl"
       }
     ],
     "37": [
       {
-        "kod": "ELS 123",
-        "ad": "Yenilenebilir Enerji Sistemleri",
+        "kod": "UIN 101",
+        "ad": "İngilizce I",
         "sinif": 1,
-        "hoca": "cikan",
-        "mekan": "d4"
+        "hoca": "ortak",
+        "mekan": "bos"
+      }
+    ],
+    "38": [
+      {
+        "kod": "UIN 101",
+        "ad": "İngilizce I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "bos"
       }
     ],
     "39": [
-      {
-        "kod": "UIN 101",
-        "ad": "İngilizce I",
-        "sinif": 1,
-        "hoca": "ortak",
-        "mekan": "u"
-      },
-      {
-        "kod": "ELT 245",
-        "ad": "Güç Elektroniği",
-        "sinif": 2,
-        "hoca": "cikan",
-        "mekan": "d4"
-      }
-    ],
-    "40": [
-      {
-        "kod": "UIN 101",
-        "ad": "İngilizce I",
-        "sinif": 1,
-        "hoca": "ortak",
-        "mekan": "u"
-      }
-    ],
-    "41": [
       {
         "kod": "UTD 101",
         "ad": "Türk Dili I",
         "sinif": 1,
         "hoca": "ortak",
-        "mekan": "u"
+        "mekan": "bos"
       },
       {
         "kod": "ELS 223",
-        "ad": "Proje Geliştirme Teknikleri-II",
+        "ad": "Proje Geliştirme Teknikleri II",
         "sinif": 2,
         "hoca": "sonmez",
-        "mekan": "eel"
+        "mekan": "ttl"
+      }
+    ],
+    "40": [
+      {
+        "kod": "UTD 101",
+        "ad": "Türk Dili I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "bos"
+      },
+      {
+        "kod": "ELT 231",
+        "ad": "Sensörler ve Dönüştürücüler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "41": [
+      {
+        "kod": "ELT 247",
+        "ad": "Asenkron Motorlar",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "ttl"
       }
     ],
     "42": [
       {
-        "kod": "UAI 101",
-        "ad": "Atatürk İlkeleri ve İnkılap Tarihi I",
-        "sinif": 1,
-        "hoca": "ortak",
-        "mekan": "u"
+        "kod": "ELS 225",
+        "ad": "Elektromekanik Kumanda Sistemleri",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
       }
     ],
-    "43": [
+    "44": [
       {
-        "kod": "UAI 101",
-        "ad": "Atatürk İlkeleri ve İnkılap Tarihi I",
-        "sinif": 1,
-        "hoca": "ortak",
-        "mekan": "u"
+        "kod": "ELT 247",
+        "ad": "Asenkron Motorlar",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "ttl"
       }
     ]
   },
@@ -2826,12 +2797,13 @@ window.showMekanPicker = function(course) {
 
 function getHocaRealName(key) {
     const names = {
-        zateri: 'Doç. Dr. Mine Tülin Zateroğlu',
-        cikan: 'Doç. Dr. Murat Çıkan',
-        erdogan: 'Öğr. Gör. Eşref Erdoğan',
-        atal: 'Öğr. Gör. Tuğba Atal',
-        sonmez: 'Öğr. Gör. Aykut Sönmez',
-        ortak: 'Ortak Ders Öğretmeni'
+        zateri: 'MİNE TÜLİN ZATEROĞLU',
+        aksaker: 'NAZIM AKSAKER',
+        cikan: 'MURAT ÇIKAN',
+        erdogan: 'EŞREF ERDOĞAN',
+        atal: 'TUĞBA ATAL',
+        sonmez: 'AYKUT SÖNMEZ',
+        ortak: 'ORTAK DERSLER'
     };
     return names[key] || key;
 }
@@ -3058,7 +3030,7 @@ window.filterHoca = function(hoca) {
 };
 
 function calculateHocaHours() {
-    const hocas = ['zateri', 'cikan', 'erdogan', 'atal', 'sonmez', 'ortak'];
+    const hocas = ['zateri', 'aksaker', 'cikan', 'erdogan', 'atal', 'sonmez', 'ortak'];
     let stats = {};
     hocas.forEach(h => stats[h] = { elektrik: 0, elektronik: 0, toplam: 0 });
     
@@ -3083,7 +3055,7 @@ window.renderHocaStats = function() {
     
     const targetHoca = document.getElementById('hoca-select').value;
     const stats = calculateHocaHours();
-    const hocaKeys = ['zateri', 'cikan', 'erdogan', 'atal', 'sonmez', 'ortak'];
+    const hocaKeys = ['zateri', 'aksaker', 'cikan', 'erdogan', 'atal', 'sonmez', 'ortak'];
     
     let html = `<table style="width: 100%; max-width: 500px; border-collapse: collapse; margin: 0 auto; font-size: 0.78rem; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--glass-bg);">
         <thead>
