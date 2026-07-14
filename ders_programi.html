@@ -945,6 +945,19 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
             <button class="tab-btn" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
+            <button class="tab-btn" onclick="switchTab('hoca')" id="tab-hoca">👨‍🏫 Hoca Programı</button>
+        </div>
+
+        <div id="hoca-view-selector" style="display: none; text-align: center; margin-bottom: 25px;">
+            <label for="hoca-select" style="font-weight: 600; margin-right: 10px; color: var(--text-secondary); font-size: 0.9rem;">Öğretmen Seçin:</label>
+            <select id="hoca-select" onchange="window.renderSchedule()" style="padding: 8px 16px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); font-family: 'Inter', sans-serif; cursor: pointer; outline: none; font-size: 0.85rem;">
+                <option value="zateri">Doç. Dr. Mine Tülin Zateroğlu</option>
+                <option value="cikan">Doç. Dr. Murat Çıkan</option>
+                <option value="erdogan">Öğr. Gör. Eşref Erdoğan</option>
+                <option value="atal">Öğr. Gör. Tuğba Atal</option>
+                <option value="sonmez">Öğr. Gör. Aykut Sönmez</option>
+                <option value="ortak">Ortak / Üniversite Dersleri</option>
+            </select>
         </div>
 
         <div class="filter-bar">
@@ -2098,6 +2111,21 @@ window.switchTab = function(tabId) {
     activeTab = tabId.replace('tab-', '');
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + activeTab).classList.add('active');
+    
+    // Toggle hoca dropdown display
+    const hocaSelector = document.getElementById('hoca-view-selector');
+    if (hocaSelector) {
+        hocaSelector.style.display = activeTab === 'hoca' ? 'block' : 'none';
+    }
+    
+    // Hide filter bar on hoca view
+    const filterBar = document.querySelector('.filter-bar');
+    if (filterBar) {
+        filterBar.style.display = activeTab === 'hoca' ? 'none' : 'flex';
+    }
+    
+    // Reset filter
+    window.filterHoca('all');
     window.renderSchedule();
 };
 
@@ -2106,9 +2134,9 @@ window.renderSchedule = function() {
     if(!container) return;
     
     let html = '';
-    ['elektrik', 'elektronik'].forEach(dept => {
-        const isActive = dept === activeTab ? 'active' : '';
-        html += `<div class="schedule-section ${isActive}" id="section-${dept}">
+    if (activeTab === 'hoca') {
+        const targetHoca = document.getElementById('hoca-select').value;
+        html += `<div class="schedule-section active" id="section-hoca">
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -2123,39 +2151,33 @@ window.renderSchedule = function() {
             html += `<tr><td>${days[d]}</td>`;
             for (let h = 0; h < 8; h++) {
                 const oldIdx = d * 9 + h + 1;
-                const cellData = scheduleData[dept][oldIdx] || [];
-                const sinif1 = cellData.filter(c => c.sinif === 1);
-                const sinif2 = cellData.filter(c => c.sinif === 2);
                 
-                html += `<td data-cell-id="${dept}-${oldIdx}">`;
-                if (cellData.length > 0) {
+                let matchedLessons = [];
+                ['elektrik', 'elektronik'].forEach(dept => {
+                    const cellData = scheduleData[dept] ? scheduleData[dept][oldIdx] || [] : [];
+                    cellData.forEach(c => {
+                        if (c.hoca === targetHoca) {
+                            matchedLessons.push({ ...c, dept: dept });
+                        }
+                    });
+                });
+                
+                html += `<td>`;
+                if (matchedLessons.length > 0) {
                     html += `<div class="cell-wrapper">`;
-                    
-                    // Render Year 1 Slot
-                    if (sinif1.length > 0) {
-                        sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
-                    } else {
-                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 1)"` : '';
-                        const cursorClass = isAdmin ? 'editable' : '';
-                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
-                    }
-                    
-                    html += `<div class="sinif-spacer"></div>`;
-                    
-                    // Render Year 2 Slot
-                    if (sinif2.length > 0) {
-                        sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
-                    } else {
-                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 2)"` : '';
-                        const cursorClass = isAdmin ? 'editable' : '';
-                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
-                    }
-                    
+                    matchedLessons.forEach((b) => {
+                        const deptLabel = b.dept === 'elektrik' ? 'ELK' : 'ELN';
+                        const mekanObj = mekanOptions.find(m => m.key === b.mekan) || { css: '', label: b.mekan || '' };
+                        html += `<div class="ders-block hoca-${b.hoca}">
+                            <div class="ders-kod">${b.kod} <span style="font-size: 9px; opacity: 0.6; float: right;">${deptLabel} ${b.sinif}. Sınıf</span></div>
+                            <div class="ders-ad">${b.ad}</div>
+                            <span class="ders-sinif">${b.sinif}. Sınıf</span>
+                            <span class="mekan-badge ${mekanObj.css}">${mekanObj.label.toUpperCase()}</span>
+                        </div>`;
+                    });
                     html += `</div>`;
                 } else {
-                    const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)"` : '';
-                    const cursorClass = isAdmin ? 'editable' : '';
-                    html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
+                    html += `<div class="empty-cell">—</div>`;
                 }
                 html += `</td>`;
             }
@@ -2163,7 +2185,66 @@ window.renderSchedule = function() {
         }
         
         html += `</tbody></table></div></div>`;
-    });
+    } else {
+        ['elektrik', 'elektronik'].forEach(dept => {
+            const isActive = dept === activeTab ? 'active' : '';
+            html += `<div class="schedule-section ${isActive}" id="section-${dept}">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Gün</th>
+                                ${hours.map(h => `<th>${h}</th>`).join('')}
+                            </tr>
+                        </thead>
+                        <tbody>`;
+            
+            for (let d = 0; d < 5; d++) {
+                html += `<tr><td>${days[d]}</td>`;
+                for (let h = 0; h < 8; h++) {
+                    const oldIdx = d * 9 + h + 1;
+                    const cellData = scheduleData[dept][oldIdx] || [];
+                    const sinif1 = cellData.filter(c => c.sinif === 1);
+                    const sinif2 = cellData.filter(c => c.sinif === 2);
+                    
+                    html += `<td data-cell-id="${dept}-${oldIdx}">`;
+                    if (cellData.length > 0) {
+                        html += `<div class="cell-wrapper">`;
+                        
+                        // Render Year 1 Slot
+                        if (sinif1.length > 0) {
+                            sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 1)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                        }
+                        
+                        html += `<div class="sinif-spacer"></div>`;
+                        
+                        // Render Year 2 Slot
+                        if (sinif2.length > 0) {
+                            sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 2)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                        }
+                        
+                        html += `</div>`;
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
+                    }
+                    html += `</td>`;
+                }
+                html += `</tr>`;
+            }
+            
+            html += `</tbody></table></div></div>`;
+        });
+    }
     
     container.innerHTML = html;
 };
@@ -2249,59 +2330,10 @@ window.showMekanPicker = function(course) {
     content.innerHTML = html;
 };
 
-function getHocaRealName(key) {
-    const names = {
-        zateri: 'Doç. Dr. Mine Tülin Zateroğlu',
-        cikan: 'Doç. Dr. Murat Çıkan',
-        erdogan: 'Öğr. Gör. Eşref Erdoğan',
-        atal: 'Öğr. Gör. Tuğba Atal',
-        sonmez: 'Öğr. Gör. Aykut Sönmez',
-        ortak: 'Ortak Ders Öğretmeni'
-    };
-    return names[key] || key;
-}
-
 window.finalizeCourseUpdate = function(courseKod, mekan) {
     if (!isAdmin) return;
     const { dept, cellIdx, bIdx, year } = currentEditState;
     const course = courses.find(c => c.kod === courseKod);
-    
-    // Çakışma Kontrolü (Conflict Detection)
-    let conflicts = [];
-    const targetHoca = course.hoca;
-    const targetMekan = mekan;
-    
-    ['elektrik', 'elektronik'].forEach(otherDept => {
-        const cellEntries = scheduleData[otherDept] ? scheduleData[otherDept][cellIdx] || [] : [];
-        cellEntries.forEach((existing) => {
-            // Eğer aynı sekmeyi ve aynı sınıf yılını düzenliyorsak çakışma sayma
-            if (otherDept === dept && existing.sinif === year) {
-                return;
-            }
-            
-            // 1. Sınıf/Derslik Çakışması
-            if (targetMekan !== 'bos' && existing.mekan !== 'bos' && existing.mekan === targetMekan) {
-                const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
-                conflicts.push(`• Sınıf/Derslik Çakışması: "${targetMekan.toUpperCase()}" dersliği bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersi için kullanılıyor.`);
-            }
-            
-            // 2. Hoca Çakışması
-            if (targetHoca !== 'ortak' && existing.hoca !== 'ortak' && existing.hoca === targetHoca) {
-                if (existing.kod !== course.kod) {
-                    const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
-                    const hocaName = getHocaRealName(targetHoca);
-                    conflicts.push(`• Öğretmen Çakışması: ${hocaName} bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersini veriyor.`);
-                }
-            }
-        });
-    });
-    
-    if (conflicts.length > 0) {
-        const msg = `⚠️ ÇAKIŞMA TESPİT EDİLDİ!\n\n${conflicts.join('\n')}\n\nDeğişikliği yine de kaydetmek istiyor musunuz?`;
-        if (!confirm(msg)) {
-            return;
-        }
-    }
     
     if (!scheduleData[dept][cellIdx]) scheduleData[dept][cellIdx] = [];
     const newEntry = { kod: course.kod, ad: course.ad, sinif: course.sinif, hoca: course.hoca, mekan: mekan };
@@ -2452,6 +2484,40 @@ window.addEventListener('keydown', function(e) {
 });
 
 window.addEventListener('DOMContentLoaded', window.init);
+
+let activeFilter = 'all';
+window.filterHoca = function(hoca) {
+    const allBtn = document.querySelector('.filter-btn[data-hoca="all"]');
+    if (!allBtn) return;
+    if (hoca === 'all') {
+        activeFilter = 'all';
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
+        document.querySelectorAll('.ders-block').forEach(b => b.classList.remove('dim'));
+        return;
+    }
+    allBtn.classList.remove('active');
+    if (activeFilter === hoca) {
+        activeFilter = 'all';
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
+        document.querySelectorAll('.ders-block').forEach(b => b.classList.remove('dim'));
+        return;
+    }
+    activeFilter = hoca;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+        if (b.getAttribute('data-hoca') === hoca) {
+            b.classList.add('active');
+        } else {
+            b.classList.remove('active');
+        }
+    });
+    document.querySelectorAll('.ders-block').forEach(b => {
+        if (b.classList.contains(`hoca-${hoca}`)) {
+            b.classList.remove('dim');
+        } else {
+            b.classList.add('dim');
+        }
+    });
+};
 
 </script>
 
