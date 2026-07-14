@@ -20,29 +20,29 @@
             --glass-border: rgba(255, 255, 255, 0.06);
 
             /* Hoca renkleri */
-            --hoca-zateri-bg: rgba(108, 92, 231, 0.15);
+            --hoca-zateri-bg: rgba(108, 92, 231, 0.18);
             --hoca-zateri-border: #6c5ce7;
             --hoca-zateri-text: #a29bfe;
 
-            --hoca-cikan-bg: rgba(0, 206, 201, 0.14);
-            --hoca-cikan-border: #00cec9;
-            --hoca-cikan-text: #81ecec;
+            --hoca-cikan-bg: rgba(225, 112, 85, 0.18);
+            --hoca-cikan-border: #e17055;
+            --hoca-cikan-text: #ffaa99;
 
-            --hoca-erdogan-bg: rgba(253, 121, 168, 0.14);
+            --hoca-erdogan-bg: rgba(253, 121, 168, 0.18);
             --hoca-erdogan-border: #fd79a8;
             --hoca-erdogan-text: #fab1d0;
 
-            --hoca-atal-bg: rgba(116, 185, 255, 0.14);
-            --hoca-atal-border: #74b9ff;
-            --hoca-atal-text: #a8d8ff;
+            --hoca-atal-bg: rgba(9, 132, 227, 0.18);
+            --hoca-atal-border: #0984e3;
+            --hoca-atal-text: #74b9ff;
 
-            --hoca-sonmez-bg: rgba(85, 239, 196, 0.14);
-            --hoca-sonmez-border: #55efc4;
-            --hoca-sonmez-text: #a3f7d7;
+            --hoca-sonmez-bg: rgba(46, 204, 113, 0.18);
+            --hoca-sonmez-border: #2ecc71;
+            --hoca-sonmez-text: #a2f2bb;
 
-            --hoca-ortak-bg: rgba(253, 203, 110, 0.12);
-            --hoca-ortak-border: #fdcb6e;
-            --hoca-ortak-text: #ffeaa7;
+            --hoca-ortak-bg: rgba(231, 76, 60, 0.18);
+            --hoca-ortak-border: #e74c3c;
+            --hoca-ortak-text: #ff7675;
         }
 
         * {
@@ -877,23 +877,29 @@
             --glass-border: rgba(0, 0, 0, 0.08);
 
             /* Hoca renkleri - Işık teması için daha okunaklı tonlar */
-            --hoca-zateri-bg: rgba(108, 92, 231, 0.1);
-            --hoca-zateri-text: #5f27cd;
+            --hoca-zateri-bg: rgba(108, 92, 231, 0.12);
+            --hoca-zateri-text: #4834d4;
+            --hoca-zateri-border: #6c5ce7;
 
-            --hoca-cikan-bg: rgba(0, 206, 201, 0.08);
-            --hoca-cikan-text: #008785;
+            --hoca-cikan-bg: rgba(225, 112, 85, 0.12);
+            --hoca-cikan-text: #d35400;
+            --hoca-cikan-border: #e17055;
 
-            --hoca-erdogan-bg: rgba(253, 121, 168, 0.1);
-            --hoca-erdogan-text: #d63031;
+            --hoca-erdogan-bg: rgba(253, 121, 168, 0.12);
+            --hoca-erdogan-text: #c02c67;
+            --hoca-erdogan-border: #fd79a8;
 
-            --hoca-atal-bg: rgba(116, 185, 255, 0.1);
+            --hoca-atal-bg: rgba(9, 132, 227, 0.12);
             --hoca-atal-text: #0984e3;
+            --hoca-atal-border: #0984e3;
 
-            --hoca-sonmez-bg: rgba(85, 239, 196, 0.12);
-            --hoca-sonmez-text: #00b894;
+            --hoca-sonmez-bg: rgba(46, 204, 113, 0.12);
+            --hoca-sonmez-text: #27ae60;
+            --hoca-sonmez-border: #2ecc71;
 
-            --hoca-ortak-bg: rgba(253, 203, 110, 0.12);
-            --hoca-ortak-text: #d35400;
+            --hoca-ortak-bg: rgba(231, 76, 60, 0.12);
+            --hoca-ortak-text: #c0392b;
+            --hoca-ortak-border: #e74c3c;
         }
 
         body.light-mode .background-effects {
@@ -1149,6 +1155,24 @@
                 border: 1px solid #ced6e0 !important;
                 color: #2d3436 !important;
                 padding: 3px 6px !important;
+            }
+
+            /* PDF'de hoca renklerinin isimlerin yanında çıkması için */
+            .legend {
+                display: flex !important;
+                margin-bottom: 12px !important;
+                justify-content: center !important;
+            }
+            .legend-item {
+                background: #ffffff !important;
+                border: 1px solid #ced6e0 !important;
+                color: #2d3436 !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            .legend-dot {
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
             }
         }
 
