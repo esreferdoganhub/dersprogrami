@@ -20,29 +20,29 @@
             --glass-border: rgba(255, 255, 255, 0.06);
 
             /* Hoca renkleri */
-            --hoca-zateri-bg: rgba(108, 92, 231, 0.18);
-            --hoca-zateri-border: #6c5ce7;
-            --hoca-zateri-text: #a29bfe;
+            --hoca-zateri-bg: #00ffff;
+            --hoca-zateri-border: #00cccc;
+            --hoca-zateri-text: #000000;
 
-            --hoca-cikan-bg: rgba(225, 112, 85, 0.18);
-            --hoca-cikan-border: #e17055;
-            --hoca-cikan-text: #ffaa99;
+            --hoca-cikan-bg: #ff00ff;
+            --hoca-cikan-border: #cc00cc;
+            --hoca-cikan-text: #000000;
 
-            --hoca-erdogan-bg: rgba(253, 121, 168, 0.18);
-            --hoca-erdogan-border: #fd79a8;
-            --hoca-erdogan-text: #fab1d0;
+            --hoca-erdogan-bg: #cccccc;
+            --hoca-erdogan-border: #b5b5b5;
+            --hoca-erdogan-text: #000000;
 
-            --hoca-atal-bg: rgba(9, 132, 227, 0.18);
-            --hoca-atal-border: #0984e3;
-            --hoca-atal-text: #74b9ff;
+            --hoca-atal-bg: #00ff00;
+            --hoca-atal-border: #00cc00;
+            --hoca-atal-text: #000000;
 
-            --hoca-sonmez-bg: rgba(46, 204, 113, 0.18);
-            --hoca-sonmez-border: #2ecc71;
-            --hoca-sonmez-text: #a2f2bb;
+            --hoca-sonmez-bg: #ffff00;
+            --hoca-sonmez-border: #cccc00;
+            --hoca-sonmez-text: #000000;
 
-            --hoca-ortak-bg: rgba(231, 76, 60, 0.18);
-            --hoca-ortak-border: #e74c3c;
-            --hoca-ortak-text: #ff7675;
+            --hoca-ortak-bg: #ffa500;
+            --hoca-ortak-border: #cc8400;
+            --hoca-ortak-text: #000000;
         }
 
         * {
@@ -171,16 +171,16 @@
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            border-radius: 10px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            font-size: 0.78rem;
-            font-weight: 500;
+            justify-content: center;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: default;
+            border: 1px solid transparent;
         }
 
         .legend-item:hover {
@@ -188,10 +188,40 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .legend-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 4px;
+        .legend-item.hoca-zateri {
+            background: var(--hoca-zateri-bg);
+            border-color: var(--hoca-zateri-border);
+            color: var(--hoca-zateri-text);
+        }
+        
+        .legend-item.hoca-cikan {
+            background: var(--hoca-cikan-bg);
+            border-color: var(--hoca-cikan-border);
+            color: var(--hoca-cikan-text);
+        }
+        
+        .legend-item.hoca-erdogan {
+            background: var(--hoca-erdogan-bg);
+            border-color: var(--hoca-erdogan-border);
+            color: var(--hoca-erdogan-text);
+        }
+        
+        .legend-item.hoca-atal {
+            background: var(--hoca-atal-bg);
+            border-color: var(--hoca-atal-border);
+            color: var(--hoca-atal-text);
+        }
+        
+        .legend-item.hoca-sonmez {
+            background: var(--hoca-sonmez-bg);
+            border-color: var(--hoca-sonmez-border);
+            color: var(--hoca-sonmez-text);
+        }
+        
+        .legend-item.hoca-ortak {
+            background: var(--hoca-ortak-bg);
+            border-color: var(--hoca-ortak-border);
+            color: var(--hoca-ortak-text);
         }
 
         .legend-dot.hoca-zateri {
@@ -876,30 +906,7 @@
             --glass-bg: rgba(255, 255, 255, 0.8);
             --glass-border: rgba(0, 0, 0, 0.08);
 
-            /* Hoca renkleri - Işık teması için daha okunaklı tonlar */
-            --hoca-zateri-bg: rgba(108, 92, 231, 0.12);
-            --hoca-zateri-text: #4834d4;
-            --hoca-zateri-border: #6c5ce7;
 
-            --hoca-cikan-bg: rgba(225, 112, 85, 0.12);
-            --hoca-cikan-text: #d35400;
-            --hoca-cikan-border: #e17055;
-
-            --hoca-erdogan-bg: rgba(253, 121, 168, 0.12);
-            --hoca-erdogan-text: #c02c67;
-            --hoca-erdogan-border: #fd79a8;
-
-            --hoca-atal-bg: rgba(9, 132, 227, 0.12);
-            --hoca-atal-text: #0984e3;
-            --hoca-atal-border: #0984e3;
-
-            --hoca-sonmez-bg: rgba(46, 204, 113, 0.12);
-            --hoca-sonmez-text: #27ae60;
-            --hoca-sonmez-border: #2ecc71;
-
-            --hoca-ortak-bg: rgba(231, 76, 60, 0.12);
-            --hoca-ortak-text: #c0392b;
-            --hoca-ortak-border: #e74c3c;
         }
 
         body.light-mode .background-effects {
@@ -1157,23 +1164,36 @@
                 padding: 3px 6px !important;
             }
 
-            /* PDF'de hoca renklerinin isimlerin yanında çıkması için */
+            /* PDF'de hoca renklerinin çıkması için */
             .legend {
                 display: flex !important;
                 margin-bottom: 12px !important;
                 justify-content: center !important;
+                gap: 6px !important;
             }
             .legend-item {
-                background: #ffffff !important;
-                border: 1px solid #ced6e0 !important;
-                color: #2d3436 !important;
+                padding: 4px 10px !important;
+                font-size: 0.65rem !important;
+                font-weight: 700 !important;
+                border-radius: 4px !important;
+                border-width: 1px !important;
+                border-style: solid !important;
                 print-color-adjust: exact !important;
                 -webkit-print-color-adjust: exact !important;
             }
-            .legend-dot {
-                print-color-adjust: exact !important;
-                -webkit-print-color-adjust: exact !important;
-            }
+            .legend-item.hoca-zateri { background-color: var(--hoca-zateri-bg) !important; color: var(--hoca-zateri-text) !important; border-color: var(--hoca-zateri-border) !important; }
+            .legend-item.hoca-cikan { background-color: var(--hoca-cikan-bg) !important; color: var(--hoca-cikan-text) !important; border-color: var(--hoca-cikan-border) !important; }
+            .legend-item.hoca-erdogan { background-color: var(--hoca-erdogan-bg) !important; color: var(--hoca-erdogan-text) !important; border-color: var(--hoca-erdogan-border) !important; }
+            .legend-item.hoca-atal { background-color: var(--hoca-atal-bg) !important; color: var(--hoca-atal-text) !important; border-color: var(--hoca-atal-border) !important; }
+            .legend-item.hoca-sonmez { background-color: var(--hoca-sonmez-bg) !important; color: var(--hoca-sonmez-text) !important; border-color: var(--hoca-sonmez-border) !important; }
+            .legend-item.hoca-ortak { background-color: var(--hoca-ortak-bg) !important; color: var(--hoca-ortak-text) !important; border-color: var(--hoca-ortak-border) !important; }
+
+            .ders-block.hoca-zateri { background-color: var(--hoca-zateri-bg) !important; color: var(--hoca-zateri-text) !important; border-color: var(--hoca-zateri-border) !important; }
+            .ders-block.hoca-cikan { background-color: var(--hoca-cikan-bg) !important; color: var(--hoca-cikan-text) !important; border-color: var(--hoca-cikan-border) !important; }
+            .ders-block.hoca-erdogan { background-color: var(--hoca-erdogan-bg) !important; color: var(--hoca-erdogan-text) !important; border-color: var(--hoca-erdogan-border) !important; }
+            .ders-block.hoca-atal { background-color: var(--hoca-atal-bg) !important; color: var(--hoca-atal-text) !important; border-color: var(--hoca-atal-border) !important; }
+            .ders-block.hoca-sonmez { background-color: var(--hoca-sonmez-bg) !important; color: var(--hoca-sonmez-text) !important; border-color: var(--hoca-sonmez-border) !important; }
+            .ders-block.hoca-ortak { background-color: var(--hoca-ortak-bg) !important; color: var(--hoca-ortak-text) !important; border-color: var(--hoca-ortak-border) !important; }
         }
 
     
@@ -1206,24 +1226,12 @@
         </header>
 
         <div class="legend">
-            <div class="legend-item">
-                <div class="legend-dot hoca-zateri"></div><span>Doç. Dr. Mine Tülin Zateroğlu</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-dot hoca-cikan"></div><span>Doç. Dr. Murat Çıkan</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-dot hoca-erdogan"></div><span>Öğr. Gör. Eşref Erdoğan</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-dot hoca-atal"></div><span>Öğr. Gör. Tuğba Atal</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-dot hoca-sonmez"></div><span>Öğr. Gör. Aykut Sönmez</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-dot hoca-ortak"></div><span>Ortak / Üniversite Dersleri</span>
-            </div>
+            <div class="legend-item hoca-zateri">MİNE TÜLİN ZATEROĞLU</div>
+            <div class="legend-item hoca-cikan">MURAT ÇIKAN</div>
+            <div class="legend-item hoca-erdogan">EŞREF ERDOĞAN</div>
+            <div class="legend-item hoca-atal">TUĞBA ATAL</div>
+            <div class="legend-item hoca-sonmez">AYKUT SÖNMEZ</div>
+            <div class="legend-item hoca-ortak">ORTAK DERSLER</div>
         </div>
 
         <div class="mekan-legend">
