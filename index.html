@@ -2366,7 +2366,7 @@ window.saveAndPushToGithub = async function() {
         // Clean up github-modal active states
         currentHtml = currentHtml.replace('class="modal-overlay show" id="github-modal"', 'class="modal-overlay" id="github-modal"');
         currentHtml = currentHtml.replace('Yükleniyor... Lütfen bekleyin', '🚀 Değişiklikleri Web Sitesine Yükle');
-        currentHtml = currentHtml.replace(';', '');
+        currentHtml = currentHtml.replace('opacity: 0.5;', '');
         currentHtml = currentHtml.replace('opacity: 0.5', '');
         
         // Use a much safer string replacement!
