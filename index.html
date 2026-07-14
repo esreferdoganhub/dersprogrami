@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr">
-
-<head>
+<html>
+<html lang="tr"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Elektrik ve Elektronik Teknolojisi Bölümü Haftalık Ders Programı 2025-2026 Güz">
-    <title>Ders Programı - Elektrik & Elektronik 2025-2026 Güz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <title>Ders Programı - Elektrik &amp; Elektronik 2025-2026 Güz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0f0f1a;
@@ -860,8 +858,8 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
-            <button class="tab-btn" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
+            <button class="tab-btn" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
+            <button class="tab-btn active" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
         </div>
 
         <div class="filter-bar">
@@ -881,1518 +879,1921 @@
         </div>
 
         <!-- ==================== ELEKTRİK ==================== -->
-        <div class="schedule-section active" id="section-elektrik">
+
+        <!-- DİNAMİK PROGRAM KONTEYNERİ -->
+        <div id="schedule-container"><div class="schedule-section " id="section-elektrik">
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
                             <th>Gün</th>
-                            <th>08:00</th>
-                            <th>09:00</th>
-                            <th>10:00</th>
-                            <th>11:00</th>
-                            <th>13:00</th>
-                            <th>14:00</th>
-                            <th>15:00</th>
-                            <th>16:00</th>
+                            <th>08:00</th><th>09:00</th><th>10:00</th><th>11:00</th><th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- PAZARTESİ -->
-                        <tr>
-                            <td>PAZARTESİ</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELT 147</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 231</div>
-                                    <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELT 147</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 231</div>
-                                    <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELT 147</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 225</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sistemleri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELS 113</div>
-                                    <div class="ders-ad">Haberleşme Teknikleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 225</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELT 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELT 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELS 123</div>
-                                    <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 213</div>
-                                    <div class="ders-ad">Mesleki İngilizce</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELS 123</div>
-                                    <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- SALI -->
-                        <tr>
-                            <td>SALI</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELT 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELT 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELT 145</div>
-                                    <div class="ders-ad">Matematik I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 247</div>
-                                    <div class="ders-ad">Asenkron ve Senkron Makineler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELT 145</div>
-                                    <div class="ders-ad">Matematik I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 247</div>
-                                    <div class="ders-ad">Asenkron ve Senkron Makineler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELS 101</div>
-                                    <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 225</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELS 101</div>
-                                    <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 225</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELS 113</div>
-                                    <div class="ders-ad">Haberleşme Teknikleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 225</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELS 113</div>
-                                    <div class="ders-ad">Haberleşme Teknikleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 213</div>
-                                    <div class="ders-ad">Mesleki İngilizce</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- ÇARŞAMBA -->
-                        <tr>
-                            <td>ÇARŞAMBA</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELT 263</div>
-                                    <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 119</div>
-                                    <div class="ders-ad">Tesisata Giriş</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELT 263</div>
-                                    <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 119</div>
-                                    <div class="ders-ad">Tesisata Giriş</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 223</div>
-                                    <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 223</div>
-                                    <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELT 115</div>
-                                    <div class="ders-ad">Ölçme Tekniği</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 277</div>
-                                    <div class="ders-ad">Elektrik Enerjisi İletimi ve Dağıtımı</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELT 115</div>
-                                    <div class="ders-ad">Ölçme Tekniği</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 277</div>
-                                    <div class="ders-ad">Elektrik Enerjisi İletimi ve Dağıtımı</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 247</div>
-                                    <div class="ders-ad">Asenkron ve Senkron Makineler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 247</div>
-                                    <div class="ders-ad">Asenkron ve Senkron Makineler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- PERŞEMBE -->
-                        <tr>
-                            <td>PERŞEMBE</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELT 231</div>
-                                    <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELS 219</div>
-                                    <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELS 123</div>
-                                    <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELS 219</div>
-                                    <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 117</div>
-                                    <div class="ders-ad">Ofis Yazılımları</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELS 219</div>
-                                    <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 117</div>
-                                    <div class="ders-ad">Ofis Yazılımları</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELT 251</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELT 251</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELT 251</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELT 147</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELT 251</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- CUMA -->
-                        <tr>
-                            <td>CUMA</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELS 123</div>
-                                    <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="empty-cell">—</div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UIN 101</div>
-                                    <div class="ders-ad">İngilizce I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELT 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UIN 101</div>
-                                    <div class="ders-ad">İngilizce I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UTD 101</div>
-                                    <div class="ders-ad">Türk Dili I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELS 223</div>
-                                    <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UAI 101</div>
-                                    <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UAI 101</div>
-                                    <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="empty-cell">—</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- ==================== ELEKTRONİK ==================== -->
-        <div class="schedule-section" id="section-elektronik">
+                    <tbody><tr><td>PAZARTESİ</td><td data-cell-id="elektrik-1"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 1, 0, 1)">
+            <div class="ders-kod">ELT 147</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 1, 0, 2)">
+            <div class="ders-kod">ELT 231</div>
+            <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektrik-2"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 2, 0, 1)">
+            <div class="ders-kod">ELT 147</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 2, 0, 2)">
+            <div class="ders-kod">ELT 231</div>
+            <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektrik-3"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 3, 0, 1)">
+            <div class="ders-kod">ELT 147</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 3, 0, 2)">
+            <div class="ders-kod">ELS 225</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sistemleri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektrik-4"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 4, 0, 1)">
+            <div class="ders-kod">ELS 113</div>
+            <div class="ders-ad">Haberleşme Teknikleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 4, 0, 2)">
+            <div class="ders-kod">ELS 225</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektrik-5"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 5, 0, 2)">
+            <div class="ders-kod">ELT 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektrik-6"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 6, 0, 2)">
+            <div class="ders-kod">ELT 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektrik-7"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 7, 0, 1)">
+            <div class="ders-kod">ELS 123</div>
+            <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 7, 0, 2)">
+            <div class="ders-kod">ELS 213</div>
+            <div class="ders-ad">Mesleki İngilizce</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-8"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 8, 0, 1)">
+            <div class="ders-kod">ELS 123</div>
+            <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td></tr><tr><td>SALI</td><td data-cell-id="elektrik-10"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 10, 0, 2)">
+            <div class="ders-kod">ELT 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-11"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 11, 0, 2)">
+            <div class="ders-kod">ELT 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-12"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektrik', 12, 0, 1)">
+            <div class="ders-kod">ELT 145</div>
+            <div class="ders-ad">Matematik I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 12, 0, 2)">
+            <div class="ders-kod">ELT 247</div>
+            <div class="ders-ad">Asenkron ve Senkron Makineler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-13"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektrik', 13, 0, 1)">
+            <div class="ders-kod">ELT 145</div>
+            <div class="ders-ad">Matematik I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 13, 0, 2)">
+            <div class="ders-kod">ELT 247</div>
+            <div class="ders-ad">Asenkron ve Senkron Makineler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-14"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektrik', 14, 0, 1)">
+            <div class="ders-kod">ELS 101</div>
+            <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 14, 0, 2)">
+            <div class="ders-kod">ELS 225</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-15"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektrik', 15, 0, 1)">
+            <div class="ders-kod">ELS 101</div>
+            <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 15, 0, 2)">
+            <div class="ders-kod">ELS 225</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-16"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 16, 0, 1)">
+            <div class="ders-kod">ELS 113</div>
+            <div class="ders-ad">Haberleşme Teknikleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 16, 0, 2)">
+            <div class="ders-kod">ELS 225</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektrik-17"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 17, 0, 1)">
+            <div class="ders-kod">ELS 113</div>
+            <div class="ders-ad">Haberleşme Teknikleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 17, 0, 2)">
+            <div class="ders-kod">ELS 213</div>
+            <div class="ders-ad">Mesleki İngilizce</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td></tr><tr><td>ÇARŞAMBA</td><td data-cell-id="elektrik-19"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 19, 0, 1)">
+            <div class="ders-kod">ELT 119</div>
+            <div class="ders-ad">Tesisata Giriş</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 19, 0, 2)">
+            <div class="ders-kod">ELT 263</div>
+            <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div></div></td><td data-cell-id="elektrik-20"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 20, 0, 1)">
+            <div class="ders-kod">ELT 119</div>
+            <div class="ders-ad">Tesisata Giriş</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 20, 0, 2)">
+            <div class="ders-kod">ELT 263</div>
+            <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div></div></td><td data-cell-id="elektrik-21"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 21, 0, 2)">
+            <div class="ders-kod">ELS 223</div>
+            <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-22"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 22, 0, 2)">
+            <div class="ders-kod">ELS 223</div>
+            <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-23"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektrik', 23, 0, 1)">
+            <div class="ders-kod">ELT 115</div>
+            <div class="ders-ad">Ölçme Tekniği</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 23, 0, 2)">
+            <div class="ders-kod">ELT 277</div>
+            <div class="ders-ad">Elektrik Enerjisi İletimi ve Dağıtımı</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-24"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektrik', 24, 0, 1)">
+            <div class="ders-kod">ELT 115</div>
+            <div class="ders-ad">Ölçme Tekniği</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 24, 0, 2)">
+            <div class="ders-kod">ELT 277</div>
+            <div class="ders-ad">Elektrik Enerjisi İletimi ve Dağıtımı</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-25"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 25, 0, 2)">
+            <div class="ders-kod">ELT 247</div>
+            <div class="ders-ad">Asenkron ve Senkron Makineler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-26"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 26, 0, 2)">
+            <div class="ders-kod">ELT 247</div>
+            <div class="ders-ad">Asenkron ve Senkron Makineler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td></tr><tr><td>PERŞEMBE</td><td data-cell-id="elektrik-28"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 28, 0, 2)">
+            <div class="ders-kod">ELT 231</div>
+            <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-29"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 29, 0, 1)">
+            <div class="ders-kod">ELS 123</div>
+            <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 29, 0, 2)">
+            <div class="ders-kod">ELS 219</div>
+            <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-30"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 30, 0, 1)">
+            <div class="ders-kod">ELS 117</div>
+            <div class="ders-ad">Ofis Yazılımları</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 30, 0, 2)">
+            <div class="ders-kod">ELS 219</div>
+            <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-31"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 31, 0, 1)">
+            <div class="ders-kod">ELS 117</div>
+            <div class="ders-ad">Ofis Yazılımları</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 31, 0, 2)">
+            <div class="ders-kod">ELS 219</div>
+            <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektrik-32"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektrik', 32, 0, 2)">
+            <div class="ders-kod">ELT 251</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-33"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektrik', 33, 0, 2)">
+            <div class="ders-kod">ELT 251</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-34"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektrik', 34, 0, 2)">
+            <div class="ders-kod">ELT 251</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-35"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektrik', 35, 0, 1)">
+            <div class="ders-kod">ELT 147</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektrik', 35, 0, 2)">
+            <div class="ders-kod">ELT 251</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td></tr><tr><td>CUMA</td><td data-cell-id="elektrik-37"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 37, 0, 1)">
+            <div class="ders-kod">ELS 123</div>
+            <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-38"><div class="empty-cell" onclick="window.openCourseModal('elektrik', 38, -1)">—</div></td><td data-cell-id="elektrik-39"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektrik', 39, 0, 1)">
+            <div class="ders-kod">UIN 101</div>
+            <div class="ders-ad">İngilizce I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektrik', 39, 0, 2)">
+            <div class="ders-kod">ELT 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektrik-40"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektrik', 40, 0, 1)">
+            <div class="ders-kod">UIN 101</div>
+            <div class="ders-ad">İngilizce I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div></div></td><td data-cell-id="elektrik-41"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektrik', 41, 0, 1)">
+            <div class="ders-kod">UTD 101</div>
+            <div class="ders-ad">Türk Dili I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektrik', 41, 0, 2)">
+            <div class="ders-kod">ELS 223</div>
+            <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektrik-42"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektrik', 42, 0, 1)">
+            <div class="ders-kod">UAI 101</div>
+            <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div></div></td><td data-cell-id="elektrik-43"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektrik', 43, 0, 1)">
+            <div class="ders-kod">UAI 101</div>
+            <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div></div></td><td data-cell-id="elektrik-44"><div class="empty-cell" onclick="window.openCourseModal('elektrik', 44, -1)">—</div></td></tr></tbody></table></div></div><div class="schedule-section active" id="section-elektronik">
             <div class="table-wrapper">
                 <table>
                     <thead>
                         <tr>
                             <th>Gün</th>
-                            <th>08:00</th>
-                            <th>09:00</th>
-                            <th>10:00</th>
-                            <th>11:00</th>
-                            <th>13:00</th>
-                            <th>14:00</th>
-                            <th>15:00</th>
-                            <th>16:00</th>
+                            <th>08:00</th><th>09:00</th><th>10:00</th><th>11:00</th><th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- PAZARTESİ -->
-                        <tr>
-                            <td>PAZARTESİ</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="empty-cell">—</div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELO 139</div>
-                                    <div class="ders-ad">Ölçme Tekniği</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELO 139</div>
-                                    <div class="ders-ad">Ölçme Tekniği</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 245</div>
-                                    <div class="ders-ad">Güç Elektroniği</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELO 135</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 247</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELO 135</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 247</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELO 135</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 247</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ETS 113</div>
-                                    <div class="ders-ad">Haberleşme Teknikleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 247</div>
-                                    <div class="ders-ad">Mikrodenetleyiciler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- SALI -->
-                        <tr>
-                            <td>SALI</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 243</div>
-                                    <div class="ders-ad">Sayısal Tasarım</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ETS 113</div>
-                                    <div class="ders-ad">Haberleşme Teknikleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 243</div>
-                                    <div class="ders-ad">Sayısal Tasarım</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ETS 113</div>
-                                    <div class="ders-ad">Haberleşme Teknikleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 243</div>
-                                    <div class="ders-ad">Sayısal Tasarım</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ETS 125</div>
-                                    <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 243</div>
-                                    <div class="ders-ad">Sayısal Tasarım</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ETS 125</div>
-                                    <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELO 221</div>
-                                    <div class="ders-ad">Elektronik I</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ETS 123</div>
-                                    <div class="ders-ad">Yapay Zeka Araçlarının Etkin Kullanımı</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELO 221</div>
-                                    <div class="ders-ad">Elektronik I</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ETS 123</div>
-                                    <div class="ders-ad">Yapay Zeka Araçlarının Etkin Kullanımı</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ETS 123</div>
-                                    <div class="ders-ad">Yapay Zeka Araçlarının Etkin Kullanımı</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="empty-cell">—</div>
-                            </td>
-                        </tr>
-                        <!-- ÇARŞAMBA -->
-                        <tr>
-                            <td>ÇARŞAMBA</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELO 107</div>
-                                    <div class="ders-ad">Matematik I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELO 213</div>
-                                    <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ELO 107</div>
-                                    <div class="ders-ad">Matematik I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ELO 213</div>
-                                    <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ETS 101</div>
-                                    <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ETS 215</div>
-                                    <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-atal" data-hoca="atal">
-                                    <div class="ders-kod">ETS 101</div>
-                                    <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ETS 215</div>
-                                    <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ETS 217</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sistemleri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ETS 217</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sistemleri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELO 263</div>
-                                    <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELO 263</div>
-                                    <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- PERŞEMBE -->
-                        <tr>
-                            <td>PERŞEMBE</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELO 135</div>
-                                    <div class="ders-ad">Doğru Akım Devre Analizi</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-eel">EEL</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ETS 117</div>
-                                    <div class="ders-ad">Ofis Yazılımları</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 137</div>
-                                    <div class="ders-ad">Elektronik Devre Tasarımı</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ELO 137</div>
-                                    <div class="ders-ad">Elektronik Devre Tasarımı</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ETS 219</div>
-                                    <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ETS 219</div>
-                                    <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-cikan" data-hoca="cikan">
-                                    <div class="ders-kod">ETS 125</div>
-                                    <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ETS 219</div>
-                                    <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-ttl">TTL</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ETS 117</div>
-                                    <div class="ders-ad">Ofis Yazılımları</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-bl">BL</span>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- CUMA -->
-                        <tr>
-                            <td>CUMA</td>
-                            <!-- 08 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UIN 101</div>
-                                    <div class="ders-ad">İngilizce I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ETS 217</div>
-                                    <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 09 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UIN 101</div>
-                                    <div class="ders-ad">İngilizce I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                                <div class="ders-block hoca-erdogan" data-hoca="erdogan">
-                                    <div class="ders-kod">ETS 215</div>
-                                    <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 10 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UTD 101</div>
-                                    <div class="ders-ad">Türk Dili I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                                <div class="ders-block hoca-zateri" data-hoca="zateri">
-                                    <div class="ders-kod">ELO 221</div>
-                                    <div class="ders-ad">Elektronik I</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d4">D4</span>
-                                </div>
-                            </td>
-                            <!-- 11 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UTD 101</div>
-                                    <div class="ders-ad">Türk Dili I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                            </td>
-                            <!-- 13 -->
-                            <td>
-                                <div class="empty-cell">—</div>
-                            </td>
-                            <!-- 14 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UAI 101</div>
-                                    <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                            </td>
-                            <!-- 15 -->
-                            <td>
-                                <div class="ders-block hoca-ortak" data-hoca="ortak">
-                                    <div class="ders-kod">UAI 101</div>
-                                    <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
-                                    <span class="ders-sinif">1. Sınıf</span>
-                                    <span class="mekan-badge mekan-u">U</span>
-                                </div>
-                                <div class="ders-block hoca-sonmez" data-hoca="sonmez">
-                                    <div class="ders-kod">ELO 263</div>
-                                    <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
-                                    <span class="ders-sinif">2. Sınıf</span>
-                                    <span class="mekan-badge mekan-d6">D6</span>
-                                </div>
-                            </td>
-                            <!-- 16 -->
-                            <td>
-                                <div class="empty-cell">—</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <tbody><tr><td>PAZARTESİ</td><td data-cell-id="elektronik-1"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 1, -1)">—</div></td><td data-cell-id="elektronik-2"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 2, 0, 2)">
+            <div class="ders-kod">ELO 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-3"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 3, 0, 1)">
+            <div class="ders-kod">ELO 139</div>
+            <div class="ders-ad">Ölçme Tekniği</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 3, 0, 2)">
+            <div class="ders-kod">ELO 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-4"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 4, 0, 1)">
+            <div class="ders-kod">ELO 139</div>
+            <div class="ders-ad">Ölçme Tekniği</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 4, 0, 2)">
+            <div class="ders-kod">ELO 245</div>
+            <div class="ders-ad">Güç Elektroniği</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-5"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 5, 0, 1)">
+            <div class="ders-kod">ELO 135</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 5, 0, 2)">
+            <div class="ders-kod">ELO 247</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div></div></td><td data-cell-id="elektronik-6"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 6, 0, 1)">
+            <div class="ders-kod">ELO 135</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 6, 0, 2)">
+            <div class="ders-kod">ELO 247</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div></div></td><td data-cell-id="elektronik-7"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 7, 0, 1)">
+            <div class="ders-kod">ELO 135</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 7, 0, 2)">
+            <div class="ders-kod">ELO 247</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-8"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 8, 0, 1)">
+            <div class="ders-kod">ETS 113</div>
+            <div class="ders-ad">Haberleşme Teknikleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 8, 0, 2)">
+            <div class="ders-kod">ELO 247</div>
+            <div class="ders-ad">Mikrodenetleyiciler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td></tr><tr><td>SALI</td><td data-cell-id="elektronik-10"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 10, 0, 1)">
+            <div class="ders-kod">ETS 113</div>
+            <div class="ders-ad">Haberleşme Teknikleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 10, 0, 2)">
+            <div class="ders-kod">ELO 243</div>
+            <div class="ders-ad">Sayısal Tasarım</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-11"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 11, 0, 1)">
+            <div class="ders-kod">ETS 113</div>
+            <div class="ders-ad">Haberleşme Teknikleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 11, 0, 2)">
+            <div class="ders-kod">ELO 243</div>
+            <div class="ders-ad">Sayısal Tasarım</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-12"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektronik', 12, 0, 1)">
+            <div class="ders-kod">ETS 125</div>
+            <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 12, 0, 2)">
+            <div class="ders-kod">ELO 243</div>
+            <div class="ders-ad">Sayısal Tasarım</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-13"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektronik', 13, 0, 1)">
+            <div class="ders-kod">ETS 125</div>
+            <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 13, 0, 2)">
+            <div class="ders-kod">ELO 243</div>
+            <div class="ders-ad">Sayısal Tasarım</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-14"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 14, 0, 1)">
+            <div class="ders-kod">ETS 123</div>
+            <div class="ders-ad">Yapay Zeka Araçlarının Etkin Kullanımı</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 14, 0, 2)">
+            <div class="ders-kod">ELO 221</div>
+            <div class="ders-ad">Elektronik I</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektronik-15"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 15, 0, 1)">
+            <div class="ders-kod">ETS 123</div>
+            <div class="ders-ad">Yapay Zeka Araçlarının Etkin Kullanımı</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 15, 0, 2)">
+            <div class="ders-kod">ELO 221</div>
+            <div class="ders-ad">Elektronik I</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektronik-16"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 16, 0, 1)">
+            <div class="ders-kod">ETS 123</div>
+            <div class="ders-ad">Yapay Zeka Araçlarının Etkin Kullanımı</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektronik-17"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 17, -1)">—</div></td></tr><tr><td>ÇARŞAMBA</td><td data-cell-id="elektronik-19"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 19, 0, 1)">
+            <div class="ders-kod">ELO 107</div>
+            <div class="ders-ad">Matematik I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektronik', 19, 0, 2)">
+            <div class="ders-kod">ELO 213</div>
+            <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektronik-20"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 20, 0, 1)">
+            <div class="ders-kod">ELO 107</div>
+            <div class="ders-ad">Matematik I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektronik', 20, 0, 2)">
+            <div class="ders-kod">ELO 213</div>
+            <div class="ders-ad">Endüstriye Dayalı Eğitim</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektronik-21"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 21, 0, 1)">
+            <div class="ders-kod">ETS 101</div>
+            <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 21, 0, 2)">
+            <div class="ders-kod">ETS 215</div>
+            <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektronik-22"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 22, 0, 1)">
+            <div class="ders-kod">ETS 101</div>
+            <div class="ders-ad">Üniversitede Yaşam Kültürü</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 22, 0, 2)">
+            <div class="ders-kod">ETS 215</div>
+            <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektronik-23"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 23, 0, 2)">
+            <div class="ders-kod">ETS 217</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sistemleri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektronik-24"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 24, 0, 2)">
+            <div class="ders-kod">ETS 217</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sistemleri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektronik-25"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 25, 0, 2)">
+            <div class="ders-kod">ELO 263</div>
+            <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektronik-26"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 26, 0, 2)">
+            <div class="ders-kod">ELO 263</div>
+            <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td></tr><tr><td>PERŞEMBE</td><td data-cell-id="elektronik-28"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 28, 0, 1)">
+            <div class="ders-kod">ELO 135</div>
+            <div class="ders-ad">Doğru Akım Devre Analizi</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-eel">EEL</span>
+        </div></div></td><td data-cell-id="elektronik-29"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 29, 0, 1)">
+            <div class="ders-kod">ETS 117</div>
+            <div class="ders-ad">Ofis Yazılımları</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div></div></td><td data-cell-id="elektronik-30"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 30, 0, 1)">
+            <div class="ders-kod">ELO 137</div>
+            <div class="ders-ad">Elektronik Devre Tasarımı</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-31"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 31, 0, 1)">
+            <div class="ders-kod">ELO 137</div>
+            <div class="ders-ad">Elektronik Devre Tasarımı</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-32"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 32, 0, 2)">
+            <div class="ders-kod">ETS 219</div>
+            <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektronik-33"><div class="cell-wrapper"><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 33, 0, 2)">
+            <div class="ders-kod">ETS 219</div>
+            <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektronik-34"><div class="cell-wrapper"><div class="ders-block hoca-cikan editable" onclick="window.openCourseModal('elektronik', 34, 0, 1)">
+            <div class="ders-kod">ETS 125</div>
+            <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 34, 0, 2)">
+            <div class="ders-kod">ETS 219</div>
+            <div class="ders-ad">Telekomünikasyon Teknolojileri</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-ttl">TTL</span>
+        </div></div></td><td data-cell-id="elektronik-35"><div class="cell-wrapper"><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 35, 0, 1)">
+            <div class="ders-kod">ETS 117</div>
+            <div class="ders-ad">Ofis Yazılımları</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-bl">BL</span>
+        </div></div></td></tr><tr><td>CUMA</td><td data-cell-id="elektronik-37"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 37, 0, 1)">
+            <div class="ders-kod">UIN 101</div>
+            <div class="ders-ad">İngilizce I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 37, 0, 2)">
+            <div class="ders-kod">ETS 217</div>
+            <div class="ders-ad">Elektromekanik Kumanda Sist.</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektronik-38"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 38, 0, 1)">
+            <div class="ders-kod">UIN 101</div>
+            <div class="ders-ad">İngilizce I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 38, 0, 2)">
+            <div class="ders-kod">ETS 215</div>
+            <div class="ders-ad">Proje Geliştirme Teknikleri-II</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-39"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 39, 0, 1)">
+            <div class="ders-kod">UTD 101</div>
+            <div class="ders-ad">Türk Dili I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-zateri editable" onclick="window.openCourseModal('elektronik', 39, 0, 2)">
+            <div class="ders-kod">ELO 221</div>
+            <div class="ders-ad">Elektronik I</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d4">D4</span>
+        </div></div></td><td data-cell-id="elektronik-40"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 40, 0, 1)">
+            <div class="ders-kod">UTD 101</div>
+            <div class="ders-ad">Türk Dili I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div></div></td><td data-cell-id="elektronik-41"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 41, -1)">—</div></td><td data-cell-id="elektronik-42"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 42, 0, 1)">
+            <div class="ders-kod">UAI 101</div>
+            <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div></div></td><td data-cell-id="elektronik-43"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 43, 0, 1)">
+            <div class="ders-kod">UAI 101</div>
+            <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
+            <span class="ders-sinif">1. Sınıf</span>
+            <span class="mekan-badge mekan-u">U</span>
+        </div><div class="sinif-spacer"></div><div class="ders-block hoca-sonmez editable" onclick="window.openCourseModal('elektronik', 43, 0, 2)">
+            <div class="ders-kod">ELO 263</div>
+            <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
+            <span class="ders-sinif">2. Sınıf</span>
+            <span class="mekan-badge mekan-d6">D6</span>
+        </div></div></td><td data-cell-id="elektronik-44"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 44, -1)">—</div></td></tr></tbody></table></div></div></div>
+
+        <!-- GITHUB AYARLARI BUTONU VE MODALI -->
+        <button class="action-btn" id="github-settings-btn" style="position:fixed; bottom:20px; right:20px; z-index:100; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);" onclick="openGithubSettings()">🐙 GitHub'a Kaydet</button>
+
+        <div class="modal-overlay show" id="github-modal">
+            <div class="modal-content" style="max-width:400px; text-align:left;">
+                <div class="modal-header">
+                    <h3 style="margin:0;">GitHub Entegrasyonu</h3>
+                    <button class="close-btn" onclick="closeGithubSettings()">×</button>
+                </div>
+                <div style="margin-top:20px; font-size:14px; color:rgba(255,255,255,0.7);">
+                    Değişiklikleri doğrudan GitHub Pages web sitenize göndermek için Personal Access Token (PAT) girin. Bu şifre sadece tarayıcınızda saklanır.
+                </div>
+                <input type="password" id="github-token-input" placeholder="ghp_xxxxxxxxxxxx" style="width:100%; padding:12px; margin-top:15px; background:var(--surface); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white;">
+                
+                <button class="action-btn" style="width: 100%; margin-top: 15px; opacity: 0.5;" onclick="saveAndPushToGithub()">Yükleniyor... Lütfen bekleyin</button>
             </div>
         </div>
 
-        <footer class="footer">
-            <p>Adana Organize Sanayi Bölgesi Teknik Bilimler MYO — 2025-2026 Güz Yarıyılı</p>
-            <p class="info">D: Derslik &nbsp;|&nbsp; TTL: Telekom Tekn. Lab. &nbsp;|&nbsp; EEL: Elektrik-Elektronik Lab.
-                &nbsp;|&nbsp; BL: Bilgisayar Lab. &nbsp;|&nbsp; U: Uzaktan Öğretim</p>
-        </footer>
-    </div>
+        <script id="schedule-data" type="application/json">
+{
+  "elektrik": {
+    "1": [
+      {
+        "kod": "ELT 147",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELT 231",
+        "ad": "Sensörler ve Dönüştürücüler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "eel"
+      }
+    ],
+    "2": [
+      {
+        "kod": "ELT 147",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELT 231",
+        "ad": "Sensörler ve Dönüştürücüler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "eel"
+      }
+    ],
+    "3": [
+      {
+        "kod": "ELT 147",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELS 225",
+        "ad": "Elektromekanik Kumanda Sistemleri",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "eel"
+      }
+    ],
+    "4": [
+      {
+        "kod": "ELS 113",
+        "ad": "Haberleşme Teknikleri",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELS 225",
+        "ad": "Elektromekanik Kumanda Sist.",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "eel"
+      }
+    ],
+    "5": [
+      {
+        "kod": "ELT 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "d6"
+      }
+    ],
+    "6": [
+      {
+        "kod": "ELT 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "d6"
+      }
+    ],
+    "7": [
+      {
+        "kod": "ELS 123",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELS 213",
+        "ad": "Mesleki İngilizce",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "8": [
+      {
+        "kod": "ELS 123",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "d4"
+      }
+    ],
+    "10": [
+      {
+        "kod": "ELT 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "d4"
+      }
+    ],
+    "11": [
+      {
+        "kod": "ELT 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "d4"
+      }
+    ],
+    "12": [
+      {
+        "kod": "ELT 145",
+        "ad": "Matematik I",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "eel"
+      },
+      {
+        "kod": "ELT 247",
+        "ad": "Asenkron ve Senkron Makineler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "13": [
+      {
+        "kod": "ELT 145",
+        "ad": "Matematik I",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "eel"
+      },
+      {
+        "kod": "ELT 247",
+        "ad": "Asenkron ve Senkron Makineler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "14": [
+      {
+        "kod": "ELS 101",
+        "ad": "Üniversitede Yaşam Kültürü",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "eel"
+      },
+      {
+        "kod": "ELS 225",
+        "ad": "Elektromekanik Kumanda Sist.",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "15": [
+      {
+        "kod": "ELS 101",
+        "ad": "Üniversitede Yaşam Kültürü",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "eel"
+      },
+      {
+        "kod": "ELS 225",
+        "ad": "Elektromekanik Kumanda Sist.",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "16": [
+      {
+        "kod": "ELS 113",
+        "ad": "Haberleşme Teknikleri",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELS 225",
+        "ad": "Elektromekanik Kumanda Sist.",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "eel"
+      }
+    ],
+    "17": [
+      {
+        "kod": "ELS 113",
+        "ad": "Haberleşme Teknikleri",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELS 213",
+        "ad": "Mesleki İngilizce",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "eel"
+      }
+    ],
+    "19": [
+      {
+        "kod": "ELT 263",
+        "ad": "Endüstriye Dayalı Eğitim",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "bl"
+      },
+      {
+        "kod": "ELT 119",
+        "ad": "Tesisata Giriş",
+        "sinif": 1,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "20": [
+      {
+        "kod": "ELT 263",
+        "ad": "Endüstriye Dayalı Eğitim",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "bl"
+      },
+      {
+        "kod": "ELT 119",
+        "ad": "Tesisata Giriş",
+        "sinif": 1,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "21": [
+      {
+        "kod": "ELS 223",
+        "ad": "Proje Geliştirme Teknikleri-II",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "22": [
+      {
+        "kod": "ELS 223",
+        "ad": "Proje Geliştirme Teknikleri-II",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "23": [
+      {
+        "kod": "ELT 115",
+        "ad": "Ölçme Tekniği",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELT 277",
+        "ad": "Elektrik Enerjisi İletimi ve Dağıtımı",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "24": [
+      {
+        "kod": "ELT 115",
+        "ad": "Ölçme Tekniği",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELT 277",
+        "ad": "Elektrik Enerjisi İletimi ve Dağıtımı",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "25": [
+      {
+        "kod": "ELT 247",
+        "ad": "Asenkron ve Senkron Makineler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "26": [
+      {
+        "kod": "ELT 247",
+        "ad": "Asenkron ve Senkron Makineler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "ttl"
+      }
+    ],
+    "28": [
+      {
+        "kod": "ELT 231",
+        "ad": "Sensörler ve Dönüştürücüler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "29": [
+      {
+        "kod": "ELS 219",
+        "ad": "Telekomünikasyon Teknolojileri",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELS 123",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "d6"
+      }
+    ],
+    "30": [
+      {
+        "kod": "ELS 219",
+        "ad": "Telekomünikasyon Teknolojileri",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELS 117",
+        "ad": "Ofis Yazılımları",
+        "sinif": 1,
+        "hoca": "sonmez",
+        "mekan": "bl"
+      }
+    ],
+    "31": [
+      {
+        "kod": "ELS 219",
+        "ad": "Telekomünikasyon Teknolojileri",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELS 117",
+        "ad": "Ofis Yazılımları",
+        "sinif": 1,
+        "hoca": "sonmez",
+        "mekan": "bl"
+      }
+    ],
+    "32": [
+      {
+        "kod": "ELT 251",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d4"
+      }
+    ],
+    "33": [
+      {
+        "kod": "ELT 251",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d4"
+      }
+    ],
+    "34": [
+      {
+        "kod": "ELT 251",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d4"
+      }
+    ],
+    "35": [
+      {
+        "kod": "ELT 147",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "eel"
+      },
+      {
+        "kod": "ELT 251",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d4"
+      }
+    ],
+    "37": [
+      {
+        "kod": "ELS 123",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "d4"
+      }
+    ],
+    "39": [
+      {
+        "kod": "UIN 101",
+        "ad": "İngilizce I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      },
+      {
+        "kod": "ELT 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "d4"
+      }
+    ],
+    "40": [
+      {
+        "kod": "UIN 101",
+        "ad": "İngilizce I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      }
+    ],
+    "41": [
+      {
+        "kod": "UTD 101",
+        "ad": "Türk Dili I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      },
+      {
+        "kod": "ELS 223",
+        "ad": "Proje Geliştirme Teknikleri-II",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "eel"
+      }
+    ],
+    "42": [
+      {
+        "kod": "UAI 101",
+        "ad": "Atatürk İlkeleri ve İnkılap Tarihi I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      }
+    ],
+    "43": [
+      {
+        "kod": "UAI 101",
+        "ad": "Atatürk İlkeleri ve İnkılap Tarihi I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      }
+    ]
+  },
+  "elektronik": {
+    "2": [
+      {
+        "kod": "ELO 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "3": [
+      {
+        "kod": "ELO 139",
+        "ad": "Ölçme Tekniği",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELO 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "4": [
+      {
+        "kod": "ELO 139",
+        "ad": "Ölçme Tekniği",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ELO 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "5": [
+      {
+        "kod": "ELO 135",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELO 247",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "bl"
+      }
+    ],
+    "6": [
+      {
+        "kod": "ELO 135",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELO 247",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "bl"
+      }
+    ],
+    "7": [
+      {
+        "kod": "ELO 135",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELO 247",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "8": [
+      {
+        "kod": "ETS 113",
+        "ad": "Haberleşme Teknikleri",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELO 247",
+        "ad": "Mikrodenetleyiciler",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "10": [
+      {
+        "kod": "ELO 243",
+        "ad": "Sayısal Tasarım",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      },
+      {
+        "kod": "ETS 113",
+        "ad": "Haberleşme Teknikleri",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      }
+    ],
+    "11": [
+      {
+        "kod": "ELO 243",
+        "ad": "Sayısal Tasarım",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      },
+      {
+        "kod": "ETS 113",
+        "ad": "Haberleşme Teknikleri",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      }
+    ],
+    "12": [
+      {
+        "kod": "ELO 243",
+        "ad": "Sayısal Tasarım",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      },
+      {
+        "kod": "ETS 125",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "ttl"
+      }
+    ],
+    "13": [
+      {
+        "kod": "ELO 243",
+        "ad": "Sayısal Tasarım",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      },
+      {
+        "kod": "ETS 125",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "ttl"
+      }
+    ],
+    "14": [
+      {
+        "kod": "ELO 221",
+        "ad": "Elektronik I",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ETS 123",
+        "ad": "Yapay Zeka Araçlarının Etkin Kullanımı",
+        "sinif": 1,
+        "hoca": "erdogan",
+        "mekan": "eel"
+      }
+    ],
+    "15": [
+      {
+        "kod": "ELO 221",
+        "ad": "Elektronik I",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ETS 123",
+        "ad": "Yapay Zeka Araçlarının Etkin Kullanımı",
+        "sinif": 1,
+        "hoca": "erdogan",
+        "mekan": "eel"
+      }
+    ],
+    "16": [
+      {
+        "kod": "ETS 123",
+        "ad": "Yapay Zeka Araçlarının Etkin Kullanımı",
+        "sinif": 1,
+        "hoca": "erdogan",
+        "mekan": "eel"
+      }
+    ],
+    "19": [
+      {
+        "kod": "ELO 107",
+        "ad": "Matematik I",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELO 213",
+        "ad": "Endüstriye Dayalı Eğitim",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "eel"
+      }
+    ],
+    "20": [
+      {
+        "kod": "ELO 107",
+        "ad": "Matematik I",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ELO 213",
+        "ad": "Endüstriye Dayalı Eğitim",
+        "sinif": 2,
+        "hoca": "cikan",
+        "mekan": "eel"
+      }
+    ],
+    "21": [
+      {
+        "kod": "ETS 101",
+        "ad": "Üniversitede Yaşam Kültürü",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ETS 215",
+        "ad": "Proje Geliştirme Teknikleri-II",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "eel"
+      }
+    ],
+    "22": [
+      {
+        "kod": "ETS 101",
+        "ad": "Üniversitede Yaşam Kültürü",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "ttl"
+      },
+      {
+        "kod": "ETS 215",
+        "ad": "Proje Geliştirme Teknikleri-II",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "eel"
+      }
+    ],
+    "23": [
+      {
+        "kod": "ETS 217",
+        "ad": "Elektromekanik Kumanda Sistemleri",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "24": [
+      {
+        "kod": "ETS 217",
+        "ad": "Elektromekanik Kumanda Sistemleri",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "25": [
+      {
+        "kod": "ELO 263",
+        "ad": "Sensörler ve Dönüştürücüler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "26": [
+      {
+        "kod": "ELO 263",
+        "ad": "Sensörler ve Dönüştürücüler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "28": [
+      {
+        "kod": "ELO 135",
+        "ad": "Doğru Akım Devre Analizi",
+        "sinif": 1,
+        "hoca": "zateri",
+        "mekan": "eel"
+      }
+    ],
+    "29": [
+      {
+        "kod": "ETS 117",
+        "ad": "Ofis Yazılımları",
+        "sinif": 1,
+        "hoca": "sonmez",
+        "mekan": "bl"
+      }
+    ],
+    "30": [
+      {
+        "kod": "ELO 137",
+        "ad": "Elektronik Devre Tasarımı",
+        "sinif": 1,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "31": [
+      {
+        "kod": "ELO 137",
+        "ad": "Elektronik Devre Tasarımı",
+        "sinif": 1,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "32": [
+      {
+        "kod": "ETS 219",
+        "ad": "Telekomünikasyon Teknolojileri",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      }
+    ],
+    "33": [
+      {
+        "kod": "ETS 219",
+        "ad": "Telekomünikasyon Teknolojileri",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      }
+    ],
+    "34": [
+      {
+        "kod": "ETS 125",
+        "ad": "Yenilenebilir Enerji Sistemleri",
+        "sinif": 1,
+        "hoca": "cikan",
+        "mekan": "d4"
+      },
+      {
+        "kod": "ETS 219",
+        "ad": "Telekomünikasyon Teknolojileri",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "ttl"
+      }
+    ],
+    "35": [
+      {
+        "kod": "ETS 117",
+        "ad": "Ofis Yazılımları",
+        "sinif": 1,
+        "hoca": "sonmez",
+        "mekan": "bl"
+      }
+    ],
+    "37": [
+      {
+        "kod": "UIN 101",
+        "ad": "İngilizce I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      },
+      {
+        "kod": "ETS 217",
+        "ad": "Elektromekanik Kumanda Sist.",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d4"
+      }
+    ],
+    "38": [
+      {
+        "kod": "UIN 101",
+        "ad": "İngilizce I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      },
+      {
+        "kod": "ETS 215",
+        "ad": "Proje Geliştirme Teknikleri-II",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
+      }
+    ],
+    "39": [
+      {
+        "kod": "UTD 101",
+        "ad": "Türk Dili I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      },
+      {
+        "kod": "ELO 221",
+        "ad": "Elektronik I",
+        "sinif": 2,
+        "hoca": "zateri",
+        "mekan": "d4"
+      }
+    ],
+    "40": [
+      {
+        "kod": "UTD 101",
+        "ad": "Türk Dili I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      }
+    ],
+    "42": [
+      {
+        "kod": "UAI 101",
+        "ad": "Atatürk İlkeleri ve İnkılap Tarihi I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      }
+    ],
+    "43": [
+      {
+        "kod": "UAI 101",
+        "ad": "Atatürk İlkeleri ve İnkılap Tarihi I",
+        "sinif": 1,
+        "hoca": "ortak",
+        "mekan": "u"
+      },
+      {
+        "kod": "ELO 263",
+        "ad": "Sensörler ve Dönüştürücüler",
+        "sinif": 2,
+        "hoca": "sonmez",
+        "mekan": "d6"
+      }
+    ]
+  }
+}
+</script>
 
-    <!-- Modal -->
     <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="modal-content"></div>
+        <div class="modal" id="modal-content"><h3>Mekan Seç</h3><div class="modal-sub">ELO 245 — Güç Elektroniği</div><div class="ders-grid"><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'd4')">
+                <span class="mekan-badge mekan-d4" style="font-size:14px; padding:6px 12px">D4</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'd6')">
+                <span class="mekan-badge mekan-d6" style="font-size:14px; padding:6px 12px">D6</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'eel')">
+                <span class="mekan-badge mekan-eel" style="font-size:14px; padding:6px 12px">EEL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'ttl')">
+                <span class="mekan-badge mekan-ttl" style="font-size:14px; padding:6px 12px">TTL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'bel')">
+                <span class="mekan-badge mekan-bel" style="font-size:14px; padding:6px 12px">BEL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'bl')">
+                <span class="mekan-badge mekan-bl" style="font-size:14px; padding:6px 12px">BL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'u')">
+                <span class="mekan-badge mekan-u" style="font-size:14px; padding:6px 12px">U</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'bos')">
+                <span class="mekan-badge mekan-bos" style="font-size:14px; padding:6px 12px">—</span>
+            </div></div></div>
     </div>
 
     <!-- Toast -->
-    <div class="toast" id="toast"></div>
+    <div class="toast" id="toast">ELO 245 → D6 güncellendi!</div>
 
     <script>
-        function switchTab(section) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.schedule-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById('tab-' + section).classList.add('active');
-            const sec = document.getElementById('section-' + section);
-            sec.classList.add('active');
-            // Re-trigger animations
-            sec.querySelectorAll('.ders-block').forEach(block => {
-                block.classList.remove('animate-in');
-                block.style.opacity = '0';
-                block.style.transform = 'translateY(8px)';
-                void block.offsetWidth;
-                observer.observe(block);
-            });
-        }
+let scheduleData = {};
+let activeTab = 'elektrik';
 
-        let activeFilter = 'all';
+const days = ['PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA'];
+const hours = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
 
-        function filterHoca(hoca) {
-            const allBtn = document.querySelector('.filter-btn[data-hoca="all"]');
+const courses = [
+    { kod: 'UTD 101', ad: 'Türk Dili I', sinif: 1, hoca: 'ortak' },
+    { kod: 'UIN 101', ad: 'İngilizce I', sinif: 1, hoca: 'ortak' },
+    { kod: 'UAI 101', ad: 'Atatürk İlkeleri ve İnkılap Tarihi I', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELT 147', ad: 'Doğru Akım Devre Analizi', sinif: 1, hoca: 'zateri' },
+    { kod: 'ELT 141', ad: 'Matematik I', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELT 137', ad: 'Ölçme Tekniği', sinif: 1, hoca: 'atal' },
+    { kod: 'ELT 143', ad: 'Tesisata Giriş', sinif: 1, hoca: 'sonmez' },
+    { kod: 'ELS 123', ad: 'Yenilenebilir Enerji Sistemleri', sinif: 1, hoca: 'cikan' },
+    { kod: 'ELT 231', ad: 'Sensörler ve Dönüştürücüler', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELS 225', ad: 'Elektromekanik Kumanda Sistemleri', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELT 235', ad: 'Sayısal Elektronik', sinif: 2, hoca: 'cikan' },
+    { kod: 'ELT 245', ad: 'Güç Elektroniği', sinif: 2, hoca: 'cikan' },
+    { kod: 'ELT 243', ad: 'Elektrik Motorları', sinif: 2, hoca: 'erdogan' },
+    { kod: 'ELT 247', ad: 'Bilgisayar Destekli Tasarım I', sinif: 2, hoca: 'kose' },
+    { kod: 'ELS 223', ad: 'Proje Geliştirme Teknikleri-II', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELO 135', ad: 'Doğru Akım Devre Analizi', sinif: 1, hoca: 'zateri' },
+    { kod: 'ELO 141', ad: 'Matematik I', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELO 139', ad: 'Ölçme Tekniği', sinif: 1, hoca: 'atal' },
+    { kod: 'ELO 143', ad: 'Elektronik Meslek Bilgisi ve Güvenliği', sinif: 1, hoca: 'erdogan' },
+    { kod: 'ELS 121', ad: 'Mesleki Matematik', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELO 231', ad: 'Sensörler ve Dönüştürücüler', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELO 249', ad: 'Sayısal Elektronik', sinif: 2, hoca: 'cikan' },
+    { kod: 'ELO 245', ad: 'Güç Elektroniği', sinif: 2, hoca: 'erdogan' },
+    { kod: 'ELO 243', ad: 'Analog Elektronik II', sinif: 2, hoca: 'atal' },
+    { kod: 'ELO 247', ad: 'Bilgisayar Destekli Devre Tasarımı', sinif: 2, hoca: 'erdogan' },
+    { kod: 'ELO 235', ad: 'Arıza Analizi', sinif: 2, hoca: 'kose' },
+    { kod: 'ELS 227', ad: 'Sistem Analizi ve Tasarımı-I', sinif: 2, hoca: 'cikan' }
+];
 
-            if (hoca === 'all') {
-                activeFilter = 'all';
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
-                document.querySelectorAll('.ders-block').forEach(b => b.classList.remove('dim'));
-                return;
-            }
+const mekanOptions = [
+    { key: 'd4', label: 'D4', css: 'mekan-d4' },
+    { key: 'd6', label: 'D6', css: 'mekan-d6' },
+    { key: 'eel', label: 'EEL', css: 'mekan-eel' },
+    { key: 'ttl', label: 'TTL', css: 'mekan-ttl' },
+    { key: 'bel', label: 'BEL', css: 'mekan-bel' },
+    { key: 'bl', label: 'BL', css: 'mekan-bl' },
+    { key: 'u', label: 'U', css: 'mekan-u' },
+    { key: 'bos', label: '—', css: 'mekan-bos' }
+];
 
-            // Single hoca toggle
-            allBtn.classList.remove('active');
-            const btn = document.querySelector(`.filter-btn[data-hoca="${hoca}"]`);
+window.init = function() {
+    const el = document.getElementById('schedule-data');
+    if (!el) {
+        console.error("Veri etiketi bulunamadı!");
+        return;
+    }
+    try {
+        scheduleData = JSON.parse(el.textContent);
+    } catch(e) {
+        scheduleData = { elektrik: {}, elektronik: {} };
+    }
+    
+    try {
+        const local = localStorage.getItem('ders_programi_v2');
+        if (local) scheduleData = JSON.parse(local);
+    } catch(e) { }
 
-            // If clicking same active single filter, reset to all
-            if (activeFilter === hoca) {
-                activeFilter = 'all';
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
-                document.querySelectorAll('.ders-block').forEach(b => b.classList.remove('dim'));
-                return;
-            }
+    window.renderSchedule();
+};
 
-            activeFilter = hoca;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+window.switchTab = function(tabId) {
+    activeTab = tabId.replace('tab-', '');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + activeTab).classList.add('active');
+    window.renderSchedule();
+};
 
-            document.querySelectorAll('.ders-block').forEach(block => {
-                if (block.getAttribute('data-hoca') === hoca) {
-                    block.classList.remove('dim');
+window.renderSchedule = function() {
+    const container = document.getElementById('schedule-container');
+    if(!container) return;
+    
+    let html = '';
+    ['elektrik', 'elektronik'].forEach(dept => {
+        const isActive = dept === activeTab ? 'active' : '';
+        html += `<div class="schedule-section ${isActive}" id="section-${dept}">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Gün</th>
+                            ${hours.map(h => `<th>${h}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>`;
+        
+        for (let d = 0; d < 5; d++) {
+            html += `<tr><td>${days[d]}</td>`;
+            for (let h = 0; h < 8; h++) {
+                const oldIdx = d * 9 + h + 1;
+                const cellData = scheduleData[dept][oldIdx] || [];
+                const sinif1 = cellData.filter(c => c.sinif === 1);
+                const sinif2 = cellData.filter(c => c.sinif === 2);
+                
+                html += `<td data-cell-id="${dept}-${oldIdx}">`;
+                if (cellData.length > 0) {
+                    html += `<div class="cell-wrapper">`;
+                    sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
+                    if (sinif1.length > 0 && sinif2.length > 0) html += `<div class="sinif-spacer"></div>`;
+                    sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
+                    html += `</div>`;
                 } else {
-                    block.classList.add('dim');
+                    html += `<div class="empty-cell" onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)">—</div>`;
                 }
-            });
+                html += `</td>`;
+            }
+            html += `</tr>`;
+        }
+        
+        html += `</tbody></table></div></div>`;
+    });
+    
+    container.innerHTML = html;
+};
+
+function createBlockHTML(b, dept, cellIdx, bIdx, year) {
+    const mekanObj = mekanOptions.find(m => m.key === b.mekan) || { css: '', label: b.mekan || '' };
+    return `<div class="ders-block hoca-${b.hoca} editable" onclick="window.openCourseModal('${dept}', ${cellIdx}, ${bIdx}, ${year})">
+            <div class="ders-kod">${b.kod}</div>
+            <div class="ders-ad">${b.ad}</div>
+            <span class="ders-sinif">${b.sinif}. Sınıf</span>
+            <span class="mekan-badge ${mekanObj.css}">${mekanObj.label.toUpperCase()}</span>
+        </div>`;
+}
+
+let currentEditState = null;
+
+window.openCourseModal = function(dept, cellIdx, bIdx, year) {
+    currentEditState = { dept, cellIdx, bIdx, year };
+    const modal = document.getElementById('modal-overlay');
+    const content = document.getElementById('modal-content');
+    const isElektronik = dept === 'elektronik';
+    
+    let html = `<h3>Ders Seçin</h3><div class="ders-grid">`;
+    html += `<div class="ders-option hoca-bos" style="background:#ff7675" onclick="window.selectCourseAction('empty')">
+                <div class="ders-kod">—</div><div class="ders-ad">BOŞ BIRAK</div>
+             </div>`;
+
+    courses.forEach(c => {
+        if (isElektronik && c.kod.startsWith('ELT')) return;
+        if (!isElektronik && c.kod.startsWith('ELO')) return;
+
+        html += `<div class="ders-option hoca-${c.hoca}" onclick="window.selectCourseAction('${c.kod}')">
+                <div class="ders-kod">${c.kod}</div>
+                <div class="ders-ad">${c.ad}</div>
+                <div style="font-size:11px; opacity:0.8; margin-top:4px">${c.sinif}. Sınıf</div>
+            </div>`;
+    });
+    html += `</div>`;
+    
+    content.innerHTML = html;
+    modal.classList.add('show');
+};
+
+window.selectCourseAction = function(action) {
+    const { dept, cellIdx, bIdx, year } = currentEditState;
+    if (action === 'empty') {
+        if (bIdx !== -1) {
+            const list = scheduleData[dept][cellIdx];
+            const realIndex = list.findIndex(c => c.sinif === year);
+            list.splice(realIndex + bIdx, 1);
+            if (list.length === 0) delete scheduleData[dept][cellIdx];
+            window.autoSave();
+            window.renderSchedule();
+        }
+        window.closeModal();
+        window.showToast('Ders silindi!');
+    } else {
+        const course = courses.find(c => c.kod.replace(/\s+/g, '') === action.replace(/\s+/g, ''));
+        window.showMekanPicker(course);
+    }
+};
+
+window.showMekanPicker = function(course) {
+    const content = document.getElementById('modal-content');
+    let html = `<h3>Mekan Seç</h3><div class="modal-sub">${course.kod} — ${course.ad}</div><div class="ders-grid">`;
+    mekanOptions.forEach(m => {
+        html += `<div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('${course.kod}', '${m.key}')">
+                <span class="mekan-badge ${m.css}" style="font-size:14px; padding:6px 12px">${m.label.toUpperCase()}</span>
+            </div>`;
+    });
+    html += `</div>`;
+    content.innerHTML = html;
+};
+
+window.finalizeCourseUpdate = function(courseKod, mekan) {
+    const { dept, cellIdx, bIdx, year } = currentEditState;
+    const course = courses.find(c => c.kod === courseKod);
+    
+    if (!scheduleData[dept][cellIdx]) scheduleData[dept][cellIdx] = [];
+    const newEntry = { kod: course.kod, ad: course.ad, sinif: course.sinif, hoca: course.hoca, mekan: mekan };
+    
+    if (bIdx === -1) {
+        scheduleData[dept][cellIdx].push(newEntry);
+    } else {
+        const list = scheduleData[dept][cellIdx];
+        const realIndex = list.findIndex(c => c.sinif === year);
+        list[realIndex + bIdx] = newEntry;
+    }
+    
+    window.autoSave();
+    window.renderSchedule();
+    window.closeModal();
+    window.showToast(`${course.kod} → ${mekan.toUpperCase()} güncellendi!`);
+};
+
+window.closeModal = function() {
+    document.getElementById('modal-overlay').classList.remove('show');
+};
+
+window.showToast = function(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+};
+
+window.autoSave = function() {
+    try { localStorage.setItem('ders_programi_v2', JSON.stringify(scheduleData)); } catch(e) {}
+};
+
+window.resetSchedule = function() {
+    if(confirm("Tüm değişiklikleriniz silinecek ve ilk sürüme dönülecek. Emin misiniz?")) {
+        try { localStorage.removeItem('ders_programi_v2'); } catch(e) {}
+        window.init();
+        window.showToast("Orijinal programa dönüldü!");
+    }
+};
+
+window.openGithubSettings = function() {
+    document.getElementById('github-modal').classList.add('show');
+    let token = '';
+    try { token = localStorage.getItem('gh_token') || ''; } catch(e) {}
+    document.getElementById('github-token-input').value = token;
+};
+
+window.closeGithubSettings = function() {
+    document.getElementById('github-modal').classList.remove('show');
+};
+
+window.saveAndPushToGithub = async function() {
+    const token = document.getElementById('github-token-input').value.trim();
+    if (!token) {
+        alert("Lütfen bir Token girin.");
+        return;
+    }
+    try { localStorage.setItem('gh_token', token); } catch(e) {}
+    
+    const btn = document.querySelector('#github-modal .action-btn');
+    btn.textContent = "Yükleniyor... Lütfen bekleyin";
+    btn.style.opacity = "0.5";
+    
+    try {
+        const apiUrl = "https://api.github.com/repos/esreferdoganhub/dersprogrami/contents/index.html";
+        const res = await fetch(apiUrl, { headers: { 'Authorization': `token ${token}` } });
+        if (!res.ok) throw new Error("GitHub API hatası. Token yanlış olabilir.");
+        
+        const fileData = await res.json();
+        
+        let currentHtml = document.documentElement.outerHTML;
+        
+        // Use a much safer string replacement!
+        const scriptStartTag = '<script id="schedule-data" type="application/json">';
+        const startIdx = currentHtml.indexOf(scriptStartTag);
+        const endIdx = currentHtml.indexOf('</s'+'cript>', startIdx);
+        
+        if (startIdx !== -1 && endIdx !== -1) {
+            const before = currentHtml.substring(0, startIdx + scriptStartTag.length);
+            const after = currentHtml.substring(endIdx);
+            currentHtml = before + '\n' + JSON.stringify(scheduleData, null, 2) + '\n' + after;
         }
 
-
-
-
-        // Entrance animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, idx) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('animate-in');
-                    }, idx * 25);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.ders-block').forEach(block => {
-            block.style.opacity = '0';
-            block.style.transform = 'translateY(8px)';
-            observer.observe(block);
+        const base64Content = btoa(unescape(encodeURIComponent("<!DOCTYPE html>\n<html>\n" + currentHtml + "\n</html>")));
+        
+        const pushRes = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: "Ders programı web üzerinden güncellendi", content: base64Content, sha: fileData.sha })
         });
+        
+        if (!pushRes.ok) throw new Error("Yükleme başarısız oldu.");
+        alert("Başarıyla yüklendi! Sitenin yayına girmesi 1-2 dakika sürebilir.");
+        window.closeGithubSettings();
+    } catch(e) {
+        console.error(e);
+        alert("Hata: " + e.message);
+    } finally {
+        btn.textContent = "🚀 Değişiklikleri Web Sitesine Yükle";
+        btn.style.opacity = "1";
+    }
+};
 
-        const style = document.createElement('style');
-        style.textContent = `
-            .animate-in { animation: slideUp 0.3s ease forwards; }
-            @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        `;
-        document.head.appendChild(style);
-        // ===== COURSE DATABASE =====
-        const coursesElektrik = [
-            { kod: 'ELT 115', ad: 'Ölçme Tekniği', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELT 119', ad: 'Tesisata Giriş', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 1 },
-            { kod: 'ELT 145', ad: 'Matematik I', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELT 147', ad: 'Doğru Akım Devre Analizi', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ELS 101', ad: 'Üniversitede Yaşam Kültürü', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELS 113', ad: 'Haberleşme Teknikleri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ELS 117', ad: 'Ofis Yazılımları', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 1 },
-            { kod: 'ELS 123', ad: 'Yenilenebilir Enerji Sistemleri', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 1 },
-            { kod: 'UAI 101', ad: 'Atatürk İlkeleri ve İnkılap Tarihi I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UIN 101', ad: 'İngilizce I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UTD 101', ad: 'Türk Dili I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'ELT 231', ad: 'Sensörler ve Dönüştürücüler', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELT 245', ad: 'Güç Elektroniği', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 2 },
-            { kod: 'ELT 247', ad: 'Asenkron ve Senkron Makineler', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELT 251', ad: 'Mikrodenetleyiciler', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELT 263', ad: 'Endüstriye Dayalı Eğitim', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ELT 277', ad: 'Elektrik Enerjisi İletimi ve Dağıtımı', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELS 213', ad: 'Mesleki İngilizce', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELS 219', ad: 'Telekomünikasyon Teknolojileri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ELS 223', ad: 'Proje Geliştirme Teknikleri-II', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELS 225', ad: 'Elektromekanik Kumanda Sistemleri', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-        ];
+window.addEventListener('DOMContentLoaded', window.init);
 
-        const coursesElektronik = [
-            { kod: 'ELO 107', ad: 'Matematik I', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELO 135', ad: 'Doğru Akım Devre Analizi', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ELO 137', ad: 'Elektronik Devre Tasarımı', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 1 },
-            { kod: 'ELO 139', ad: 'Ölçme Tekniği', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ETS 101', ad: 'Üniversitede Yaşam Kültürü', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ETS 113', ad: 'Haberleşme Teknikleri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ETS 117', ad: 'Ofis Yazılımları', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 1 },
-            { kod: 'ETS 123', ad: 'Yapay Zeka Araçlarının Etkin Kullanımı', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 1 },
-            { kod: 'ETS 125', ad: 'Yenilenebilir Enerji Sistemleri', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 1 },
-            { kod: 'UAI 101', ad: 'Atatürk İlkeleri ve İnkılap Tarihi I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UIN 101', ad: 'İngilizce I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UTD 101', ad: 'Türk Dili I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'ELO 213', ad: 'Endüstriye Dayalı Eğitim', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 2 },
-            { kod: 'ELO 221', ad: 'Elektronik I', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ELO 243', ad: 'Sayısal Tasarım', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELO 245', ad: 'Güç Elektroniği', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELO 247', ad: 'Mikrodenetleyiciler', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELO 263', ad: 'Sensörler ve Dönüştürücüler', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ETS 215', ad: 'Proje Geliştirme Teknikleri-II', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ETS 217', ad: 'Elektromekanik Kumanda Sistemleri', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ETS 219', ad: 'Telekomünikasyon Teknolojileri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ETS 225', ad: 'Mesleki İngilizce', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-        ];
-
-        const mekanOptions = [
-            { key: 'd4', label: 'D4', css: 'mekan-d4' },
-            { key: 'd6', label: 'D6', css: 'mekan-d6' },
-            { key: 'ttl', label: 'TTL', css: 'mekan-ttl' },
-            { key: 'eel', label: 'EEL', css: 'mekan-eel' },
-            { key: 'bl', label: 'BL', css: 'mekan-bl' },
-            { key: 'u', label: 'U', css: 'mekan-u' },
-        ];
+</script>
 
 
-
-        // ===== WRAP CELL CONTENT & REORDER =====
-        function wrapAndReorder() {
-            document.querySelectorAll('tbody td').forEach((td, i) => {
-                // Skip day-name column (first child)
-                if (td === td.parentElement.firstElementChild) return;
-
-                // Find or create wrapper
-                let wrapper = td.querySelector('.cell-wrapper');
-                if (!wrapper) {
-                    wrapper = document.createElement('div');
-                    wrapper.className = 'cell-wrapper';
-                    
-                    // Move existing contents to wrapper
-                    const children = Array.from(td.childNodes);
-                    children.forEach(c => wrapper.appendChild(c));
-                    td.appendChild(wrapper);
-                }
-
-                // Add unique IDs to cells and blocks for safe editing referability
-                const tdIndex = i;
-                const parentSection = td.closest('.schedule-section').id;
-                td.setAttribute('data-cell-id', `${parentSection}-${tdIndex}`);
-
-                const blocks = Array.from(wrapper.querySelectorAll('.ders-block'));
-                blocks.forEach((b, bIdx) => {
-                    b.setAttribute('data-block-id', `${parentSection}-${tdIndex}-${bIdx}`);
-                });
-
-                if (blocks.length === 0) return;
-
-                const sinif1 = [];
-                const sinif2 = [];
-                blocks.forEach(b => {
-                    const label = b.querySelector('.ders-sinif');
-                    if (label && label.textContent.includes('2.')) {
-                        sinif2.push(b);
-                    } else {
-                        sinif1.push(b);
-                    }
-                });
-
-                // Clear spacer & re-arrange inside wrapper
-                wrapper.querySelectorAll('.sinif-spacer').forEach(s => s.remove());
-                blocks.forEach(b => b.remove());
-
-                // Build: 1st year → spacer → 2nd year
-                // We MUST use cloneNode(true) here! Safari/WebKit has a bug where removing and re-inserting
-                // a flex item in the same synchronous execution block can permanently detach its rendering object.
-                // Cloning forces the browser to create fresh render objects, making them instantly visible.
-                sinif1.forEach(b => wrapper.appendChild(b.cloneNode(true)));
-                const spacer = document.createElement('div');
-                spacer.className = 'sinif-spacer';
-                wrapper.appendChild(spacer);
-                sinif2.forEach(b => wrapper.appendChild(b.cloneNode(true)));
-            });
-        }
-        wrapAndReorder();
-
-        // ===== AUTO-LOAD ON START =====
-        function autoLoadOnStart() {
-            const raw = localStorage.getItem('ders_programi_saved');
-            if (raw) {
-                try {
-                    const data = JSON.parse(raw);
-                    document.getElementById('section-elektrik').innerHTML = data.elektrik;
-                    document.getElementById('section-elektronik').innerHTML = data.elektronik;
-                } catch(e) {
-                    console.error("Otomatik yükleme başarısız", e);
-                }
-            }
-        }
-        autoLoadOnStart();
-        wrapAndReorder();
-
-        // ===== MAKE BLOCKS EDITABLE =====
-        function makeEditable() {
-            document.querySelectorAll('.ders-block').forEach(block => {
-                block.classList.add('editable');
-                block.onclick = function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const blockId = this.getAttribute('data-block-id');
-                    openCourseModal(blockId);
-                };
-            });
-        }
-        makeEditable();
-
-        // ===== DETECT PROGRAM =====
-        function getProgramById(blockId) {
-            return blockId.includes('elektronik') ? 'elektronik' : 'elektrik';
-        }
-
-        // ===== MODAL =====
-        function openCourseModal(blockId) {
-            const block = document.querySelector(`[data-block-id="${blockId}"]`);
-            if (!block) return;
-            
-            const program = getProgramById(blockId);
-            const courses = program === 'elektronik' ? coursesElektronik : coursesElektrik;
-            const currentKod = block.querySelector('.ders-kod')?.textContent?.trim().replace(/\s+/g, '');
-
-            const overlay = document.getElementById('modal-overlay');
-            const modal = document.getElementById('modal-content');
-
-            let html = `<h3>Ders Değiştir</h3>`;
-            html += `<div class="modal-sub">Program: ${program === 'elektronik' ? '🔌 Elektronik' : '⚡ Elektrik'} — Mevcut: <strong>${currentKod || 'Boş'}</strong></div>`;
-
-            // Empty slot option
-            html += `<div class="ders-option opt-empty" data-action="empty">— Boş Bırak —</div>`;
-
-            // Group by year
-            html += `<div style="margin:10px 0 6px; font-size:0.7rem; color:var(--text-muted); font-weight:600;">📘 1. SINIF</div>`;
-            courses.filter(c => c.sinif === 1).forEach(c => {
-                const isActive = c.kod.replace(/\s+/g, '') === currentKod ? ' style="box-shadow: 0 0 0 2px #6c5ce7;"' : '';
-                html += `<div class="ders-option hoca-${c.hoca}" data-kod="${c.kod}"${isActive}>
-                    <div class="opt-kod">${c.kod}</div>
-                    <div class="opt-ad">${c.ad}</div>
-                    <div class="opt-hoca">${c.hoceAd}</div>
-                </div>`;
-            });
-
-            html += `<div style="margin:14px 0 6px; font-size:0.7rem; color:var(--text-muted); font-weight:600;">📗 2. SINIF</div>`;
-            courses.filter(c => c.sinif === 2).forEach(c => {
-                const isActive = c.kod.replace(/\s+/g, '') === currentKod ? ' style="box-shadow: 0 0 0 2px #00cec9;"' : '';
-                html += `<div class="ders-option hoca-${c.hoca}" data-kod="${c.kod}"${isActive}>
-                    <div class="opt-kod">${c.kod}</div>
-                    <div class="opt-ad">${c.ad}</div>
-                    <div class="opt-hoca">${c.hoceAd}</div>
-                </div>`;
-            });
-
-            html += `<button class="close-btn" onclick="closeModal()">✕ Kapat</button>`;
-            modal.innerHTML = html;
-
-            modal.querySelectorAll('.ders-option').forEach(opt => {
-                opt.onclick = function() {
-                    try {
-                        const action = this.getAttribute('data-action');
-                        const kod = this.getAttribute('data-kod');
-
-                        if (action === 'empty') {
-                            const wrapper = block.parentElement;
-                            block.remove();
-                            const remaining = wrapper.querySelectorAll('.ders-block');
-                            if (remaining.length === 0) {
-                                const empty = document.createElement('div');
-                                empty.className = 'empty-cell';
-                                empty.textContent = '—';
-                                wrapper.appendChild(empty);
-                            }
-                            wrapAndReorder();
-                            autoSave();
-                            closeModal();
-                            showToast('Ders silindi!');
-                        } else {
-                            const course = courses.find(c => c.kod.replace(/\s+/g, '') === kod.replace(/\s+/g, ''));
-                            if (course) {
-                                showMekanPicker(blockId, course);
-                            }
-                        }
-                    } catch (err) {
-                        console.error(err);
-                        alert("Hata: " + err.message);
-                    }
-                };
-            });
-
-            overlay.classList.add('show');
-        }
-
-        function showMekanPicker(blockId, course) {
-            const modal = document.getElementById('modal-content');
-            let html = `<h3>Mekan Seç</h3>`;
-            html += `<div class="modal-sub">${course.kod} — ${course.ad}</div>`;
-
-            mekanOptions.forEach(m => {
-                html += `<div class="ders-option" style="background:rgba(255,255,255,0.04); border-left-color:var(--text-muted); cursor:pointer;" data-mekan="${m.key}">
-                    <span class="mekan-badge ${m.css}" style="font-size:0.8rem; padding:4px 12px;">${m.label}</span>
-                </div>`;
-            });
-
-            html += `<button class="close-btn" onclick="closeModal()">✕ İptal</button>`;
-            modal.innerHTML = html;
-
-            modal.querySelectorAll('.ders-option[data-mekan]').forEach(opt => {
-                opt.onclick = function() {
-                    try {
-                        const mekan = this.getAttribute('data-mekan');
-                        closeModal();
-                        updateBlock(blockId, course, mekan);
-                        showToast(`${course.kod} → ${mekan.toUpperCase()} olarak güncellendi!`);
-                    } catch (err) {
-                        console.error(err);
-                        alert("Hata (Mekan): " + err.message);
-                    }
-                };
-            });
-        }
-
-        function updateBlock(blockId, course, mekan) {
-            const block = document.querySelector(`[data-block-id="${blockId}"]`);
-            if (!block) return;
-
-            const wrapper = block.parentElement;
-            
-            const empty = wrapper.querySelector('.empty-cell');
-            if (empty) empty.remove();
-
-            block.className = `ders-block hoca-${course.hoca} editable`;
-            block.setAttribute('data-hoca', course.hoca);
-
-            const mekanObj = mekanOptions.find(m => m.key === mekan);
-            block.innerHTML = `
-                <div class="ders-kod">${course.kod}</div>
-                <div class="ders-ad">${course.ad}</div>
-                <span class="ders-sinif">${course.sinif}. Sınıf</span>
-                <span class="mekan-badge ${mekanObj.css}">${mekanObj.label}</span>
-            `;
-
-            wrapAndReorder();
-            autoSave();
-
-            // Asynchronous forced reflow to bypass WebKit/Chrome flexbox rendering bug.
-            // By yielding to the event loop (setTimeout), we force the browser to commit the new DOM layout
-            // before we restore visibility. This prevents the intrinsic height from collapsing to 0.
-            const activeSection = document.querySelector('.schedule-section.active');
-            if (activeSection) {
-                activeSection.style.display = 'none';
-                setTimeout(() => {
-                    activeSection.style.display = 'block';
-                    makeEditable(); // Re-bind just to be safe
-                }, 10);
-            } else {
-                makeEditable();
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('modal-overlay').classList.remove('show');
-        }
-
-        // Close modal on overlay click
-        document.getElementById('modal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        // Close modal on Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // ===== TOAST =====
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
-        }
-
-        // ===== SAVE / LOAD / RESET =====
-        let originalElektrik = document.getElementById('section-elektrik').innerHTML;
-        let originalElektronik = document.getElementById('section-elektronik').innerHTML;
-
-        function autoSave() {
-            const elektrikHTML = document.getElementById('section-elektrik').innerHTML;
-            const elektronikHTML = document.getElementById('section-elektronik').innerHTML;
-            
-            // Keep our original backup variables updated with the new edits
-            // so if they switch tabs or perform actions without reloading, the backups are in sync
-            originalElektrik = elektrikHTML;
-            originalElektronik = elektronikHTML;
-
-            const data = {
-                elektrik: elektrikHTML,
-                elektronik: elektronikHTML,
-                savedAt: new Date().toLocaleString('tr-TR')
-            };
-            localStorage.setItem('ders_programi_saved', JSON.stringify(data));
-            updateLoadBtn();
-        }
-
-        function saveSchedule() {
-            autoSave();
-            showToast('💾 Program kaydedildi!');
-        }
-
-        function loadSchedule() {
-            const raw = localStorage.getItem('ders_programi_saved');
-            if (!raw) {
-                showToast('⚠️ Kayıtlı program bulunamadı!');
-                return;
-            }
-            const data = JSON.parse(raw);
-            document.getElementById('section-elektrik').innerHTML = data.elektrik;
-            document.getElementById('section-elektronik').innerHTML = data.elektronik;
-            // Re-apply wrappers if the saved HTML was not wrapped or we want clean binding
-            wrapAndReorder();
-            makeEditable();
-            showToast('📂 Kayıtlı program yüklendi! (' + data.savedAt + ')');
-        }
-
-        function resetSchedule() {
-            if (!confirm('Orijinal programa dönmek istediğinize emin misiniz?')) return;
-            // Clear autosave so it doesn't load on reload
-            localStorage.removeItem('ders_programi_saved');
-            document.getElementById('section-elektrik').innerHTML = originalElektrik;
-            document.getElementById('section-elektronik').innerHTML = originalElektronik;
-            wrapAndReorder();
-            makeEditable();
-            updateLoadBtn();
-            showToast('🔄 Orijinal programa dönüldü!');
-        }
-
-        function updateLoadBtn() {
-            const raw = localStorage.getItem('ders_programi_saved');
-            const btn = document.getElementById('btn-load');
-            if (raw) {
-                const data = JSON.parse(raw);
-                btn.title = 'Son kayıt: ' + data.savedAt;
-                btn.disabled = false;
-            } else {
-                btn.disabled = true;
-                btn.title = 'Henüz kayıt yok';
-            }
-        }
-        updateLoadBtn();
-    </script>
-</body>
-
+</div></body></html>
 </html>
