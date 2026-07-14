@@ -874,10 +874,10 @@
             <button class="filter-btn active" data-hoca="ortak" onclick="filterHoca('ortak')">Ortak</button>
         </div>
 
-        <div class="action-bar">
-            <button class="action-btn save-btn" onclick="saveSchedule()">💾 Son Hali Kaydet</button>
-            <button class="action-btn load-btn" onclick="loadSchedule()" id="btn-load">📂 Son Haline Getir</button>
-            <button class="action-btn reset-btn" onclick="resetSchedule()">🔄 Orijinale Dön</button>
+        <div class="action-bar" style="display: none; justify-content: center; gap: 15px; margin-bottom: 25px;">
+            <button class="action-btn save-btn" onclick="window.saveSchedule()">💾 Son Hali Kaydet</button>
+            <button class="action-btn load-btn" onclick="window.loadSchedule()" id="btn-load">📂 Son Haline Getir</button>
+            <button class="action-btn reset-btn" onclick="window.resetSchedule()">🔄 Orijinale Dön</button>
         </div>
 
         <!-- ==================== ELEKTRİK ==================== -->
@@ -1924,475 +1924,395 @@
     <div class="toast" id="toast"></div>
 
     <script>
-        function switchTab(section) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.schedule-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById('tab-' + section).classList.add('active');
-            const sec = document.getElementById('section-' + section);
-            sec.classList.add('active');
-            // Re-trigger animations
-            sec.querySelectorAll('.ders-block').forEach(block => {
-                block.classList.remove('animate-in');
-                block.style.opacity = '0';
-                block.style.transform = 'translateY(8px)';
-                void block.offsetWidth;
-                observer.observe(block);
-            });
+let scheduleData = {};
+let activeTab = 'elektrik';
+let isAdmin = false;
+const ADMIN_PASSWORD = "admin"; // Burada dilediğiniz yönetici şifresini belirleyebilirsiniz
+
+const days = ['PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA'];
+const hours = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
+
+const courses = [
+    { kod: 'UTD 101', ad: 'Türk Dili I', sinif: 1, hoca: 'ortak' },
+    { kod: 'UIN 101', ad: 'İngilizce I', sinif: 1, hoca: 'ortak' },
+    { kod: 'UAI 101', ad: 'Atatürk İlkeleri ve İnkılap Tarihi I', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELT 147', ad: 'Doğru Akım Devre Analizi', sinif: 1, hoca: 'zateri' },
+    { kod: 'ELT 141', ad: 'Matematik I', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELT 137', ad: 'Ölçme Tekniği', sinif: 1, hoca: 'atal' },
+    { kod: 'ELT 143', ad: 'Tesisata Giriş', sinif: 1, hoca: 'sonmez' },
+    { kod: 'ELS 123', ad: 'Yenilenebilir Enerji Sistemleri', sinif: 1, hoca: 'cikan' },
+    { kod: 'ELT 231', ad: 'Sensörler ve Dönüştürücüler', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELS 225', ad: 'Elektromekanik Kumanda Sistemleri', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELT 235', ad: 'Sayısal Elektronik', sinif: 2, hoca: 'cikan' },
+    { kod: 'ELT 245', ad: 'Güç Elektroniği', sinif: 2, hoca: 'cikan' },
+    { kod: 'ELT 243', ad: 'Elektrik Motorları', sinif: 2, hoca: 'erdogan' },
+    { kod: 'ELT 247', ad: 'Bilgisayar Destekli Tasarım I', sinif: 2, hoca: 'kose' },
+    { kod: 'ELS 223', ad: 'Proje Geliştirme Teknikleri-II', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELO 135', ad: 'Doğru Akım Devre Analizi', sinif: 1, hoca: 'zateri' },
+    { kod: 'ELO 141', ad: 'Matematik I', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELO 139', ad: 'Ölçme Tekniği', sinif: 1, hoca: 'atal' },
+    { kod: 'ELO 143', ad: 'Elektronik Meslek Bilgisi ve Güvenliği', sinif: 1, hoca: 'erdogan' },
+    { kod: 'ELS 121', ad: 'Mesleki Matematik', sinif: 1, hoca: 'ortak' },
+    { kod: 'ELO 231', ad: 'Sensörler ve Dönüştürücüler', sinif: 2, hoca: 'sonmez' },
+    { kod: 'ELO 249', ad: 'Sayısal Elektronik', sinif: 2, hoca: 'cikan' },
+    { kod: 'ELO 245', ad: 'Güç Elektroniği', sinif: 2, hoca: 'erdogan' },
+    { kod: 'ELO 243', ad: 'Analog Elektronik II', sinif: 2, hoca: 'atal' },
+    { kod: 'ELO 247', ad: 'Bilgisayar Destekli Devre Tasarımı', sinif: 2, hoca: 'erdogan' },
+    { kod: 'ELO 235', ad: 'Arıza Analizi', sinif: 2, hoca: 'kose' },
+    { kod: 'ELS 227', ad: 'Sistem Analizi ve Tasarımı-I', sinif: 2, hoca: 'cikan' }
+];
+
+const mekanOptions = [
+    { key: 'd4', label: 'D4', css: 'mekan-d4' },
+    { key: 'd6', label: 'D6', css: 'mekan-d6' },
+    { key: 'eel', label: 'EEL', css: 'mekan-eel' },
+    { key: 'ttl', label: 'TTL', css: 'mekan-ttl' },
+    { key: 'bel', label: 'BEL', css: 'mekan-bel' },
+    { key: 'bl', label: 'BL', css: 'mekan-bl' },
+    { key: 'u', label: 'U', css: 'mekan-u' },
+    { key: 'bos', label: '—', css: 'mekan-bos' }
+];
+
+window.init = function() {
+    const el = document.getElementById('schedule-data');
+    if (!el) {
+        console.error("Veri etiketi bulunamadı!");
+        return;
+    }
+    try {
+        scheduleData = JSON.parse(el.textContent);
+    } catch(e) {
+        scheduleData = { elektrik: {}, elektronik: {} };
+    }
+    
+    try {
+        const local = localStorage.getItem('ders_programi_v2');
+        if (local) scheduleData = JSON.parse(local);
+    } catch(e) { }
+
+    try {
+        if (sessionStorage.getItem('is_admin') === 'true') {
+            isAdmin = true;
         }
+    } catch(e) {}
 
-        let activeFilter = 'all';
+    window.updateAdminUI();
+    window.renderSchedule();
+};
 
-        function filterHoca(hoca) {
-            const allBtn = document.querySelector('.filter-btn[data-hoca="all"]');
+window.toggleAdminMode = function() {
+    if (isAdmin) {
+        isAdmin = false;
+        try { sessionStorage.removeItem('is_admin'); } catch(e) {}
+        window.showToast("Yönetici çıkışı yapıldı.");
+    } else {
+        const pwd = prompt("Yönetici Şifresini Girin:");
+        if (pwd === ADMIN_PASSWORD) {
+            isAdmin = true;
+            try { sessionStorage.setItem('is_admin', 'true'); } catch(e) {}
+            window.showToast("Başarıyla giriş yapıldı!");
+        } else if (pwd !== null) {
+            alert("Hatalı şifre!");
+        }
+    }
+    window.updateAdminUI();
+    window.renderSchedule();
+};
 
-            if (hoca === 'all') {
-                activeFilter = 'all';
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
-                document.querySelectorAll('.ders-block').forEach(b => b.classList.remove('dim'));
-                return;
-            }
+window.updateAdminUI = function() {
+    const btn = document.getElementById('admin-toggle-btn');
+    const actionBar = document.querySelector('.action-bar');
+    const githubBtn = document.getElementById('github-settings-btn');
+    
+    if (btn) {
+        btn.innerHTML = isAdmin ? '🚪 Çıkış Yap' : '🔑 Yönetici Girişi';
+        btn.style.background = isAdmin ? '#ff7675' : '#6c5ce7';
+    }
+    if (actionBar) {
+        actionBar.style.display = isAdmin ? 'flex' : 'none';
+    }
+    if (githubBtn) {
+        githubBtn.style.display = isAdmin ? 'block' : 'none';
+    }
+};
 
-            // Single hoca toggle
-            allBtn.classList.remove('active');
-            const btn = document.querySelector(`.filter-btn[data-hoca="${hoca}"]`);
+window.switchTab = function(tabId) {
+    activeTab = tabId.replace('tab-', '');
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + activeTab).classList.add('active');
+    window.renderSchedule();
+};
 
-            // If clicking same active single filter, reset to all
-            if (activeFilter === hoca) {
-                activeFilter = 'all';
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('active'));
-                document.querySelectorAll('.ders-block').forEach(b => b.classList.remove('dim'));
-                return;
-            }
-
-            activeFilter = hoca;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            document.querySelectorAll('.ders-block').forEach(block => {
-                if (block.getAttribute('data-hoca') === hoca) {
-                    block.classList.remove('dim');
+window.renderSchedule = function() {
+    const container = document.getElementById('schedule-container');
+    if(!container) return;
+    
+    let html = '';
+    ['elektrik', 'elektronik'].forEach(dept => {
+        const isActive = dept === activeTab ? 'active' : '';
+        html += `<div class="schedule-section ${isActive}" id="section-${dept}">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Gün</th>
+                            ${hours.map(h => `<th>${h}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>`;
+        
+        for (let d = 0; d < 5; d++) {
+            html += `<tr><td>${days[d]}</td>`;
+            for (let h = 0; h < 8; h++) {
+                const oldIdx = d * 9 + h + 1;
+                const cellData = scheduleData[dept][oldIdx] || [];
+                const sinif1 = cellData.filter(c => c.sinif === 1);
+                const sinif2 = cellData.filter(c => c.sinif === 2);
+                
+                html += `<td data-cell-id="${dept}-${oldIdx}">`;
+                if (cellData.length > 0) {
+                    html += `<div class="cell-wrapper">`;
+                    sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
+                    if (sinif1.length > 0 && sinif2.length > 0) html += `<div class="sinif-spacer"></div>`;
+                    sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
+                    html += `</div>`;
                 } else {
-                    block.classList.add('dim');
+                    const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)"` : '';
+                    const cursorClass = isAdmin ? 'editable' : '';
+                    html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
                 }
-            });
+                html += `</td>`;
+            }
+            html += `</tr>`;
+        }
+        
+        html += `</tbody></table></div></div>`;
+    });
+    
+    container.innerHTML = html;
+};
+
+function createBlockHTML(b, dept, cellIdx, bIdx, year) {
+    const mekanObj = mekanOptions.find(m => m.key === b.mekan) || { css: '', label: b.mekan || '' };
+    const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${cellIdx}, ${bIdx}, ${year})"` : '';
+    const cursorClass = isAdmin ? 'editable' : '';
+    return `<div class="ders-block hoca-${b.hoca} ${cursorClass}" ${clickAttr}>
+            <div class="ders-kod">${b.kod}</div>
+            <div class="ders-ad">${b.ad}</div>
+            <span class="ders-sinif">${b.sinif}. Sınıf</span>
+            <span class="mekan-badge ${mekanObj.css}">${mekanObj.label.toUpperCase()}</span>
+        </div>`;
+}
+
+let currentEditState = null;
+
+window.openCourseModal = function(dept, cellIdx, bIdx, year) {
+    if (!isAdmin) return;
+    currentEditState = { dept, cellIdx, bIdx, year };
+    const modal = document.getElementById('modal-overlay');
+    const content = document.getElementById('modal-content');
+    const isElektronik = dept === 'elektronik';
+    
+    let html = `<h3>Ders Seçin</h3><div class="ders-grid">`;
+    html += `<div class="ders-option" style="background:#b2bec3" onclick="window.closeModal()">
+                <div class="ders-kod">❌</div><div class="ders-ad">İPTAL ET</div>
+             </div>`;
+    html += `<div class="ders-option hoca-bos" style="background:#ff7675" onclick="window.selectCourseAction('empty')">
+                <div class="ders-kod">—</div><div class="ders-ad">BOŞ BIRAK</div>
+             </div>`;
+
+    courses.forEach(c => {
+        if (isElektronik && c.kod.startsWith('ELT')) return;
+        if (!isElektronik && c.kod.startsWith('ELO')) return;
+
+        html += `<div class="ders-option hoca-${c.hoca}" onclick="window.selectCourseAction('${c.kod}')">
+                <div class="ders-kod">${c.kod}</div>
+                <div class="ders-ad">${c.ad}</div>
+                <div style="font-size:11px; opacity:0.8; margin-top:4px">${c.sinif}. Sınıf</div>
+            </div>`;
+    });
+    html += `</div>`;
+    
+    content.innerHTML = html;
+    modal.classList.add('show');
+};
+
+window.selectCourseAction = function(action) {
+    if (!isAdmin) return;
+    const { dept, cellIdx, bIdx, year } = currentEditState;
+    if (action === 'empty') {
+        if (bIdx !== -1) {
+            const list = scheduleData[dept][cellIdx];
+            const realIndex = list.findIndex(c => c.sinif === year);
+            list.splice(realIndex + bIdx, 1);
+            if (list.length === 0) delete scheduleData[dept][cellIdx];
+            window.autoSave();
+            window.renderSchedule();
+        }
+        window.closeModal();
+        window.showToast('Ders silindi!');
+    } else {
+        const course = courses.find(c => c.kod.replace(/\s+/g, '') === action.replace(/\s+/g, ''));
+        window.showMekanPicker(course);
+    }
+};
+
+window.showMekanPicker = function(course) {
+    if (!isAdmin) return;
+    const content = document.getElementById('modal-content');
+    let html = `<h3>Mekan Seç</h3><div class="modal-sub">${course.kod} — ${course.ad}</div><div class="ders-grid">`;
+    html += `<div class="ders-option" style="background:#b2bec3" onclick="window.closeModal()">
+                <div class="ders-kod">❌</div><div class="ders-ad">İPTAL ET</div>
+             </div>`;
+    mekanOptions.forEach(m => {
+        html += `<div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('${course.kod}', '${m.key}')">
+                <span class="mekan-badge ${m.css}" style="font-size:14px; padding:6px 12px">${m.label.toUpperCase()}</span>
+            </div>`;
+    });
+    html += `</div>`;
+    content.innerHTML = html;
+};
+
+window.finalizeCourseUpdate = function(courseKod, mekan) {
+    if (!isAdmin) return;
+    const { dept, cellIdx, bIdx, year } = currentEditState;
+    const course = courses.find(c => c.kod === courseKod);
+    
+    if (!scheduleData[dept][cellIdx]) scheduleData[dept][cellIdx] = [];
+    const newEntry = { kod: course.kod, ad: course.ad, sinif: course.sinif, hoca: course.hoca, mekan: mekan };
+    
+    if (bIdx === -1) {
+        scheduleData[dept][cellIdx].push(newEntry);
+    } else {
+        const list = scheduleData[dept][cellIdx];
+        const realIndex = list.findIndex(c => c.sinif === year);
+        list[realIndex + bIdx] = newEntry;
+    }
+    
+    window.autoSave();
+    window.renderSchedule();
+    window.closeModal();
+    window.showToast(`${course.kod} → ${mekan.toUpperCase()} güncellendi!`);
+};
+
+window.closeModal = function() {
+    document.getElementById('modal-overlay').classList.remove('show');
+};
+
+window.showToast = function(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+};
+
+window.autoSave = function() {
+    try { localStorage.setItem('ders_programi_v2', JSON.stringify(scheduleData)); } catch(e) {}
+};
+
+window.saveSchedule = function() {
+    window.autoSave();
+    window.showToast('💾 Tarayıcıya Kaydedildi!');
+};
+
+window.loadSchedule = function() {
+    try {
+        const local = localStorage.getItem('ders_programi_v2');
+        if (local) {
+            scheduleData = JSON.parse(local);
+            window.renderSchedule();
+            window.showToast('📂 Kayıtlı program yüklendi!');
+        } else {
+            window.showToast('⚠️ Tarayıcıda kayıtlı program bulunamadı!');
+        }
+    } catch(e) {}
+};
+
+window.resetSchedule = function() {
+    if (!isAdmin) return;
+    if(confirm("Tüm değişiklikleriniz silinecek ve ilk sürüme dönülecek. Emin misiniz?")) {
+        try { localStorage.removeItem('ders_programi_v2'); } catch(e) {}
+        window.init();
+        window.showToast("Orijinal programa dönüldü!");
+    }
+};
+
+window.openGithubSettings = function() {
+    if (!isAdmin) return;
+    document.getElementById('github-modal').classList.add('show');
+    let token = '';
+    try { token = localStorage.getItem('gh_token') || ''; } catch(e) {}
+    document.getElementById('github-token-input').value = token;
+};
+
+window.closeGithubSettings = function() {
+    document.getElementById('github-modal').classList.remove('show');
+};
+
+window.saveAndPushToGithub = async function() {
+    if (!isAdmin) return;
+    const token = document.getElementById('github-token-input').value.trim();
+    if (!token) {
+        alert("Lütfen bir Token girin.");
+        return;
+    }
+    try { localStorage.setItem('gh_token', token); } catch(e) {}
+    
+    const btn = document.querySelector('#github-modal .action-btn');
+    btn.textContent = "Yükleniyor... Lütfen bekleyin";
+    btn.style.opacity = "0.5";
+    
+    try {
+        const apiUrl = "https://api.github.com/repos/esreferdoganhub/dersprogrami/contents/index.html";
+        const res = await fetch(apiUrl, { headers: { 'Authorization': `token ${token}` } });
+        if (!res.ok) throw new Error("GitHub API hatası. Token yanlış olabilir.");
+        
+        const fileData = await res.json();
+        
+        let currentHtml = document.documentElement.outerHTML;
+        
+        // Use a much safer string replacement!
+        const scriptStartTag = '<script id="schedule-data" type="application/json">';
+        const startIdx = currentHtml.indexOf(scriptStartTag);
+        const endIdx = currentHtml.indexOf('</s'+'cript>', startIdx);
+        
+        if (startIdx !== -1 && endIdx !== -1) {
+            const before = currentHtml.substring(0, startIdx + scriptStartTag.length);
+            const after = currentHtml.substring(endIdx);
+            currentHtml = before + '\n' + JSON.stringify(scheduleData, null, 2) + '\n' + after;
         }
 
-
-
-
-        // Entrance animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, idx) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('animate-in');
-                    }, idx * 25);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.ders-block').forEach(block => {
-            block.style.opacity = '0';
-            block.style.transform = 'translateY(8px)';
-            observer.observe(block);
+        const base64Content = btoa(unescape(encodeURIComponent("<!DOCTYPE html>\n<html>\n" + currentHtml + "\n</html>")));
+        
+        const pushRes = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: { 'Authorization': `token ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: "Ders programı web üzerinden güncellendi", content: base64Content, sha: fileData.sha })
         });
+        
+        if (!pushRes.ok) throw new Error("Yükleme başarısız oldu.");
+        alert("Başarıyla yüklendi! Sitenin yayına girmesi 1-2 dakika sürebilir.");
+        window.closeGithubSettings();
+    } catch(e) {
+        console.error(e);
+        alert("Hata: " + e.message);
+    } finally {
+        btn.textContent = "🚀 Değişiklikleri Web Sitesine Yükle";
+        btn.style.opacity = "1";
+    }
+};
 
-        const style = document.createElement('style');
-        style.textContent = `
-            .animate-in { animation: slideUp 0.3s ease forwards; }
-            @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        `;
-        document.head.appendChild(style);
-        // ===== COURSE DATABASE =====
-        const coursesElektrik = [
-            { kod: 'ELT 115', ad: 'Ölçme Tekniği', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELT 119', ad: 'Tesisata Giriş', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 1 },
-            { kod: 'ELT 145', ad: 'Matematik I', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELT 147', ad: 'Doğru Akım Devre Analizi', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ELS 101', ad: 'Üniversitede Yaşam Kültürü', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELS 113', ad: 'Haberleşme Teknikleri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ELS 117', ad: 'Ofis Yazılımları', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 1 },
-            { kod: 'ELS 123', ad: 'Yenilenebilir Enerji Sistemleri', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 1 },
-            { kod: 'UAI 101', ad: 'Atatürk İlkeleri ve İnkılap Tarihi I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UIN 101', ad: 'İngilizce I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UTD 101', ad: 'Türk Dili I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'ELT 231', ad: 'Sensörler ve Dönüştürücüler', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELT 245', ad: 'Güç Elektroniği', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 2 },
-            { kod: 'ELT 247', ad: 'Asenkron ve Senkron Makineler', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELT 251', ad: 'Mikrodenetleyiciler', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELT 263', ad: 'Endüstriye Dayalı Eğitim', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ELT 277', ad: 'Elektrik Enerjisi İletimi ve Dağıtımı', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELS 213', ad: 'Mesleki İngilizce', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELS 219', ad: 'Telekomünikasyon Teknolojileri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ELS 223', ad: 'Proje Geliştirme Teknikleri-II', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ELS 225', ad: 'Elektromekanik Kumanda Sistemleri', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-        ];
+// Listen to Escape key to close modals
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        window.closeModal();
+        window.closeGithubSettings();
+    }
+});
 
-        const coursesElektronik = [
-            { kod: 'ELO 107', ad: 'Matematik I', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ELO 135', ad: 'Doğru Akım Devre Analizi', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ELO 137', ad: 'Elektronik Devre Tasarımı', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 1 },
-            { kod: 'ELO 139', ad: 'Ölçme Tekniği', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ETS 101', ad: 'Üniversitede Yaşam Kültürü', hoca: 'atal', hoceAd: 'Öğr. Gör. Tuğba Atal', sinif: 1 },
-            { kod: 'ETS 113', ad: 'Haberleşme Teknikleri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 1 },
-            { kod: 'ETS 117', ad: 'Ofis Yazılımları', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 1 },
-            { kod: 'ETS 123', ad: 'Yapay Zeka Araçlarının Etkin Kullanımı', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 1 },
-            { kod: 'ETS 125', ad: 'Yenilenebilir Enerji Sistemleri', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 1 },
-            { kod: 'UAI 101', ad: 'Atatürk İlkeleri ve İnkılap Tarihi I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UIN 101', ad: 'İngilizce I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'UTD 101', ad: 'Türk Dili I', hoca: 'ortak', hoceAd: 'Uzaktan', sinif: 1 },
-            { kod: 'ELO 213', ad: 'Endüstriye Dayalı Eğitim', hoca: 'cikan', hoceAd: 'Doç. Dr. Murat Çıkan', sinif: 2 },
-            { kod: 'ELO 221', ad: 'Elektronik I', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ELO 243', ad: 'Sayısal Tasarım', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELO 245', ad: 'Güç Elektroniği', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELO 247', ad: 'Mikrodenetleyiciler', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ELO 263', ad: 'Sensörler ve Dönüştürücüler', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ETS 215', ad: 'Proje Geliştirme Teknikleri-II', hoca: 'erdogan', hoceAd: 'Öğr. Gör. Eşref Erdoğan', sinif: 2 },
-            { kod: 'ETS 217', ad: 'Elektromekanik Kumanda Sistemleri', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-            { kod: 'ETS 219', ad: 'Telekomünikasyon Teknolojileri', hoca: 'zateri', hoceAd: 'Doç. Dr. Mine Tülin Zateroğlu', sinif: 2 },
-            { kod: 'ETS 225', ad: 'Mesleki İngilizce', hoca: 'sonmez', hoceAd: 'Öğr. Gör. Aykut Sönmez', sinif: 2 },
-        ];
+window.addEventListener('DOMContentLoaded', window.init);
 
-        const mekanOptions = [
-            { key: 'd4', label: 'D4', css: 'mekan-d4' },
-            { key: 'd6', label: 'D6', css: 'mekan-d6' },
-            { key: 'ttl', label: 'TTL', css: 'mekan-ttl' },
-            { key: 'eel', label: 'EEL', css: 'mekan-eel' },
-            { key: 'bl', label: 'BL', css: 'mekan-bl' },
-            { key: 'u', label: 'U', css: 'mekan-u' },
-        ];
-
-
-
-        // ===== WRAP CELL CONTENT & REORDER =====
-        function wrapAndReorder() {
-            document.querySelectorAll('tbody td').forEach((td, i) => {
-                // Skip day-name column (first child)
-                if (td === td.parentElement.firstElementChild) return;
-
-                // Find or create wrapper
-                let wrapper = td.querySelector('.cell-wrapper');
-                if (!wrapper) {
-                    wrapper = document.createElement('div');
-                    wrapper.className = 'cell-wrapper';
-                    
-                    // Move existing contents to wrapper
-                    const children = Array.from(td.childNodes);
-                    children.forEach(c => wrapper.appendChild(c));
-                    td.appendChild(wrapper);
-                }
-
-                // Add unique IDs to cells and blocks for safe editing referability
-                const tdIndex = i;
-                const parentSection = td.closest('.schedule-section').id;
-                td.setAttribute('data-cell-id', `${parentSection}-${tdIndex}`);
-
-                const blocks = Array.from(wrapper.querySelectorAll('.ders-block'));
-                blocks.forEach((b, bIdx) => {
-                    b.setAttribute('data-block-id', `${parentSection}-${tdIndex}-${bIdx}`);
-                });
-
-                if (blocks.length === 0) return;
-
-                const sinif1 = [];
-                const sinif2 = [];
-                blocks.forEach(b => {
-                    const label = b.querySelector('.ders-sinif');
-                    if (label && label.textContent.includes('2.')) {
-                        sinif2.push(b);
-                    } else {
-                        sinif1.push(b);
-                    }
-                });
-
-                // Clear spacer & re-arrange inside wrapper
-                wrapper.querySelectorAll('.sinif-spacer').forEach(s => s.remove());
-                blocks.forEach(b => b.remove());
-
-                // Build: 1st year → spacer → 2nd year
-                // We MUST use cloneNode(true) here! Safari/WebKit has a bug where removing and re-inserting
-                // a flex item in the same synchronous execution block can permanently detach its rendering object.
-                // Cloning forces the browser to create fresh render objects, making them instantly visible.
-                sinif1.forEach(b => wrapper.appendChild(b.cloneNode(true)));
-                const spacer = document.createElement('div');
-                spacer.className = 'sinif-spacer';
-                wrapper.appendChild(spacer);
-                sinif2.forEach(b => wrapper.appendChild(b.cloneNode(true)));
-            });
-        }
-        wrapAndReorder();
-
-        // ===== AUTO-LOAD ON START =====
-        function autoLoadOnStart() {
-            const raw = localStorage.getItem('ders_programi_saved');
-            if (raw) {
-                try {
-                    const data = JSON.parse(raw);
-                    document.getElementById('section-elektrik').innerHTML = data.elektrik;
-                    document.getElementById('section-elektronik').innerHTML = data.elektronik;
-                } catch(e) {
-                    console.error("Otomatik yükleme başarısız", e);
-                }
-            }
-        }
-        autoLoadOnStart();
-        wrapAndReorder();
-
-        // ===== MAKE BLOCKS EDITABLE =====
-        function makeEditable() {
-            document.querySelectorAll('.ders-block').forEach(block => {
-                block.classList.add('editable');
-                block.onclick = function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const blockId = this.getAttribute('data-block-id');
-                    openCourseModal(blockId);
-                };
-            });
-        }
-        makeEditable();
-
-        // ===== DETECT PROGRAM =====
-        function getProgramById(blockId) {
-            return blockId.includes('elektronik') ? 'elektronik' : 'elektrik';
-        }
-
-        // ===== MODAL =====
-        function openCourseModal(blockId) {
-            const block = document.querySelector(`[data-block-id="${blockId}"]`);
-            if (!block) return;
-            
-            const program = getProgramById(blockId);
-            const courses = program === 'elektronik' ? coursesElektronik : coursesElektrik;
-            const currentKod = block.querySelector('.ders-kod')?.textContent?.trim().replace(/\s+/g, '');
-
-            const overlay = document.getElementById('modal-overlay');
-            const modal = document.getElementById('modal-content');
-
-            let html = `<h3>Ders Değiştir</h3>`;
-            html += `<div class="modal-sub">Program: ${program === 'elektronik' ? '🔌 Elektronik' : '⚡ Elektrik'} — Mevcut: <strong>${currentKod || 'Boş'}</strong></div>`;
-
-            // Empty slot option
-            html += `<div class="ders-option opt-empty" data-action="empty">— Boş Bırak —</div>`;
-
-            // Group by year
-            html += `<div style="margin:10px 0 6px; font-size:0.7rem; color:var(--text-muted); font-weight:600;">📘 1. SINIF</div>`;
-            courses.filter(c => c.sinif === 1).forEach(c => {
-                const isActive = c.kod.replace(/\s+/g, '') === currentKod ? ' style="box-shadow: 0 0 0 2px #6c5ce7;"' : '';
-                html += `<div class="ders-option hoca-${c.hoca}" data-kod="${c.kod}"${isActive}>
-                    <div class="opt-kod">${c.kod}</div>
-                    <div class="opt-ad">${c.ad}</div>
-                    <div class="opt-hoca">${c.hoceAd}</div>
-                </div>`;
-            });
-
-            html += `<div style="margin:14px 0 6px; font-size:0.7rem; color:var(--text-muted); font-weight:600;">📗 2. SINIF</div>`;
-            courses.filter(c => c.sinif === 2).forEach(c => {
-                const isActive = c.kod.replace(/\s+/g, '') === currentKod ? ' style="box-shadow: 0 0 0 2px #00cec9;"' : '';
-                html += `<div class="ders-option hoca-${c.hoca}" data-kod="${c.kod}"${isActive}>
-                    <div class="opt-kod">${c.kod}</div>
-                    <div class="opt-ad">${c.ad}</div>
-                    <div class="opt-hoca">${c.hoceAd}</div>
-                </div>`;
-            });
-
-            html += `<button class="close-btn" onclick="closeModal()">✕ Kapat</button>`;
-            modal.innerHTML = html;
-
-            modal.querySelectorAll('.ders-option').forEach(opt => {
-                opt.onclick = function() {
-                    try {
-                        const action = this.getAttribute('data-action');
-                        const kod = this.getAttribute('data-kod');
-
-                        if (action === 'empty') {
-                            const wrapper = block.parentElement;
-                            block.remove();
-                            const remaining = wrapper.querySelectorAll('.ders-block');
-                            if (remaining.length === 0) {
-                                const empty = document.createElement('div');
-                                empty.className = 'empty-cell';
-                                empty.textContent = '—';
-                                wrapper.appendChild(empty);
-                            }
-                            wrapAndReorder();
-                            autoSave();
-                            closeModal();
-                            showToast('Ders silindi!');
-                        } else {
-                            const course = courses.find(c => c.kod.replace(/\s+/g, '') === kod.replace(/\s+/g, ''));
-                            if (course) {
-                                showMekanPicker(blockId, course);
-                            }
-                        }
-                    } catch (err) {
-                        console.error(err);
-                        alert("Hata: " + err.message);
-                    }
-                };
-            });
-
-            overlay.classList.add('show');
-        }
-
-        function showMekanPicker(blockId, course) {
-            const modal = document.getElementById('modal-content');
-            let html = `<h3>Mekan Seç</h3>`;
-            html += `<div class="modal-sub">${course.kod} — ${course.ad}</div>`;
-
-            mekanOptions.forEach(m => {
-                html += `<div class="ders-option" style="background:rgba(255,255,255,0.04); border-left-color:var(--text-muted); cursor:pointer;" data-mekan="${m.key}">
-                    <span class="mekan-badge ${m.css}" style="font-size:0.8rem; padding:4px 12px;">${m.label}</span>
-                </div>`;
-            });
-
-            html += `<button class="close-btn" onclick="closeModal()">✕ İptal</button>`;
-            modal.innerHTML = html;
-
-            modal.querySelectorAll('.ders-option[data-mekan]').forEach(opt => {
-                opt.onclick = function() {
-                    try {
-                        const mekan = this.getAttribute('data-mekan');
-                        closeModal();
-                        updateBlock(blockId, course, mekan);
-                        showToast(`${course.kod} → ${mekan.toUpperCase()} olarak güncellendi!`);
-                    } catch (err) {
-                        console.error(err);
-                        alert("Hata (Mekan): " + err.message);
-                    }
-                };
-            });
-        }
-
-        function updateBlock(blockId, course, mekan) {
-            const block = document.querySelector(`[data-block-id="${blockId}"]`);
-            if (!block) return;
-
-            const wrapper = block.parentElement;
-            
-            const empty = wrapper.querySelector('.empty-cell');
-            if (empty) empty.remove();
-
-            block.className = `ders-block hoca-${course.hoca} editable`;
-            block.setAttribute('data-hoca', course.hoca);
-
-            const mekanObj = mekanOptions.find(m => m.key === mekan);
-            block.innerHTML = `
-                <div class="ders-kod">${course.kod}</div>
-                <div class="ders-ad">${course.ad}</div>
-                <span class="ders-sinif">${course.sinif}. Sınıf</span>
-                <span class="mekan-badge ${mekanObj.css}">${mekanObj.label}</span>
-            `;
-
-            wrapAndReorder();
-            autoSave();
-
-            // Asynchronous forced reflow to bypass WebKit/Chrome flexbox rendering bug.
-            // By yielding to the event loop (setTimeout), we force the browser to commit the new DOM layout
-            // before we restore visibility. This prevents the intrinsic height from collapsing to 0.
-            const activeSection = document.querySelector('.schedule-section.active');
-            if (activeSection) {
-                activeSection.style.display = 'none';
-                setTimeout(() => {
-                    activeSection.style.display = 'block';
-                    makeEditable(); // Re-bind just to be safe
-                }, 10);
-            } else {
-                makeEditable();
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('modal-overlay').classList.remove('show');
-        }
-
-        // Close modal on overlay click
-        document.getElementById('modal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        // Close modal on Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // ===== TOAST =====
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
-        }
-
-        // ===== SAVE / LOAD / RESET =====
-        let originalElektrik = document.getElementById('section-elektrik').innerHTML;
-        let originalElektronik = document.getElementById('section-elektronik').innerHTML;
-
-        function autoSave() {
-            const elektrikHTML = document.getElementById('section-elektrik').innerHTML;
-            const elektronikHTML = document.getElementById('section-elektronik').innerHTML;
-            
-            // Keep our original backup variables updated with the new edits
-            // so if they switch tabs or perform actions without reloading, the backups are in sync
-            originalElektrik = elektrikHTML;
-            originalElektronik = elektronikHTML;
-
-            const data = {
-                elektrik: elektrikHTML,
-                elektronik: elektronikHTML,
-                savedAt: new Date().toLocaleString('tr-TR')
-            };
-            localStorage.setItem('ders_programi_saved', JSON.stringify(data));
-            updateLoadBtn();
-        }
-
-        function saveSchedule() {
-            autoSave();
-            showToast('💾 Program kaydedildi!');
-        }
-
-        function loadSchedule() {
-            const raw = localStorage.getItem('ders_programi_saved');
-            if (!raw) {
-                showToast('⚠️ Kayıtlı program bulunamadı!');
-                return;
-            }
-            const data = JSON.parse(raw);
-            document.getElementById('section-elektrik').innerHTML = data.elektrik;
-            document.getElementById('section-elektronik').innerHTML = data.elektronik;
-            // Re-apply wrappers if the saved HTML was not wrapped or we want clean binding
-            wrapAndReorder();
-            makeEditable();
-            showToast('📂 Kayıtlı program yüklendi! (' + data.savedAt + ')');
-        }
-
-        function resetSchedule() {
-            if (!confirm('Orijinal programa dönmek istediğinize emin misiniz?')) return;
-            // Clear autosave so it doesn't load on reload
-            localStorage.removeItem('ders_programi_saved');
-            document.getElementById('section-elektrik').innerHTML = originalElektrik;
-            document.getElementById('section-elektronik').innerHTML = originalElektronik;
-            wrapAndReorder();
-            makeEditable();
-            updateLoadBtn();
-            showToast('🔄 Orijinal programa dönüldü!');
-        }
-
-        function updateLoadBtn() {
-            const raw = localStorage.getItem('ders_programi_saved');
-            const btn = document.getElementById('btn-load');
-            if (raw) {
-                const data = JSON.parse(raw);
-                btn.title = 'Son kayıt: ' + data.savedAt;
-                btn.disabled = false;
-            } else {
-                btn.disabled = true;
-                btn.title = 'Henüz kayıt yok';
-            }
-        }
-        updateLoadBtn();
-    </script>
+</script>
 </body>
 
 </html>
