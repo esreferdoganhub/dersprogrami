@@ -845,7 +845,7 @@
     </style>
 </head>
 
-<body>
+<body class="admin-logged-in">
     <button class="action-btn" id="admin-toggle-btn" onclick="window.toggleAdminMode()" style="position: fixed; top: 20px; right: 20px; z-index: 100; box-shadow: rgba(108, 92, 231, 0.4) 0px 4px 15px; background: rgb(255, 118, 117);">🚪 Çıkış Yap</button>
     <div class="background-effects">
         <div class="orb"></div>
@@ -891,8 +891,8 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
-            <button class="tab-btn" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
+            <button class="tab-btn" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
+            <button class="tab-btn active" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
         </div>
 
         <div class="filter-bar">
@@ -930,7 +930,7 @@
                 </div>
                 <input type="password" id="github-token-input" placeholder="ghp_xxxxxxxxxxxx" style="width:100%; padding:12px; margin-top:15px; background:var(--surface); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white;">
                 
-                <button class="action-btn" style="width: 100%; margin-top: 15px;" onclick="saveAndPushToGithub()">🚀 Değişiklikleri Web Sitesine Yükle</button>
+                <button class="action-btn" style="width: 100%; margin-top: 15px; " onclick="saveAndPushToGithub()">🚀 Değişiklikleri Web Sitesine Yükle</button>
             </div>
         </div>
 
@@ -2290,7 +2290,7 @@ window.saveAndPushToGithub = async function() {
         // Clean up github-modal active states
         currentHtml = currentHtml.replace('class="modal-overlay show" id="github-modal"', 'class="modal-overlay" id="github-modal"');
         currentHtml = currentHtml.replace('Yükleniyor... Lütfen bekleyin', '🚀 Değişiklikleri Web Sitesine Yükle');
-        currentHtml = currentHtml.replace('opacity: 0.5;', '');
+        currentHtml = currentHtml.replace(';', '');
         currentHtml = currentHtml.replace('opacity: 0.5', '');
         
         // Use a much safer string replacement!
@@ -2337,5 +2337,6 @@ window.addEventListener('DOMContentLoaded', window.init);
 </script>
 
 
-</div></body></html>
+</div>
+</body></html>
 </html>
