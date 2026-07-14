@@ -893,6 +893,44 @@
             color: #2d3436;
         }
 
+    
+        /* Birleşik Program Hücre Yerleşimi */
+        .birlesik-cell {
+            gap: 6px;
+        }
+        .birlesik-dept-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+        }
+        body.light-mode .birlesik-dept-block {
+            background: rgba(0, 0, 0, 0.01);
+            border-color: rgba(0, 0, 0, 0.03);
+        }
+        .birlesik-badge {
+            font-size: 8px;
+            font-weight: 800;
+            opacity: 0.35;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+            text-align: center;
+        }
+        body.light-mode .birlesik-badge {
+            color: #2d3436;
+        }
+        .birlesik-divider {
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            margin: 3px 0;
+        }
+        body.light-mode .birlesik-divider {
+            border-top-color: rgba(0, 0, 0, 0.08);
+        }
+
     </style>
 </head>
 
@@ -945,6 +983,7 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
             <button class="tab-btn" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
+            <button class="tab-btn" onclick="switchTab('birlesik')" id="tab-birlesik">⚡🔌 Birleşik Program</button>
             <button class="tab-btn" onclick="switchTab('hoca')" id="tab-hoca">👨‍🏫 Hoca Programı</button>
         </div>
 
@@ -2061,8 +2100,15 @@ window.init = function() {
     } catch(e) { }
 
     try {
-        if (sessionStorage.getItem('is_admin') === 'true') {
+        if (sessionStorage.getItem('is_admin') === 'true' || localStorage.getItem('gh_token')) {
             isAdmin = true;
+        }
+    } catch(e) {}
+
+    try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') {
+            document.body.classList.add('light-mode');
         }
     } catch(e) {}
 
@@ -2090,10 +2136,12 @@ window.toggleAdminMode = function() {
 };
 
 window.updateAdminUI = function() {
-    document.body.classList.toggle('admin-logged-in', isAdmin);
     const btn = document.getElementById('admin-toggle-btn');
     const actionBar = document.querySelector('.action-bar');
     const githubBtn = document.getElementById('github-settings-btn');
+    
+    // Toggle class on body to control slot visibility
+    document.body.classList.toggle('admin-logged-in', isAdmin);
     
     if (btn) {
         btn.innerHTML = isAdmin ? '🚪 Çıkış Yap' : '🔑 Yönetici Girişi';
@@ -2118,10 +2166,10 @@ window.switchTab = function(tabId) {
         hocaSelector.style.display = activeTab === 'hoca' ? 'block' : 'none';
     }
     
-    // Hide filter bar on hoca view
+    // Hide filter bar on hoca/birlesik view
     const filterBar = document.querySelector('.filter-bar');
     if (filterBar) {
-        filterBar.style.display = activeTab === 'hoca' ? 'none' : 'flex';
+        filterBar.style.display = (activeTab === 'hoca' || activeTab === 'birlesik') ? 'none' : 'flex';
     }
     
     // Reset filter
@@ -2134,9 +2182,10 @@ window.renderSchedule = function() {
     if(!container) return;
     
     let html = '';
+    
     if (activeTab === 'hoca') {
         const targetHoca = document.getElementById('hoca-select').value;
-        html += `<div class="schedule-section active" id="section-hoca">
+        html = `<div class="schedule-section active" id="section-hoca">
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -2151,7 +2200,6 @@ window.renderSchedule = function() {
             html += `<tr><td>${days[d]}</td>`;
             for (let h = 0; h < 8; h++) {
                 const oldIdx = d * 9 + h + 1;
-                
                 let matchedLessons = [];
                 ['elektrik', 'elektronik'].forEach(dept => {
                     const cellData = scheduleData[dept] ? scheduleData[dept][oldIdx] || [] : [];
@@ -2178,6 +2226,86 @@ window.renderSchedule = function() {
                     html += `</div>`;
                 } else {
                     html += `<div class="empty-cell">—</div>`;
+                }
+                html += `</td>`;
+            }
+            html += `</tr>`;
+        }
+        
+        html += `</tbody></table></div></div>`;
+    } else if (activeTab === 'birlesik') {
+        html = `<div class="schedule-section active" id="section-birlesik">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Gün</th>
+                            ${hours.map(h => `<th>${h}</th>`).join('')}
+                        </tr>
+                    </thead>
+                    <tbody>`;
+        
+        for (let d = 0; d < 5; d++) {
+            html += `<tr><td>${days[d]}</td>`;
+            for (let h = 0; h < 8; h++) {
+                const oldIdx = d * 9 + h + 1;
+                const elkData = scheduleData['elektrik'] ? scheduleData['elektrik'][oldIdx] || [] : [];
+                const elnData = scheduleData['elektronik'] ? scheduleData['elektronik'][oldIdx] || [] : [];
+                
+                const elk1 = elkData.filter(c => c.sinif === 1);
+                const elk2 = elkData.filter(c => c.sinif === 2);
+                const eln1 = elnData.filter(c => c.sinif === 1);
+                const eln2 = elnData.filter(c => c.sinif === 2);
+                
+                html += `<td>`;
+                if (elkData.length > 0 || elnData.length > 0) {
+                    html += `<div class="cell-wrapper birlesik-cell">`;
+                    
+                    // Render Elektrik
+                    html += `<div class="birlesik-dept-block">
+                        <div class="birlesik-badge">ELEKTRİK</div>`;
+                    if (elk1.length > 0) {
+                        elk1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 1));
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 1)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                    }
+                    if (elk2.length > 0) {
+                        elk2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 2));
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 2)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                    }
+                    html += `</div>`;
+                    
+                    html += `<div class="birlesik-divider"></div>`;
+                    
+                    // Render Elektronik
+                    html += `<div class="birlesik-dept-block">
+                        <div class="birlesik-badge">ELEKTRONİK</div>`;
+                    if (eln1.length > 0) {
+                        eln1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 1));
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 1)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                    }
+                    if (eln2.length > 0) {
+                        eln2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 2));
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 2)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                    }
+                    html += `</div>`;
+                    
+                    html += `</div>`;
+                } else {
+                    const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1)"` : '';
+                    const cursorClass = isAdmin ? 'editable' : '';
+                    html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
                 }
                 html += `</td>`;
             }
@@ -2330,10 +2458,59 @@ window.showMekanPicker = function(course) {
     content.innerHTML = html;
 };
 
+function getHocaRealName(key) {
+    const names = {
+        zateri: 'Doç. Dr. Mine Tülin Zateroğlu',
+        cikan: 'Doç. Dr. Murat Çıkan',
+        erdogan: 'Öğr. Gör. Eşref Erdoğan',
+        atal: 'Öğr. Gör. Tuğba Atal',
+        sonmez: 'Öğr. Gör. Aykut Sönmez',
+        ortak: 'Ortak Ders Öğretmeni'
+    };
+    return names[key] || key;
+}
+
 window.finalizeCourseUpdate = function(courseKod, mekan) {
     if (!isAdmin) return;
     const { dept, cellIdx, bIdx, year } = currentEditState;
     const course = courses.find(c => c.kod === courseKod);
+    
+    // Çakışma Kontrolü (Conflict Detection)
+    let conflicts = [];
+    const targetHoca = course.hoca;
+    const targetMekan = mekan;
+    
+    ['elektrik', 'elektronik'].forEach(otherDept => {
+        const cellEntries = scheduleData[otherDept] ? scheduleData[otherDept][cellIdx] || [] : [];
+        cellEntries.forEach((existing) => {
+            // Eğer aynı sekmeyi ve aynı sınıf yılını düzenliyorsak çakışma sayma
+            if (otherDept === dept && existing.sinif === year) {
+                return;
+            }
+            
+            // 1. Sınıf/Derslik Çakışması
+            if (targetMekan !== 'bos' && existing.mekan !== 'bos' && existing.mekan === targetMekan) {
+                const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
+                conflicts.push(`• Sınıf/Derslik Çakışması: "${targetMekan.toUpperCase()}" dersliği bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersi için kullanılıyor.`);
+            }
+            
+            // 2. Hoca Çakışması
+            if (targetHoca !== 'ortak' && existing.hoca !== 'ortak' && existing.hoca === targetHoca) {
+                if (existing.kod !== course.kod) {
+                    const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
+                    const hocaName = getHocaRealName(targetHoca);
+                    conflicts.push(`• Öğretmen Çakışması: ${hocaName} bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersini veriyor.`);
+                }
+            }
+        });
+    });
+    
+    if (conflicts.length > 0) {
+        const msg = `⚠️ ÇAKIŞMA TESPİT EDİLDİ!\n\n${conflicts.join('\n')}\n\nDeğişikliği yine de kaydetmek istiyor musunuz?`;
+        if (!confirm(msg)) {
+            return;
+        }
+    }
     
     if (!scheduleData[dept][cellIdx]) scheduleData[dept][cellIdx] = [];
     const newEntry = { kod: course.kod, ad: course.ad, sinif: course.sinif, hoca: course.hoca, mekan: mekan };
@@ -2450,7 +2627,7 @@ window.saveAndPushToGithub = async function() {
         const endIdx = currentHtml.indexOf('</s'+'cript>', startIdx);
         
         if (startIdx !== -1 && endIdx !== -1) {
-            const before = currentHtml.substring(0, startIdx + scriptStartTag.length);
+            const before = currentHtml.substring(0, scriptStartTag.length + startIdx);
             const after = currentHtml.substring(endIdx);
             currentHtml = before + '\n' + JSON.stringify(scheduleData, null, 2) + '\n' + after;
         }
@@ -2483,7 +2660,18 @@ window.addEventListener('keydown', function(e) {
     }
 });
 
-window.addEventListener('DOMContentLoaded', window.init);
+// Listen to Escape key to close modals
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        window.closeModal();
+        window.closeGithubSettings();
+    }
+});
+
+window.toggleTheme = function() {
+    const isLight = document.body.classList.toggle('light-mode');
+    try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch(e) {}
+};
 
 let activeFilter = 'all';
 window.filterHoca = function(hoca) {
@@ -2518,6 +2706,8 @@ window.filterHoca = function(hoca) {
         }
     });
 };
+
+window.addEventListener('DOMContentLoaded', window.init);
 
 </script>
 
