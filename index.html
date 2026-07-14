@@ -1132,6 +1132,15 @@
             }
         }
 
+    
+        /* Sınıf Filtre Butonu Aktif Teması */
+        .class-filter-bar .filter-btn.active {
+            background: #6c5ce7 !important;
+            color: #ffffff !important;
+            border-color: #6c5ce7 !important;
+            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.35);
+        }
+
     </style>
 </head>
 
@@ -1187,6 +1196,12 @@
             <button class="tab-btn" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
             <button class="tab-btn" onclick="switchTab('birlesik')" id="tab-birlesik">⚡🔌 Birleşik Program</button>
             <button class="tab-btn" onclick="switchTab('hoca')" id="tab-hoca">👨‍🏫 Hoca Programı</button>
+        </div>
+
+        <div class="class-filter-bar" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 25px; flex-wrap: wrap;">
+            <button class="filter-btn active" data-class-filter="all" onclick="window.switchClassFilter('all')" style="padding: 6px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); transition: all 0.25s ease;">🎓 Tüm Sınıflar</button>
+            <button class="filter-btn" data-class-filter="1" onclick="window.switchClassFilter(1)" style="padding: 6px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); transition: all 0.25s ease;">1️⃣ 1. Sınıf</button>
+            <button class="filter-btn" data-class-filter="2" onclick="window.switchClassFilter(2)" style="padding: 6px 16px; border-radius: 8px; font-size: 0.75rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); transition: all 0.25s ease;">2️⃣ 2. Sınıf</button>
         </div>
 
         <div id="hoca-view-selector" style="display: none; text-align: center; margin-bottom: 25px;">
@@ -2238,6 +2253,7 @@
     <script>
 let scheduleData = {};
 let activeTab = 'elektrik';
+let activeClassFilter = 'all';
 let isAdmin = false;
 const ADMIN_PASSWORD = "admin"; // Yönetici şifresi
 
@@ -2376,6 +2392,18 @@ window.switchTab = function(tabId) {
     window.renderSchedule();
 };
 
+window.switchClassFilter = function(val) {
+    activeClassFilter = val;
+    document.querySelectorAll('[data-class-filter]').forEach(b => {
+        if (b.getAttribute('data-class-filter') === String(val)) {
+            b.classList.add('active');
+        } else {
+            b.classList.remove('active');
+        }
+    });
+    window.renderSchedule();
+};
+
 window.renderSchedule = function() {
     const container = document.getElementById('schedule-container');
     if(!container) return;
@@ -2405,7 +2433,9 @@ window.renderSchedule = function() {
                     const cellData = scheduleData[dept] ? scheduleData[dept][oldIdx] || [] : [];
                     cellData.forEach(c => {
                         if (c.hoca === targetHoca) {
-                            matchedLessons.push({ ...c, dept: dept });
+                            if (activeClassFilter === 'all' || c.sinif === Number(activeClassFilter)) {
+                                matchedLessons.push({ ...c, dept: dept });
+                            }
                         }
                     });
                 });
@@ -2458,54 +2488,106 @@ window.renderSchedule = function() {
                 const eln2 = elnData.filter(c => c.sinif === 2);
                 
                 html += `<td>`;
-                if (elkData.length > 0 || elnData.length > 0) {
-                    html += `<div class="cell-wrapper birlesik-cell">`;
-                    
-                    // Render Elektrik
-                    html += `<div class="birlesik-dept-block">
-                        <div class="birlesik-badge">ELEKTRİK</div>`;
-                    if (elk1.length > 0) {
-                        elk1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 1));
+                if (activeClassFilter === 1) {
+                    if (elk1.length > 0 || eln1.length > 0) {
+                        html += `<div class="cell-wrapper birlesik-cell">`;
+                        html += `<div class="birlesik-dept-block"><div class="birlesik-badge">ELEKTRİK</div>`;
+                        if (elk1.length > 0) {
+                            elk1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 1));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 1)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        html += `</div><div class="birlesik-divider"></div>`;
+                        html += `<div class="birlesik-dept-block"><div class="birlesik-badge">ELEKTRONİK</div>`;
+                        if (eln1.length > 0) {
+                            eln1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 1));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 1)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        html += `</div></div>`;
                     } else {
-                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 1)"` : '';
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1)"` : '';
                         const cursorClass = isAdmin ? 'editable' : '';
-                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
                     }
-                    if (elk2.length > 0) {
-                        elk2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 2));
+                } else if (activeClassFilter === 2) {
+                    if (elk2.length > 0 || eln2.length > 0) {
+                        html += `<div class="cell-wrapper birlesik-cell">`;
+                        html += `<div class="birlesik-dept-block"><div class="birlesik-badge">ELEKTRİK</div>`;
+                        if (elk2.length > 0) {
+                            elk2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 2));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 2)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        html += `</div><div class="birlesik-divider"></div>`;
+                        html += `<div class="birlesik-dept-block"><div class="birlesik-badge">ELEKTRONİK</div>`;
+                        if (eln2.length > 0) {
+                            eln2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 2));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 2)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        html += `</div></div>`;
                     } else {
-                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 2)"` : '';
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1)"` : '';
                         const cursorClass = isAdmin ? 'editable' : '';
-                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
                     }
-                    html += `</div>`;
-                    
-                    html += `<div class="birlesik-divider"></div>`;
-                    
-                    // Render Elektronik
-                    html += `<div class="birlesik-dept-block">
-                        <div class="birlesik-badge">ELEKTRONİK</div>`;
-                    if (eln1.length > 0) {
-                        eln1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 1));
-                    } else {
-                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 1)"` : '';
-                        const cursorClass = isAdmin ? 'editable' : '';
-                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
-                    }
-                    if (eln2.length > 0) {
-                        eln2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 2));
-                    } else {
-                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 2)"` : '';
-                        const cursorClass = isAdmin ? 'editable' : '';
-                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
-                    }
-                    html += `</div>`;
-                    
-                    html += `</div>`;
                 } else {
-                    const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1)"` : '';
-                    const cursorClass = isAdmin ? 'editable' : '';
-                    html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
+                    if (elkData.length > 0 || elnData.length > 0) {
+                        html += `<div class="cell-wrapper birlesik-cell">`;
+                        
+                        html += `<div class="birlesik-dept-block">
+                            <div class="birlesik-badge">ELEKTRİK</div>`;
+                        if (elk1.length > 0) {
+                            elk1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 1));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 1)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        if (elk2.length > 0) {
+                            elk2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektrik', oldIdx, bIdx, 2));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1, 2)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        html += `</div>`;
+                        
+                        html += `<div class="birlesik-divider"></div>`;
+                        
+                        html += `<div class="birlesik-dept-block">
+                            <div class="birlesik-badge">ELEKTRONİK</div>`;
+                        if (eln1.length > 0) {
+                            eln1.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 1));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 1)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        if (eln2.length > 0) {
+                            eln2.forEach((b, bIdx) => html += createBlockHTML(b, 'elektronik', oldIdx, bIdx, 2));
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektronik', ${oldIdx}, -1, 2)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr} style="min-height:36px; font-size:10px;">—</div>`;
+                        }
+                        html += `</div>`;
+                        
+                        html += `</div>`;
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('elektrik', ${oldIdx}, -1)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
+                    }
                 }
                 html += `</td>`;
             }
@@ -2536,34 +2618,50 @@ window.renderSchedule = function() {
                     const sinif2 = cellData.filter(c => c.sinif === 2);
                     
                     html += `<td data-cell-id="${dept}-${oldIdx}">`;
-                    if (cellData.length > 0) {
-                        html += `<div class="cell-wrapper">`;
-                        
-                        // Render Year 1 Slot
+                    if (activeClassFilter === 1) {
                         if (sinif1.length > 0) {
+                            html += `<div class="cell-wrapper">`;
                             sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
+                            html += `</div>`;
                         } else {
                             const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 1)"` : '';
                             const cursorClass = isAdmin ? 'editable' : '';
-                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                            html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
                         }
-                        
-                        html += `<div class="sinif-spacer"></div>`;
-                        
-                        // Render Year 2 Slot
+                    } else if (activeClassFilter === 2) {
                         if (sinif2.length > 0) {
+                            html += `<div class="cell-wrapper">`;
                             sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
+                            html += `</div>`;
                         } else {
                             const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 2)"` : '';
                             const cursorClass = isAdmin ? 'editable' : '';
-                            html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                            html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
                         }
-                        
-                        html += `</div>`;
                     } else {
-                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)"` : '';
-                        const cursorClass = isAdmin ? 'editable' : '';
-                        html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
+                        if (cellData.length > 0) {
+                            html += `<div class="cell-wrapper">`;
+                            if (sinif1.length > 0) {
+                                sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
+                            } else {
+                                const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 1)"` : '';
+                                const cursorClass = isAdmin ? 'editable' : '';
+                                html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                            }
+                            html += `<div class="sinif-spacer"></div>`;
+                            if (sinif2.length > 0) {
+                                sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
+                            } else {
+                                const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 2)"` : '';
+                                const cursorClass = isAdmin ? 'editable' : '';
+                                html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                            }
+                            html += `</div>`;
+                        } else {
+                            const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)"` : '';
+                            const cursorClass = isAdmin ? 'editable' : '';
+                            html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
+                        }
                     }
                     html += `</td>`;
                 }
