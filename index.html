@@ -932,15 +932,16 @@
         }
 
     
-        /* PDF / Yazdırma Ayarları (Yatay & Renkli) */
+        /* PDF / Yazdırma Ayarları (Yatay & Renkli - Tek Sayfaya Sığdırma Ayarlı) */
         @media print {
             @page {
                 size: landscape;
-                margin: 8mm;
+                margin: 4mm;
             }
             body {
                 background: #ffffff !important;
                 color: #000000 !important;
+                font-size: 10px !important;
             }
             /* Kontrol elemanlarını gizle */
             #theme-toggle-btn,
@@ -958,7 +959,7 @@
                 display: none !important;
             }
             
-            /* Sayfa yerleşimini yazıcıya uyarla */
+            /* Sayfa yerleşimini yazıcıya uyarla ve sıkıştır */
             .container {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -969,24 +970,29 @@
             }
             
             .header {
-                margin-bottom: 12px !important;
+                margin-bottom: 6px !important;
             }
             .header h1 {
                 color: #2d3436 !important;
-                font-size: 1.6rem !important;
+                font-size: 1.2rem !important;
                 text-align: center !important;
+                margin-bottom: 2px !important;
             }
             .header p, .header .subtitle {
                 color: #636e72 !important;
-                font-size: 0.8rem !important;
+                font-size: 0.7rem !important;
                 text-align: center !important;
+                margin: 0 !important;
             }
 
             .mekan-legend {
-                margin-bottom: 12px !important;
+                margin-bottom: 6px !important;
+                gap: 5px !important;
                 justify-content: center !important;
             }
             .mekan-badge-legend {
+                padding: 2px 6px !important;
+                font-size: 0.6rem !important;
                 background: #f1f2f6 !important;
                 border-color: #ced6e0 !important;
                 color: #2d3436 !important;
@@ -1000,15 +1006,19 @@
                 border: 1px solid #ced6e0 !important;
                 background: #ffffff !important;
                 overflow: visible !important;
+                border-radius: 8px !important;
             }
             table {
                 min-width: 100% !important;
                 width: 100% !important;
+                border-collapse: collapse !important;
             }
             thead th {
                 background: #f1f2f6 !important;
                 color: #2d3436 !important;
                 border-bottom: 2px solid #6c5ce7 !important;
+                font-size: 0.65rem !important;
+                padding: 4px 2px !important;
                 print-color-adjust: exact !important;
                 -webkit-print-color-adjust: exact !important;
             }
@@ -1017,20 +1027,47 @@
             }
             tbody td {
                 border: 1px solid #ced6e0 !important;
-                padding: 4px !important;
+                padding: 2px !important;
+                font-size: 0.6rem !important;
             }
 
-            /* Ders Blokları Renklerini Koru */
+            /* Ders Blokları */
             .ders-block {
+                padding: 2px 4px !important;
+                margin-bottom: 1px !important;
                 border-width: 1px !important;
                 border-style: solid !important;
                 box-shadow: none !important;
+                border-radius: 4px !important;
                 print-color-adjust: exact !important;
                 -webkit-print-color-adjust: exact !important;
+            }
+            .ders-kod {
+                font-size: 0.65rem !important;
+                font-weight: 700 !important;
+            }
+            .ders-ad {
+                font-size: 0.55rem !important;
+                line-height: 1.1 !important;
+                white-space: nowrap !important;
+                overflow: hidden !important;
+                text-overflow: ellipsis !important;
+            }
+            .ders-sinif {
+                display: none !important; /* Hacmi azaltmak için sınıf yazısını çıktıda gizle (zaten üstte/kodda belli) */
+            }
+            .mekan-badge {
+                font-size: 0.55rem !important;
+                padding: 1px 3px !important;
+                border-radius: 3px !important;
             }
             
             /* Boş slotlar */
             .empty-block-slot {
+                min-height: 18px !important;
+                font-size: 0.6rem !important;
+                margin-bottom: 1px !important;
+                padding: 1px !important;
                 border: 1px dashed #ced6e0 !important;
                 color: #b2bec3 !important;
                 background: transparent !important;
@@ -1041,18 +1078,57 @@
                 border: none !important;
                 color: transparent !important;
                 background: transparent !important;
+                height: 0 !important;
+                min-height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .sinif-spacer {
+                height: 1px !important;
+                margin: 1px 0 !important;
+            }
+
+            /* Birleşik Sekme Tasarımı */
+            .birlesik-cell {
+                gap: 2px !important;
+            }
+            .birlesik-dept-block {
+                padding: 2px !important;
+                gap: 1px !important;
+                border-radius: 4px !important;
+                background: #fdfdfd !important;
+                border-color: #f1f2f6 !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            .birlesik-badge {
+                font-size: 6px !important;
+                font-weight: 800 !important;
+                margin-bottom: 1px !important;
+                opacity: 0.5 !important;
+            }
+            .birlesik-divider {
+                border-top: 1px dashed #ced6e0 !important;
+                margin: 1px 0 !important;
             }
 
             /* Hoca İstatistikleri Tablosu */
+            #hoca-stats-container {
+                margin-top: 8px !important;
+            }
             #hoca-stats-container table {
                 background: #ffffff !important;
                 border-color: #ced6e0 !important;
+                max-width: 400px !important;
+                font-size: 0.65rem !important;
                 page-break-inside: avoid !important;
             }
             #hoca-stats-container table th,
             #hoca-stats-container table td {
                 border: 1px solid #ced6e0 !important;
                 color: #2d3436 !important;
+                padding: 3px 6px !important;
             }
         }
 
