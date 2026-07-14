@@ -377,12 +377,15 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+            max-width: 1080px;
+            margin: 0 auto;
         }
 
         table {
-            width: 100%;
+            width: 1080px;
+            max-width: 1080px;
+            margin: 0 auto;
             border-collapse: collapse;
-            min-width: 1180px;
         }
 
         thead th {
@@ -397,7 +400,9 @@
             position: sticky;
             top: 0;
             z-index: 10;
-            min-width: 220px;
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
         }
 
         thead th:first-child {
@@ -405,6 +410,7 @@
             padding: 14px 10px;
             min-width: 80px !important;
             width: 80px !important;
+            max-width: 80px !important;
         }
 
         tbody td:first-child {
@@ -414,6 +420,7 @@
             color: var(--text-primary);
             min-width: 80px !important;
             width: 80px !important;
+            max-width: 80px !important;
         }
 
         tbody tr {
@@ -432,7 +439,9 @@
             padding: 8px 6px;
             vertical-align: top;
             font-size: 0.76rem;
-            min-width: 220px;
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
             height: 1px; /* trick: lets inner div stretch to row height */
         }
 
