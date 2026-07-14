@@ -812,6 +812,36 @@
                 font-size: 0.8rem;
             }
         }
+    
+        /* Yıl / Sınıf Hizalama Alanı */
+        .empty-block-slot {
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        .empty-block-slot.editable {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .empty-block-slot.editable:hover {
+            border-color: rgba(108, 92, 231, 0.4);
+            background: rgba(108, 92, 231, 0.05);
+            color: #6c5ce7;
+        }
+        /* Öğrenciler / Ziyaretçiler için boş alanları tamamen gizle fakat yüksekliğini koru */
+        body:not(.admin-logged-in) .empty-block-slot {
+            border: none;
+            color: transparent;
+            pointer-events: none;
+            background: transparent !important;
+        }
+
     </style>
 </head>
 
@@ -1948,7 +1978,7 @@ window.init = function() {
     } catch(e) { }
 
     try {
-        if (sessionStorage.getItem('is_admin') === 'true' || localStorage.getItem('gh_token')) {
+        if (sessionStorage.getItem('is_admin') === 'true') {
             isAdmin = true;
         }
     } catch(e) {}
@@ -1977,6 +2007,7 @@ window.toggleAdminMode = function() {
 };
 
 window.updateAdminUI = function() {
+    document.body.classList.toggle('admin-logged-in', isAdmin);
     const btn = document.getElementById('admin-toggle-btn');
     const actionBar = document.querySelector('.action-bar');
     const githubBtn = document.getElementById('github-settings-btn');
@@ -2029,9 +2060,27 @@ window.renderSchedule = function() {
                 html += `<td data-cell-id="${dept}-${oldIdx}">`;
                 if (cellData.length > 0) {
                     html += `<div class="cell-wrapper">`;
-                    sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
-                    if (sinif1.length > 0 && sinif2.length > 0) html += `<div class="sinif-spacer"></div>`;
-                    sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
+                    
+                    // Render Year 1 Slot
+                    if (sinif1.length > 0) {
+                        sinif1.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 1));
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 1)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                    }
+                    
+                    html += `<div class="sinif-spacer"></div>`;
+                    
+                    // Render Year 2 Slot
+                    if (sinif2.length > 0) {
+                        sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
+                    } else {
+                        const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1, 2)"` : '';
+                        const cursorClass = isAdmin ? 'editable' : '';
+                        html += `<div class="empty-block-slot ${cursorClass}" ${clickAttr}>—</div>`;
+                    }
+                    
                     html += `</div>`;
                 } else {
                     const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)"` : '';
@@ -2227,6 +2276,22 @@ window.saveAndPushToGithub = async function() {
         const fileData = await res.json();
         
         let currentHtml = document.documentElement.outerHTML;
+        
+        // Clean up schedule-container content to keep the file clean
+        const containerStartTag = '<div id="schedule-container">';
+        const containerStart = currentHtml.indexOf(containerStartTag);
+        const containerEnd = currentHtml.indexOf('</div></div></div>', containerStart);
+        if (containerStart !== -1 && containerEnd !== -1) {
+            const before = currentHtml.substring(0, containerStart + containerStartTag.length);
+            const after = currentHtml.substring(containerEnd + 18);
+            currentHtml = before + '</div>' + after;
+        }
+        
+        // Clean up github-modal active states
+        currentHtml = currentHtml.replace('class="modal-overlay show" id="github-modal"', 'class="modal-overlay" id="github-modal"');
+        currentHtml = currentHtml.replace('Yükleniyor... Lütfen bekleyin', '🚀 Değişiklikleri Web Sitesine Yükle');
+        currentHtml = currentHtml.replace('opacity: 0.5;', '');
+        currentHtml = currentHtml.replace('opacity: 0.5', '');
         
         // Use a much safer string replacement!
         const scriptStartTag = '<script id="schedule-data" type="application/json">';
