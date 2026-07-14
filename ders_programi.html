@@ -997,6 +997,7 @@
                 <option value="sonmez">Öğr. Gör. Aykut Sönmez</option>
                 <option value="ortak">Ortak / Üniversite Dersleri</option>
             </select>
+            <div id="hoca-stats-container" style="margin-top: 15px; display: flex; justify-content: center; gap: 10px;"></div>
         </div>
 
         <div class="filter-bar">
@@ -2184,6 +2185,7 @@ window.renderSchedule = function() {
     let html = '';
     
     if (activeTab === 'hoca') {
+        window.renderHocaStats();
         const targetHoca = document.getElementById('hoca-select').value;
         html = `<div class="schedule-section active" id="section-hoca">
             <div class="table-wrapper">
@@ -2708,6 +2710,61 @@ window.filterHoca = function(hoca) {
 };
 
 window.addEventListener('DOMContentLoaded', window.init);
+
+function calculateHocaHours() {
+    const hocas = ['zateri', 'cikan', 'erdogan', 'atal', 'sonmez', 'ortak'];
+    let stats = {};
+    hocas.forEach(h => stats[h] = { elektrik: 0, elektronik: 0, toplam: 0 });
+    
+    ['elektrik', 'elektronik'].forEach(dept => {
+        const deptData = scheduleData[dept] || {};
+        Object.keys(deptData).forEach(cellIdx => {
+            const list = deptData[cellIdx] || [];
+            list.forEach(entry => {
+                if (stats[entry.hoca]) {
+                    stats[entry.hoca][dept]++;
+                    stats[entry.hoca].toplam++;
+                }
+            });
+        });
+    });
+    return stats;
+}
+
+window.renderHocaStats = function() {
+    const container = document.getElementById('hoca-stats-container');
+    if (!container) return;
+    
+    const targetHoca = document.getElementById('hoca-select').value;
+    const stats = calculateHocaHours();
+    const hocaKeys = ['zateri', 'cikan', 'erdogan', 'atal', 'sonmez', 'ortak'];
+    
+    let html = `<table style="width: 100%; max-width: 500px; border-collapse: collapse; margin: 0 auto; font-size: 0.78rem; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--glass-bg);">
+        <thead>
+            <tr style="background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--border);">
+                <th style="padding: 8px 12px; text-align: left; color: var(--text-secondary);">Öğretmen</th>
+                <th style="padding: 8px 12px; text-align: center; color: var(--text-secondary);">Elektrik</th>
+                <th style="padding: 8px 12px; text-align: center; color: var(--text-secondary);">Elektronik</th>
+                <th style="padding: 8px 12px; text-align: center; font-weight: 700; color: #00cec9;">Toplam</th>
+            </tr>
+        </thead>
+        <tbody>`;
+        
+    hocaKeys.forEach(k => {
+        const hStats = stats[k];
+        const name = getHocaRealName(k);
+        const isSelected = k === targetHoca ? 'style="background: rgba(108, 92, 231, 0.15); font-weight: 600;"' : '';
+        html += `<tr ${isSelected} style="border-bottom: 1px solid var(--border);">
+            <td style="padding: 8px 12px; text-align: left;">${name}</td>
+            <td style="padding: 8px 12px; text-align: center;">${hStats.elektrik} Saat</td>
+            <td style="padding: 8px 12px; text-align: center;">${hStats.elektronik} Saat</td>
+            <td style="padding: 8px 12px; text-align: center; font-weight: 700;">${hStats.toplam} Saat</td>
+        </tr>`;
+    });
+    
+    html += `</tbody></table>`;
+    container.innerHTML = html;
+};
 
 </script>
 
