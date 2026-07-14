@@ -460,7 +460,7 @@
             margin-bottom: 0;
         }
 
-        .ders-block:hover {
+        .ders-block.editable:hover {
             transform: translateX(2px);
             box-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
         }
@@ -596,6 +596,8 @@
             border: 1px solid rgba(129, 236, 236, 0.3);
         }
 
+        .empty-cell.editable { cursor: pointer; }
+        .empty-cell.editable:hover { color: #fff; background: rgba(255,255,255,0.05); }
         .empty-cell {
             color: var(--text-muted);
             font-style: italic;
@@ -814,6 +816,7 @@
 </head>
 
 <body>
+    <button class="action-btn" id="admin-toggle-btn" onclick="window.toggleAdminMode()" style="position: fixed; top: 20px; right: 20px; z-index: 100; box-shadow: rgba(108, 92, 231, 0.4) 0px 4px 15px; background: rgb(255, 118, 117);">🚪 Çıkış Yap</button>
     <div class="background-effects">
         <div class="orb"></div>
         <div class="orb"></div>
@@ -858,8 +861,8 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-btn" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
-            <button class="tab-btn active" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
+            <button class="tab-btn active" onclick="switchTab('elektrik')" id="tab-elektrik">⚡ Elektrik</button>
+            <button class="tab-btn" onclick="switchTab('elektronik')" id="tab-elektronik">🔌 Elektronik</button>
         </div>
 
         <div class="filter-bar">
@@ -872,10 +875,8 @@
             <button class="filter-btn active" data-hoca="ortak" onclick="filterHoca('ortak')">Ortak</button>
         </div>
 
-        <div class="action-bar">
-            <button class="action-btn save-btn" onclick="saveSchedule()">💾 Son Hali Kaydet</button>
-            <button class="action-btn load-btn" onclick="loadSchedule()" id="btn-load">📂 Son Haline Getir</button>
-            <button class="action-btn reset-btn" onclick="resetSchedule()">🔄 Orijinale Dön</button>
+        <div class="action-bar" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
+            <button class="action-btn reset-btn" onclick="window.resetSchedule()">🔄 Orijinale Dön</button>
         </div>
 
         <!-- ==================== ELEKTRİK ==================== -->
@@ -1150,7 +1151,7 @@
             <div class="ders-ad">Yenilenebilir Enerji Sistemleri</div>
             <span class="ders-sinif">1. Sınıf</span>
             <span class="mekan-badge mekan-d4">D4</span>
-        </div></div></td><td data-cell-id="elektrik-38"><div class="empty-cell" onclick="window.openCourseModal('elektrik', 38, -1)">—</div></td><td data-cell-id="elektrik-39"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektrik', 39, 0, 1)">
+        </div></div></td><td data-cell-id="elektrik-38"><div class="empty-cell editable" onclick="window.openCourseModal('elektrik', 38, -1)">—</div></td><td data-cell-id="elektrik-39"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektrik', 39, 0, 1)">
             <div class="ders-kod">UIN 101</div>
             <div class="ders-ad">İngilizce I</div>
             <span class="ders-sinif">1. Sınıf</span>
@@ -1185,7 +1186,7 @@
             <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
             <span class="ders-sinif">1. Sınıf</span>
             <span class="mekan-badge mekan-u">U</span>
-        </div></div></td><td data-cell-id="elektrik-44"><div class="empty-cell" onclick="window.openCourseModal('elektrik', 44, -1)">—</div></td></tr></tbody></table></div></div><div class="schedule-section " id="section-elektronik">
+        </div></div></td><td data-cell-id="elektrik-44"><div class="empty-cell editable" onclick="window.openCourseModal('elektrik', 44, -1)">—</div></td></tr></tbody></table></div></div><div class="schedule-section " id="section-elektronik">
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -1194,7 +1195,7 @@
                             <th>08:00</th><th>09:00</th><th>10:00</th><th>11:00</th><th>13:00</th><th>14:00</th><th>15:00</th><th>16:00</th>
                         </tr>
                     </thead>
-                    <tbody><tr><td>PAZARTESİ</td><td data-cell-id="elektronik-1"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 1, -1)">—</div></td><td data-cell-id="elektronik-2"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 2, 0, 2)">
+                    <tbody><tr><td>PAZARTESİ</td><td data-cell-id="elektronik-1"><div class="empty-cell editable" onclick="window.openCourseModal('elektronik', 1, -1)">—</div></td><td data-cell-id="elektronik-2"><div class="cell-wrapper"><div class="ders-block hoca-erdogan editable" onclick="window.openCourseModal('elektronik', 2, 0, 2)">
             <div class="ders-kod">ELO 245</div>
             <div class="ders-ad">Güç Elektroniği</div>
             <span class="ders-sinif">2. Sınıf</span>
@@ -1324,7 +1325,7 @@
             <div class="ders-ad">Yapay Zeka Araçlarının Etkin Kullanımı</div>
             <span class="ders-sinif">1. Sınıf</span>
             <span class="mekan-badge mekan-eel">EEL</span>
-        </div></div></td><td data-cell-id="elektronik-17"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 17, -1)">—</div></td></tr><tr><td>ÇARŞAMBA</td><td data-cell-id="elektronik-19"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 19, 0, 1)">
+        </div></div></td><td data-cell-id="elektronik-17"><div class="empty-cell editable" onclick="window.openCourseModal('elektronik', 17, -1)">—</div></td></tr><tr><td>ÇARŞAMBA</td><td data-cell-id="elektronik-19"><div class="cell-wrapper"><div class="ders-block hoca-atal editable" onclick="window.openCourseModal('elektronik', 19, 0, 1)">
             <div class="ders-kod">ELO 107</div>
             <div class="ders-ad">Matematik I</div>
             <span class="ders-sinif">1. Sınıf</span>
@@ -1464,7 +1465,7 @@
             <div class="ders-ad">Türk Dili I</div>
             <span class="ders-sinif">1. Sınıf</span>
             <span class="mekan-badge mekan-u">U</span>
-        </div></div></td><td data-cell-id="elektronik-41"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 41, -1)">—</div></td><td data-cell-id="elektronik-42"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 42, 0, 1)">
+        </div></div></td><td data-cell-id="elektronik-41"><div class="empty-cell editable" onclick="window.openCourseModal('elektronik', 41, -1)">—</div></td><td data-cell-id="elektronik-42"><div class="cell-wrapper"><div class="ders-block hoca-ortak editable" onclick="window.openCourseModal('elektronik', 42, 0, 1)">
             <div class="ders-kod">UAI 101</div>
             <div class="ders-ad">Atatürk İlkeleri ve İnkılap Tarihi I</div>
             <span class="ders-sinif">1. Sınıf</span>
@@ -1479,10 +1480,10 @@
             <div class="ders-ad">Sensörler ve Dönüştürücüler</div>
             <span class="ders-sinif">2. Sınıf</span>
             <span class="mekan-badge mekan-d6">D6</span>
-        </div></div></td><td data-cell-id="elektronik-44"><div class="empty-cell" onclick="window.openCourseModal('elektronik', 44, -1)">—</div></td></tr></tbody></table></div></div></div>
+        </div></div></td><td data-cell-id="elektronik-44"><div class="empty-cell editable" onclick="window.openCourseModal('elektronik', 44, -1)">—</div></td></tr></tbody></table></div></div></div>
 
         <!-- GITHUB AYARLARI BUTONU VE MODALI -->
-        <button class="action-btn" id="github-settings-btn" style="position:fixed; bottom:20px; right:20px; z-index:100; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);" onclick="openGithubSettings()">🐙 GitHub'a Kaydet</button>
+        <button class="action-btn" id="github-settings-btn" style="position: fixed; bottom: 20px; right: 20px; z-index: 100; box-shadow: rgba(108, 92, 231, 0.4) 0px 4px 15px; display: block;" onclick="openGithubSettings()">🐙 GitHub'a Kaydet</button>
 
         <div class="modal-overlay show" id="github-modal">
             <div class="modal-content" style="max-width:400px; text-align:left;">
@@ -2469,31 +2470,17 @@
 </script>
 
     <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="modal-content"><h3>Mekan Seç</h3><div class="modal-sub">ELO 245 — Güç Elektroniği</div><div class="ders-grid"><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'd4')">
-                <span class="mekan-badge mekan-d4" style="font-size:14px; padding:6px 12px">D4</span>
-            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'd6')">
-                <span class="mekan-badge mekan-d6" style="font-size:14px; padding:6px 12px">D6</span>
-            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'eel')">
-                <span class="mekan-badge mekan-eel" style="font-size:14px; padding:6px 12px">EEL</span>
-            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'ttl')">
-                <span class="mekan-badge mekan-ttl" style="font-size:14px; padding:6px 12px">TTL</span>
-            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'bel')">
-                <span class="mekan-badge mekan-bel" style="font-size:14px; padding:6px 12px">BEL</span>
-            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'bl')">
-                <span class="mekan-badge mekan-bl" style="font-size:14px; padding:6px 12px">BL</span>
-            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'u')">
-                <span class="mekan-badge mekan-u" style="font-size:14px; padding:6px 12px">U</span>
-            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('ELO 245', 'bos')">
-                <span class="mekan-badge mekan-bos" style="font-size:14px; padding:6px 12px">—</span>
-            </div></div></div>
+        <div class="modal" id="modal-content"></div>
     </div>
 
     <!-- Toast -->
-    <div class="toast" id="toast">ELO 245 → D6 güncellendi!</div>
+    <div class="toast" id="toast"></div>
 
     <script>
 let scheduleData = {};
 let activeTab = 'elektrik';
+let isAdmin = false;
+const ADMIN_PASSWORD = "admin"; // Burada dilediğiniz yönetici şifresini belirleyebilirsiniz
 
 const days = ['PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA'];
 const hours = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
@@ -2556,7 +2543,50 @@ window.init = function() {
         if (local) scheduleData = JSON.parse(local);
     } catch(e) { }
 
+    try {
+        if (sessionStorage.getItem('is_admin') === 'true') {
+            isAdmin = true;
+        }
+    } catch(e) {}
+
+    window.updateAdminUI();
     window.renderSchedule();
+};
+
+window.toggleAdminMode = function() {
+    if (isAdmin) {
+        isAdmin = false;
+        try { sessionStorage.removeItem('is_admin'); } catch(e) {}
+        window.showToast("Yönetici çıkışı yapıldı.");
+    } else {
+        const pwd = prompt("Yönetici Şifresini Girin:");
+        if (pwd === ADMIN_PASSWORD) {
+            isAdmin = true;
+            try { sessionStorage.setItem('is_admin', 'true'); } catch(e) {}
+            window.showToast("Başarıyla giriş yapıldı!");
+        } else if (pwd !== null) {
+            alert("Hatalı şifre!");
+        }
+    }
+    window.updateAdminUI();
+    window.renderSchedule();
+};
+
+window.updateAdminUI = function() {
+    const btn = document.getElementById('admin-toggle-btn');
+    const actionBar = document.querySelector('.action-bar');
+    const githubBtn = document.getElementById('github-settings-btn');
+    
+    if (btn) {
+        btn.innerHTML = isAdmin ? '🚪 Çıkış Yap' : '🔑 Yönetici Girişi';
+        btn.style.background = isAdmin ? '#ff7675' : '#6c5ce7';
+    }
+    if (actionBar) {
+        actionBar.style.display = isAdmin ? 'flex' : 'none';
+    }
+    if (githubBtn) {
+        githubBtn.style.display = isAdmin ? 'block' : 'none';
+    }
 };
 
 window.switchTab = function(tabId) {
@@ -2600,7 +2630,9 @@ window.renderSchedule = function() {
                     sinif2.forEach((b, bIdx) => html += createBlockHTML(b, dept, oldIdx, bIdx, 2));
                     html += `</div>`;
                 } else {
-                    html += `<div class="empty-cell" onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)">—</div>`;
+                    const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${oldIdx}, -1)"` : '';
+                    const cursorClass = isAdmin ? 'editable' : '';
+                    html += `<div class="empty-cell ${cursorClass}" ${clickAttr}>—</div>`;
                 }
                 html += `</td>`;
             }
@@ -2615,7 +2647,9 @@ window.renderSchedule = function() {
 
 function createBlockHTML(b, dept, cellIdx, bIdx, year) {
     const mekanObj = mekanOptions.find(m => m.key === b.mekan) || { css: '', label: b.mekan || '' };
-    return `<div class="ders-block hoca-${b.hoca} editable" onclick="window.openCourseModal('${dept}', ${cellIdx}, ${bIdx}, ${year})">
+    const clickAttr = isAdmin ? `onclick="window.openCourseModal('${dept}', ${cellIdx}, ${bIdx}, ${year})"` : '';
+    const cursorClass = isAdmin ? 'editable' : '';
+    return `<div class="ders-block hoca-${b.hoca} ${cursorClass}" ${clickAttr}>
             <div class="ders-kod">${b.kod}</div>
             <div class="ders-ad">${b.ad}</div>
             <span class="ders-sinif">${b.sinif}. Sınıf</span>
@@ -2626,6 +2660,7 @@ function createBlockHTML(b, dept, cellIdx, bIdx, year) {
 let currentEditState = null;
 
 window.openCourseModal = function(dept, cellIdx, bIdx, year) {
+    if (!isAdmin) return;
     currentEditState = { dept, cellIdx, bIdx, year };
     const modal = document.getElementById('modal-overlay');
     const content = document.getElementById('modal-content');
@@ -2653,6 +2688,7 @@ window.openCourseModal = function(dept, cellIdx, bIdx, year) {
 };
 
 window.selectCourseAction = function(action) {
+    if (!isAdmin) return;
     const { dept, cellIdx, bIdx, year } = currentEditState;
     if (action === 'empty') {
         if (bIdx !== -1) {
@@ -2672,6 +2708,7 @@ window.selectCourseAction = function(action) {
 };
 
 window.showMekanPicker = function(course) {
+    if (!isAdmin) return;
     const content = document.getElementById('modal-content');
     let html = `<h3>Mekan Seç</h3><div class="modal-sub">${course.kod} — ${course.ad}</div><div class="ders-grid">`;
     mekanOptions.forEach(m => {
@@ -2684,6 +2721,7 @@ window.showMekanPicker = function(course) {
 };
 
 window.finalizeCourseUpdate = function(courseKod, mekan) {
+    if (!isAdmin) return;
     const { dept, cellIdx, bIdx, year } = currentEditState;
     const course = courses.find(c => c.kod === courseKod);
     
@@ -2720,6 +2758,7 @@ window.autoSave = function() {
 };
 
 window.resetSchedule = function() {
+    if (!isAdmin) return;
     if(confirm("Tüm değişiklikleriniz silinecek ve ilk sürüme dönülecek. Emin misiniz?")) {
         try { localStorage.removeItem('ders_programi_v2'); } catch(e) {}
         window.init();
@@ -2728,6 +2767,7 @@ window.resetSchedule = function() {
 };
 
 window.openGithubSettings = function() {
+    if (!isAdmin) return;
     document.getElementById('github-modal').classList.add('show');
     let token = '';
     try { token = localStorage.getItem('gh_token') || ''; } catch(e) {}
@@ -2739,9 +2779,11 @@ window.closeGithubSettings = function() {
 };
 
 window.saveAndPushToGithub = async function() {
-    const token = document.getElementById('github-token-input').value.trim();
+    if (!isAdmin) return;
+    const rawToken = document.getElementById('github-token-input').value.trim();
+    const token = rawToken.replace(/[^a-zA-Z0-9_]/g, '');
     if (!token) {
-        alert("Lütfen bir Token girin.");
+        alert("Lütfen geçerli bir Token girin.");
         return;
     }
     try { localStorage.setItem('gh_token', token); } catch(e) {}
@@ -2795,7 +2837,5 @@ window.addEventListener('DOMContentLoaded', window.init);
 </script>
 
 
-</div>
-
-</body></html>
+</div></body></html>
 </html>
