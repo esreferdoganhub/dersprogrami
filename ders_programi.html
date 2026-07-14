@@ -931,10 +931,136 @@
             border-top-color: rgba(0, 0, 0, 0.08);
         }
 
+    
+        /* PDF / Yazdırma Ayarları (Yatay & Renkli) */
+        @media print {
+            @page {
+                size: landscape;
+                margin: 8mm;
+            }
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            /* Kontrol elemanlarını gizle */
+            #theme-toggle-btn,
+            #admin-toggle-btn,
+            #print-btn,
+            #github-settings-btn,
+            .tabs,
+            .filter-bar,
+            .action-bar,
+            .background-effects,
+            #hoca-select,
+            label[for="hoca-select"],
+            #toast,
+            .modal-overlay {
+                display: none !important;
+            }
+            
+            /* Sayfa yerleşimini yazıcıya uyarla */
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                background: transparent !important;
+            }
+            
+            .header {
+                margin-bottom: 12px !important;
+            }
+            .header h1 {
+                color: #2d3436 !important;
+                font-size: 1.6rem !important;
+                text-align: center !important;
+            }
+            .header p, .header .subtitle {
+                color: #636e72 !important;
+                font-size: 0.8rem !important;
+                text-align: center !important;
+            }
+
+            .mekan-legend {
+                margin-bottom: 12px !important;
+                justify-content: center !important;
+            }
+            .mekan-badge-legend {
+                background: #f1f2f6 !important;
+                border-color: #ced6e0 !important;
+                color: #2d3436 !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+
+            /* Tablo Tasarımı */
+            .table-wrapper {
+                box-shadow: none !important;
+                border: 1px solid #ced6e0 !important;
+                background: #ffffff !important;
+                overflow: visible !important;
+            }
+            table {
+                min-width: 100% !important;
+                width: 100% !important;
+            }
+            thead th {
+                background: #f1f2f6 !important;
+                color: #2d3436 !important;
+                border-bottom: 2px solid #6c5ce7 !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            tbody tr {
+                border-bottom: 1px solid #ced6e0 !important;
+            }
+            tbody td {
+                border: 1px solid #ced6e0 !important;
+                padding: 4px !important;
+            }
+
+            /* Ders Blokları Renklerini Koru */
+            .ders-block {
+                border-width: 1px !important;
+                border-style: solid !important;
+                box-shadow: none !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            
+            /* Boş slotlar */
+            .empty-block-slot {
+                border: 1px dashed #ced6e0 !important;
+                color: #b2bec3 !important;
+                background: transparent !important;
+                print-color-adjust: exact !important;
+                -webkit-print-color-adjust: exact !important;
+            }
+            body:not(.admin-logged-in) .empty-block-slot {
+                border: none !important;
+                color: transparent !important;
+                background: transparent !important;
+            }
+
+            /* Hoca İstatistikleri Tablosu */
+            #hoca-stats-container table {
+                background: #ffffff !important;
+                border-color: #ced6e0 !important;
+                page-break-inside: avoid !important;
+            }
+            #hoca-stats-container table th,
+            #hoca-stats-container table td {
+                border: 1px solid #ced6e0 !important;
+                color: #2d3436 !important;
+            }
+        }
+
     </style>
 </head>
 
 <body class="light-mode admin-logged-in">
+    <button class="action-btn" id="print-btn" onclick="window.print()" style="position:fixed; top:20px; right:300px; z-index:100; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background:#00cec9; color:#ffffff; border: none; cursor: pointer;">🖨️ PDF / Yazdır</button>
     <button class="action-btn" id="theme-toggle-btn" onclick="window.toggleTheme()" style="position:fixed; top:20px; right:180px; z-index:100; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background:#ffffff; color:#2d3436; border: 1px solid rgba(0,0,0,0.1);">🌓 Görünüm</button>
     <button class="action-btn" id="admin-toggle-btn" onclick="window.toggleAdminMode()" style="position: fixed; top: 20px; right: 20px; z-index: 100; box-shadow: rgba(108, 92, 231, 0.4) 0px 4px 15px; background: rgb(255, 118, 117);">🚪 Çıkış Yap</button>
     <div class="background-effects">
