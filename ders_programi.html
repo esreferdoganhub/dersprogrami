@@ -842,10 +842,62 @@
             background: transparent !important;
         }
 
+    
+        /* Işık Teması (Light Mode) Ayarları */
+        body.light-mode {
+            --bg-primary: #f5f6fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-hover: rgba(0, 0, 0, 0.03);
+            --text-primary: #2d3436;
+            --text-secondary: #636e72;
+            --text-muted: #b2bec3;
+            --border: #dfe4ea;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.08);
+
+            /* Hoca renkleri - Işık teması için daha okunaklı tonlar */
+            --hoca-zateri-bg: rgba(108, 92, 231, 0.1);
+            --hoca-zateri-text: #5f27cd;
+
+            --hoca-cikan-bg: rgba(0, 206, 201, 0.08);
+            --hoca-cikan-text: #008785;
+
+            --hoca-erdogan-bg: rgba(253, 121, 168, 0.1);
+            --hoca-erdogan-text: #d63031;
+
+            --hoca-atal-bg: rgba(116, 185, 255, 0.1);
+            --hoca-atal-text: #0984e3;
+
+            --hoca-sonmez-bg: rgba(85, 239, 196, 0.12);
+            --hoca-sonmez-text: #00b894;
+
+            --hoca-ortak-bg: rgba(253, 203, 110, 0.12);
+            --hoca-ortak-text: #d35400;
+        }
+
+        body.light-mode .background-effects {
+            opacity: 0.12; /* orbları soluklaştır */
+        }
+        
+        body.light-mode .empty-cell {
+            color: #b2bec3;
+        }
+        
+        body.light-mode .mekan-badge-legend {
+            background: rgba(0,0,0,0.03);
+            border-color: rgba(0,0,0,0.06);
+        }
+
+        body.light-mode th {
+            color: #2d3436;
+        }
+
     </style>
 </head>
 
-<body>
+<body class="admin-logged-in light-mode">
+    <button class="action-btn" id="theme-toggle-btn" onclick="window.toggleTheme()" style="position:fixed; top:20px; right:180px; z-index:100; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background:#ffffff; color:#2d3436; border: 1px solid rgba(0,0,0,0.1);">🌓 Görünüm</button>
     <button class="action-btn" id="admin-toggle-btn" onclick="window.toggleAdminMode()" style="position: fixed; top: 20px; right: 20px; z-index: 100; box-shadow: rgba(108, 92, 231, 0.4) 0px 4px 15px; background: rgb(255, 118, 117);">🚪 Çıkış Yap</button>
     <div class="background-effects">
         <div class="orb"></div>
@@ -930,7 +982,7 @@
                 </div>
                 <input type="password" id="github-token-input" placeholder="ghp_xxxxxxxxxxxx" style="width:100%; padding:12px; margin-top:15px; background:var(--surface); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white;">
                 
-                <button class="action-btn" style="width: 100%; margin-top: 15px;" onclick="saveAndPushToGithub()">🚀 Değişiklikleri Web Sitesine Yükle</button>
+                <button class="action-btn" style="width: 100%; margin-top: 15px; " onclick="saveAndPushToGithub()">🚀 Değişiklikleri Web Sitesine Yükle</button>
             </div>
         </div>
 
@@ -1439,18 +1491,18 @@
     ],
     "3": [
       {
-        "kod": "ELO 139",
-        "ad": "Ölçme Tekniği",
-        "sinif": 1,
-        "hoca": "atal",
-        "mekan": "ttl"
-      },
-      {
         "kod": "ELO 245",
         "ad": "Güç Elektroniği",
         "sinif": 2,
         "hoca": "erdogan",
         "mekan": "d6"
+      },
+      {
+        "kod": "ELO 139",
+        "ad": "Ölçme Tekniği",
+        "sinif": 1,
+        "hoca": "atal",
+        "mekan": "ttl"
       }
     ],
     "4": [
@@ -1904,7 +1956,25 @@
 </script>
 
     <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" id="modal-content"></div>
+        <div class="modal" id="modal-content"><h3>Mekan Seç</h3><div class="modal-sub">UAI 101 — Atatürk İlkeleri ve İnkılap Tarihi I</div><div class="ders-grid"><div class="ders-option" style="background:#b2bec3" onclick="window.closeModal()">
+                <div class="ders-kod">❌</div><div class="ders-ad">İPTAL ET</div>
+             </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'd4')">
+                <span class="mekan-badge mekan-d4" style="font-size:14px; padding:6px 12px">D4</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'd6')">
+                <span class="mekan-badge mekan-d6" style="font-size:14px; padding:6px 12px">D6</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'eel')">
+                <span class="mekan-badge mekan-eel" style="font-size:14px; padding:6px 12px">EEL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'ttl')">
+                <span class="mekan-badge mekan-ttl" style="font-size:14px; padding:6px 12px">TTL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'bel')">
+                <span class="mekan-badge mekan-bel" style="font-size:14px; padding:6px 12px">BEL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'bl')">
+                <span class="mekan-badge mekan-bl" style="font-size:14px; padding:6px 12px">BL</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'u')">
+                <span class="mekan-badge mekan-u" style="font-size:14px; padding:6px 12px">U</span>
+            </div><div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('UAI 101', 'bos')">
+                <span class="mekan-badge mekan-bos" style="font-size:14px; padding:6px 12px">—</span>
+            </div></div></div>
     </div>
 
     <!-- Toast -->
@@ -1961,6 +2031,12 @@ const mekanOptions = [
 ];
 
 window.init = function() {
+    try {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    } catch(e) {}
     const el = document.getElementById('schedule-data');
     if (!el) {
         console.error("Veri etiketi bulunamadı!");
@@ -2334,8 +2410,14 @@ window.addEventListener('keydown', function(e) {
 
 window.addEventListener('DOMContentLoaded', window.init);
 
+window.toggleTheme = function() {
+    const isLight = document.body.classList.toggle('light-mode');
+    try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch(e) {}
+};
+
 </script>
 
 
-</div></body></html>
+</div>
+</body></html>
 </html>
