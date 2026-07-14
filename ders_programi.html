@@ -2239,7 +2239,7 @@
 let scheduleData = {};
 let activeTab = 'elektrik';
 let isAdmin = false;
-const ADMIN_PASSWORD = "admin"; // Burada dilediğiniz yönetici şifresini belirleyebilirsiniz
+const ADMIN_PASSWORD = "admin"; // Yönetici şifresi
 
 const days = ['PAZARTESİ', 'SALI', 'ÇARŞAMBA', 'PERŞEMBE', 'CUMA'];
 const hours = ['08:00', '09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00'];
@@ -2343,7 +2343,6 @@ window.updateAdminUI = function() {
     const actionBar = document.querySelector('.action-bar');
     const githubBtn = document.getElementById('github-settings-btn');
     
-    // Toggle class on body to control slot visibility
     document.body.classList.toggle('admin-logged-in', isAdmin);
     
     if (btn) {
@@ -2363,19 +2362,16 @@ window.switchTab = function(tabId) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + activeTab).classList.add('active');
     
-    // Toggle hoca dropdown display
     const hocaSelector = document.getElementById('hoca-view-selector');
     if (hocaSelector) {
         hocaSelector.style.display = activeTab === 'hoca' ? 'block' : 'none';
     }
     
-    // Hide filter bar on hoca/birlesik view
     const filterBar = document.querySelector('.filter-bar');
     if (filterBar) {
         filterBar.style.display = (activeTab === 'hoca' || activeTab === 'birlesik') ? 'none' : 'flex';
     }
     
-    // Reset filter
     window.filterHoca('all');
     window.renderSchedule();
 };
@@ -2394,15 +2390,15 @@ window.renderSchedule = function() {
                 <table>
                     <thead>
                         <tr>
-                            <th>Gün</th>
-                            ${hours.map(h => `<th>${h}</th>`).join('')}
+                            <th>Saat</th>
+                            ${days.map(d => `<th>${d}</th>`).join('')}
                         </tr>
                     </thead>
                     <tbody>`;
         
-        for (let d = 0; d < 5; d++) {
-            html += `<tr><td>${days[d]}</td>`;
-            for (let h = 0; h < 8; h++) {
+        for (let h = 0; h < 8; h++) {
+            html += `<tr><td><strong>${hours[h]}</strong></td>`;
+            for (let d = 0; d < 5; d++) {
                 const oldIdx = d * 9 + h + 1;
                 let matchedLessons = [];
                 ['elektrik', 'elektronik'].forEach(dept => {
@@ -2443,15 +2439,15 @@ window.renderSchedule = function() {
                 <table>
                     <thead>
                         <tr>
-                            <th>Gün</th>
-                            ${hours.map(h => `<th>${h}</th>`).join('')}
+                            <th>Saat</th>
+                            ${days.map(d => `<th>${d}</th>`).join('')}
                         </tr>
                     </thead>
                     <tbody>`;
         
-        for (let d = 0; d < 5; d++) {
-            html += `<tr><td>${days[d]}</td>`;
-            for (let h = 0; h < 8; h++) {
+        for (let h = 0; h < 8; h++) {
+            html += `<tr><td><strong>${hours[h]}</strong></td>`;
+            for (let d = 0; d < 5; d++) {
                 const oldIdx = d * 9 + h + 1;
                 const elkData = scheduleData['elektrik'] ? scheduleData['elektrik'][oldIdx] || [] : [];
                 const elnData = scheduleData['elektronik'] ? scheduleData['elektronik'][oldIdx] || [] : [];
@@ -2525,15 +2521,15 @@ window.renderSchedule = function() {
                     <table>
                         <thead>
                             <tr>
-                                <th>Gün</th>
-                                ${hours.map(h => `<th>${h}</th>`).join('')}
+                                <th>Saat</th>
+                                ${days.map(d => `<th>${d}</th>`).join('')}
                             </tr>
                         </thead>
                         <tbody>`;
             
-            for (let d = 0; d < 5; d++) {
-                html += `<tr><td>${days[d]}</td>`;
-                for (let h = 0; h < 8; h++) {
+            for (let h = 0; h < 8; h++) {
+                html += `<tr><td><strong>${hours[h]}</strong></td>`;
+                for (let d = 0; d < 5; d++) {
                     const oldIdx = d * 9 + h + 1;
                     const cellData = scheduleData[dept][oldIdx] || [];
                     const sinif1 = cellData.filter(c => c.sinif === 1);
@@ -2679,7 +2675,6 @@ window.finalizeCourseUpdate = function(courseKod, mekan) {
     const { dept, cellIdx, bIdx, year } = currentEditState;
     const course = courses.find(c => c.kod === courseKod);
     
-    // Çakışma Kontrolü (Conflict Detection)
     let conflicts = [];
     const targetHoca = course.hoca;
     const targetMekan = mekan;
@@ -2687,18 +2682,15 @@ window.finalizeCourseUpdate = function(courseKod, mekan) {
     ['elektrik', 'elektronik'].forEach(otherDept => {
         const cellEntries = scheduleData[otherDept] ? scheduleData[otherDept][cellIdx] || [] : [];
         cellEntries.forEach((existing) => {
-            // Eğer aynı sekmeyi ve aynı sınıf yılını düzenliyorsak çakışma sayma
             if (otherDept === dept && existing.sinif === year) {
                 return;
             }
             
-            // 1. Sınıf/Derslik Çakışması
             if (targetMekan !== 'bos' && existing.mekan !== 'bos' && existing.mekan === targetMekan) {
                 const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
                 conflicts.push(`• Sınıf/Derslik Çakışması: "${targetMekan.toUpperCase()}" dersliği bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersi için kullanılıyor.`);
             }
             
-            // 2. Hoca Çakışması
             if (targetHoca !== 'ortak' && existing.hoca !== 'ortak' && existing.hoca === targetHoca) {
                 if (existing.kod !== course.kod) {
                     const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
@@ -2801,7 +2793,7 @@ window.saveAndPushToGithub = async function() {
     btn.style.opacity = "0.5";
     
     try {
-        const apiUrl = "https://api.github.com/repos/esreferdoganhub/dersprogrami/contents/index.html";
+        const apiUrl = "https://api.github.com/repos/esreferdogan/dersprogrami/contents/index.html";
         const res = await fetch(apiUrl, { headers: { 'Authorization': `token ${token}` } });
         if (!res.ok) throw new Error("GitHub API hatası. Token yanlış olabilir.");
         
@@ -2809,7 +2801,6 @@ window.saveAndPushToGithub = async function() {
         
         let currentHtml = document.documentElement.outerHTML;
         
-        // Clean up schedule-container content to keep the file clean
         const containerStartTag = '<div id="schedule-container">';
         const containerStart = currentHtml.indexOf(containerStartTag);
         const containerEnd = currentHtml.indexOf('</div></div></div>', containerStart);
@@ -2819,13 +2810,11 @@ window.saveAndPushToGithub = async function() {
             currentHtml = before + '</div>' + after;
         }
         
-        // Clean up github-modal active states
         currentHtml = currentHtml.replace('class="modal-overlay show" id="github-modal"', 'class="modal-overlay" id="github-modal"');
         currentHtml = currentHtml.replace('Yükleniyor... Lütfen bekleyin', '🚀 Değişiklikleri Web Sitesine Yükle');
         currentHtml = currentHtml.replace('opacity: 0.5;', '');
         currentHtml = currentHtml.replace('opacity: 0.5', '');
         
-        // Use a much safer string replacement!
         const scriptStartTag = '<script id="schedule-data" type="application/json">';
         const startIdx = currentHtml.indexOf(scriptStartTag);
         const endIdx = currentHtml.indexOf('</s'+'cript>', startIdx);
@@ -2856,15 +2845,6 @@ window.saveAndPushToGithub = async function() {
     }
 };
 
-// Listen to Escape key to close modals
-window.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        window.closeModal();
-        window.closeGithubSettings();
-    }
-});
-
-// Listen to Escape key to close modals
 window.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         window.closeModal();
@@ -2910,8 +2890,6 @@ window.filterHoca = function(hoca) {
         }
     });
 };
-
-window.addEventListener('DOMContentLoaded', window.init);
 
 function calculateHocaHours() {
     const hocas = ['zateri', 'cikan', 'erdogan', 'atal', 'sonmez', 'ortak'];
@@ -2967,6 +2945,8 @@ window.renderHocaStats = function() {
     html += `</tbody></table>`;
     container.innerHTML = html;
 };
+
+window.addEventListener('DOMContentLoaded', window.init);
 
 </script>
 
