@@ -2031,12 +2031,6 @@ const mekanOptions = [
 ];
 
 window.init = function() {
-    try {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light') {
-            document.body.classList.add('light-mode');
-        }
-    } catch(e) {}
     const el = document.getElementById('schedule-data');
     if (!el) {
         console.error("Veri etiketi bulunamadı!");
@@ -2255,10 +2249,59 @@ window.showMekanPicker = function(course) {
     content.innerHTML = html;
 };
 
+function getHocaRealName(key) {
+    const names = {
+        zateri: 'Doç. Dr. Mine Tülin Zateroğlu',
+        cikan: 'Doç. Dr. Murat Çıkan',
+        erdogan: 'Öğr. Gör. Eşref Erdoğan',
+        atal: 'Öğr. Gör. Tuğba Atal',
+        sonmez: 'Öğr. Gör. Aykut Sönmez',
+        ortak: 'Ortak Ders Öğretmeni'
+    };
+    return names[key] || key;
+}
+
 window.finalizeCourseUpdate = function(courseKod, mekan) {
     if (!isAdmin) return;
     const { dept, cellIdx, bIdx, year } = currentEditState;
     const course = courses.find(c => c.kod === courseKod);
+    
+    // Çakışma Kontrolü (Conflict Detection)
+    let conflicts = [];
+    const targetHoca = course.hoca;
+    const targetMekan = mekan;
+    
+    ['elektrik', 'elektronik'].forEach(otherDept => {
+        const cellEntries = scheduleData[otherDept] ? scheduleData[otherDept][cellIdx] || [] : [];
+        cellEntries.forEach((existing) => {
+            // Eğer aynı sekmeyi ve aynı sınıf yılını düzenliyorsak çakışma sayma
+            if (otherDept === dept && existing.sinif === year) {
+                return;
+            }
+            
+            // 1. Sınıf/Derslik Çakışması
+            if (targetMekan !== 'bos' && existing.mekan !== 'bos' && existing.mekan === targetMekan) {
+                const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
+                conflicts.push(`• Sınıf/Derslik Çakışması: "${targetMekan.toUpperCase()}" dersliği bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersi için kullanılıyor.`);
+            }
+            
+            // 2. Hoca Çakışması
+            if (targetHoca !== 'ortak' && existing.hoca !== 'ortak' && existing.hoca === targetHoca) {
+                if (existing.kod !== course.kod) {
+                    const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
+                    const hocaName = getHocaRealName(targetHoca);
+                    conflicts.push(`• Öğretmen Çakışması: ${hocaName} bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersini veriyor.`);
+                }
+            }
+        });
+    });
+    
+    if (conflicts.length > 0) {
+        const msg = `⚠️ ÇAKIŞMA TESPİT EDİLDİ!\n\n${conflicts.join('\n')}\n\nDeğişikliği yine de kaydetmek istiyor musunuz?`;
+        if (!confirm(msg)) {
+            return;
+        }
+    }
     
     if (!scheduleData[dept][cellIdx]) scheduleData[dept][cellIdx] = [];
     const newEntry = { kod: course.kod, ad: course.ad, sinif: course.sinif, hoca: course.hoca, mekan: mekan };
@@ -2366,7 +2409,7 @@ window.saveAndPushToGithub = async function() {
         // Clean up github-modal active states
         currentHtml = currentHtml.replace('class="modal-overlay show" id="github-modal"', 'class="modal-overlay" id="github-modal"');
         currentHtml = currentHtml.replace('Yükleniyor... Lütfen bekleyin', '🚀 Değişiklikleri Web Sitesine Yükle');
-        currentHtml = currentHtml.replace(';', '');
+        currentHtml = currentHtml.replace('opacity: 0.5;', '');
         currentHtml = currentHtml.replace('opacity: 0.5', '');
         
         // Use a much safer string replacement!
@@ -2409,11 +2452,6 @@ window.addEventListener('keydown', function(e) {
 });
 
 window.addEventListener('DOMContentLoaded', window.init);
-
-window.toggleTheme = function() {
-    const isLight = document.body.classList.toggle('light-mode');
-    try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch(e) {}
-};
 
 </script>
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Elektrik ve Elektronik Teknolojisi Bölümü Haftalık Ders Programı 2025-2026 Güz">
-    <title>Ders Programı - Elektrik &amp; Elektronik 2025-2026 Güz</title>
+    <title>Ders Programı - Elektrik &amp Elektronik 2025-2026 Güz</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <style>
         :root {
@@ -896,7 +896,7 @@
     </style>
 </head>
 
-<body class="admin-logged-in light-mode">
+<body class="light-mode admin-logged-in">
     <button class="action-btn" id="theme-toggle-btn" onclick="window.toggleTheme()" style="position:fixed; top:20px; right:180px; z-index:100; box-shadow: 0 4px 15px rgba(0,0,0,0.15); background:#ffffff; color:#2d3436; border: 1px solid rgba(0,0,0,0.1);">🌓 Görünüm</button>
     <button class="action-btn" id="admin-toggle-btn" onclick="window.toggleAdminMode()" style="position: fixed; top: 20px; right: 20px; z-index: 100; box-shadow: rgba(108, 92, 231, 0.4) 0px 4px 15px; background: rgb(255, 118, 117);">🚪 Çıkış Yap</button>
     <div class="background-effects">
@@ -982,7 +982,7 @@
                 </div>
                 <input type="password" id="github-token-input" placeholder="ghp_xxxxxxxxxxxx" style="width:100%; padding:12px; margin-top:15px; background:var(--surface); border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:white;">
                 
-                <button class="action-btn" style="width: 100%; margin-top: 15px; " onclick="saveAndPushToGithub()">🚀 Değişiklikleri Web Sitesine Yükle</button>
+                <button class="action-btn" style="width: 100%; margin-top: 15px; ;" onclick="saveAndPushToGithub()">🚀 Değişiklikleri Web Sitesine Yükle</button>
             </div>
         </div>
 
@@ -1491,18 +1491,18 @@
     ],
     "3": [
       {
-        "kod": "ELO 245",
-        "ad": "Güç Elektroniği",
-        "sinif": 2,
-        "hoca": "erdogan",
-        "mekan": "d6"
-      },
-      {
         "kod": "ELO 139",
         "ad": "Ölçme Tekniği",
         "sinif": 1,
         "hoca": "atal",
         "mekan": "ttl"
+      },
+      {
+        "kod": "ELO 245",
+        "ad": "Güç Elektroniği",
+        "sinif": 2,
+        "hoca": "erdogan",
+        "mekan": "d6"
       }
     ],
     "4": [
@@ -2031,12 +2031,6 @@ const mekanOptions = [
 ];
 
 window.init = function() {
-    try {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light') {
-            document.body.classList.add('light-mode');
-        }
-    } catch(e) {}
     const el = document.getElementById('schedule-data');
     if (!el) {
         console.error("Veri etiketi bulunamadı!");
@@ -2255,10 +2249,59 @@ window.showMekanPicker = function(course) {
     content.innerHTML = html;
 };
 
+function getHocaRealName(key) {
+    const names = {
+        zateri: 'Doç. Dr. Mine Tülin Zateroğlu',
+        cikan: 'Doç. Dr. Murat Çıkan',
+        erdogan: 'Öğr. Gör. Eşref Erdoğan',
+        atal: 'Öğr. Gör. Tuğba Atal',
+        sonmez: 'Öğr. Gör. Aykut Sönmez',
+        ortak: 'Ortak Ders Öğretmeni'
+    };
+    return names[key] || key;
+}
+
 window.finalizeCourseUpdate = function(courseKod, mekan) {
     if (!isAdmin) return;
     const { dept, cellIdx, bIdx, year } = currentEditState;
     const course = courses.find(c => c.kod === courseKod);
+    
+    // Çakışma Kontrolü (Conflict Detection)
+    let conflicts = [];
+    const targetHoca = course.hoca;
+    const targetMekan = mekan;
+    
+    ['elektrik', 'elektronik'].forEach(otherDept => {
+        const cellEntries = scheduleData[otherDept] ? scheduleData[otherDept][cellIdx] || [] : [];
+        cellEntries.forEach((existing) => {
+            // Eğer aynı sekmeyi ve aynı sınıf yılını düzenliyorsak çakışma sayma
+            if (otherDept === dept && existing.sinif === year) {
+                return;
+            }
+            
+            // 1. Sınıf/Derslik Çakışması
+            if (targetMekan !== 'bos' && existing.mekan !== 'bos' && existing.mekan === targetMekan) {
+                const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
+                conflicts.push(`• Sınıf/Derslik Çakışması: "${targetMekan.toUpperCase()}" dersliği bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersi için kullanılıyor.`);
+            }
+            
+            // 2. Hoca Çakışması
+            if (targetHoca !== 'ortak' && existing.hoca !== 'ortak' && existing.hoca === targetHoca) {
+                if (existing.kod !== course.kod) {
+                    const deptName = otherDept === 'elektrik' ? 'Elektrik' : 'Elektronik';
+                    const hocaName = getHocaRealName(targetHoca);
+                    conflicts.push(`• Öğretmen Çakışması: ${hocaName} bu saatte zaten ${deptName} bölümünde "${existing.kod} - ${existing.ad}" dersini veriyor.`);
+                }
+            }
+        });
+    });
+    
+    if (conflicts.length > 0) {
+        const msg = `⚠️ ÇAKIŞMA TESPİT EDİLDİ!\n\n${conflicts.join('\n')}\n\nDeğişikliği yine de kaydetmek istiyor musunuz?`;
+        if (!confirm(msg)) {
+            return;
+        }
+    }
     
     if (!scheduleData[dept][cellIdx]) scheduleData[dept][cellIdx] = [];
     const newEntry = { kod: course.kod, ad: course.ad, sinif: course.sinif, hoca: course.hoca, mekan: mekan };
@@ -2410,14 +2453,10 @@ window.addEventListener('keydown', function(e) {
 
 window.addEventListener('DOMContentLoaded', window.init);
 
-window.toggleTheme = function() {
-    const isLight = document.body.classList.toggle('light-mode');
-    try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch(e) {}
-};
-
 </script>
 
 
 </div>
+
 </body></html>
 </html>
