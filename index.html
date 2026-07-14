@@ -1948,7 +1948,7 @@ window.init = function() {
     } catch(e) { }
 
     try {
-        if (sessionStorage.getItem('is_admin') === 'true') {
+        if (sessionStorage.getItem('is_admin') === 'true' || localStorage.getItem('gh_token')) {
             isAdmin = true;
         }
     } catch(e) {}
