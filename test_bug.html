@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="schedule-section active" id="section-elektrik">
+    <table border="1"><tbody><tr>
+        <td style="width:100px;height:100px;">
+            <div class="cell-wrapper" style="display:flex;flex-direction:column;">
+                <div class="ders-block hoca-ortak editable" data-block-id="section-elektrik-0-0" style="background:red;">
+                    OLD TEXT
+                </div>
+            </div>
+        </td>
+    </tr></tbody></table>
+</div>
+
+<button onclick="runTest()">Run Test</button>
+
+<script>
+function wrapAndReorder() {
+    document.querySelectorAll('tbody td').forEach((td, i) => {
+        let wrapper = td.querySelector('.cell-wrapper');
+        const blocks = Array.from(wrapper.querySelectorAll('.ders-block'));
+        
+        blocks.forEach(b => b.remove());
+        blocks.forEach(b => wrapper.appendChild(b));
+    });
+}
+
+function runTest() {
+    const block = document.querySelector('[data-block-id="section-elektrik-0-0"]');
+    block.innerHTML = "NEW TEXT";
+    block.style.background = "blue";
+    
+    wrapAndReorder();
+    
+    // mimic autoSave
+    const saved = document.getElementById('section-elektrik').innerHTML;
+    console.log("Saved length:", saved.length);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+[
+    [
+        {
+            "type": "table",
+            "content": {
+                "image_source": {
+                    "path": "images/0747734bc704ec4ad006613dffa5b7b8577f5f487b16ae039a951e0d5526703d.jpg"
+                },
+                "table_caption": [],
+                "table_footnote": [
+                    {
+                        "type": "text",
+                        "content": "MİNE TÜLİN ZATEROĞLU NAZIM AKSAKER MURAT ÇIKAN EŞREF ERDOĞAN TUĞBA ATAL AYKUT SÖNMEZ"
+                    }
+                ],
+                "html": "<table><tr><td>ELEKTRİK</td><td>08.0</td><td>09.00</td><td>10.00</td><td>11.00</td><td>13.00</td><td>14.00</td><td>15.00</td><td>16.00</td></tr><tr><td>PAZARTESİ</td><td>ELT147dada D4ELT231sens.EEL</td><td>ELT147dada D4ELT231sens EEL</td><td>ELT147dada D4ELS225Elktrmknk.kur EEL</td><td>ELS113haberleşme D4ELS225Ektrmknk.kum EEL</td><td>ELT245güç.el.D6</td><td>ELT245güç.el.D6</td><td>ELT245güç.el.D6</td><td></td></tr><tr><td>SALI</td><td></td><td></td><td>ELT145mat D4</td><td>ELT145mat D4</td><td>ELT247asenk D4ELS123yenilenebilir D6</td><td>ELT247asenk D4ELS123yenilenebilir D6</td><td>ELT277iletim.dağıtım D4ELS113TTLhaberleşme</td><td>ELT277iletim.dağıtım D4ELS113TTLhaberleşme</td></tr><tr><td>ÇARŞAMB A</td><td>ELT263 endüstri BLELT119tesst TTL</td><td>ELT263 endüstri BLELT119Tesst TTL</td><td>ELS223TTL Proj.gel.tek.</td><td>ELS223TTL Proj.gel.tek.</td><td>ELT115ölçme TTL</td><td>ELT115ölçme TTL</td><td>ELS101üyk TTL</td><td>ELS101üyk TTL</td></tr><tr><td>PARŞEMBE</td><td></td><td>ELS219Telekom.tek TTLELS123D6yenilenebilir</td><td>ELS219Telekom.tek TTLELS117ofis BL</td><td>ELS219Telekom.tek.TTLELS117ofis BL</td><td>ELT251 mikrodenet BL</td><td>ELT251 mikrodenet BL</td><td>ELT251 mikrodenet BL</td><td>ELT147dada EEL ELT251 mikrodenet BL</td></tr><tr><td>CUMA</td><td>UIN101</td><td>UIN101</td><td>UTDI101ELS223Proj.gel.tek.TTL</td><td>UTD101ELT231sens TTL</td><td>ELT247asenk TTL</td><td>UAI 101ELS225elktrmknk.kum TTL</td><td>UAI 101 U</td><td>ELT247asenk TTL</td></tr></table>",
+                "table_type": "simple_table",
+                "table_nest_level": 1
+            },
+            "bbox": [
+                39,
+                33,
+                872,
+                895
+            ]
+        }
+    ],
+    [
+        {
+            "type": "paragraph",
+            "content": {
+                "paragraph_content": [
+                    {
+                        "type": "text",
+                        "content": "D: DERSLİK, TTL: TELEKOM TEKNOLOJİLERİ LAB., EEL: ELEKTRİK-ELEKTRONİK LAB., U:UZAKTAN, BL: BİLGİYAYAR LAB."
+                    }
+                ]
+            },
+            "bbox": [
+                55,
+                0,
+                887,
+                25
+            ]
+        }
+    ]
+]

@@ -1,0 +1,251 @@
+{
+    "pdf_info": [
+        {
+            "preproc_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        34,
+                        22,
+                        799,
+                        538
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                34,
+                                22,
+                                799,
+                                538
+                            ],
+                            "type": "table_body",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        34,
+                                        22,
+                                        799,
+                                        538
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                34,
+                                                22,
+                                                799,
+                                                538
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>ELEKTRONİK</td><td>08.00</td><td>09.00</td><td>10.00</td><td>11.00</td><td>13.00</td><td>14.00</td><td>15.00</td><td>16.00</td></tr><tr><td>PAZARTESİ</td><td></td><td>ELO245güç.elD6</td><td>ELO139ölçmettLELO245güç.elD6</td><td>ELO139ölçmettLELO245güç.elD6</td><td>ELO135dadaD4ELO247mikro.d.BL</td><td>ELO135dadaD4ELO247mikro.d.BL</td><td>ELO135dadaD4ELO247mikro.d.D6</td><td>ETS113HaberleşmeD4ELO247mikro.d.D6</td></tr><tr><td>SALI</td><td>ELO243Say.tas.D6ETS113HaberleşmeTTL</td><td>ELO243Say.tas D6ETS113HaberleşmeTTL</td><td>ELO243say.tas.D6ETS125yenilenebilirTTL</td><td>ELO243Say.tas.D6ETS125YenilenebilirTTL</td><td>ELO221elktrnk1 TTLETS123Yapay zekaEEL</td><td>ELO221elktrnk1 TTLETS123Yapay zekaEEL</td><td>ETS123Yapay zekaEEL</td><td></td></tr><tr><td>ÇARŞAMBA</td><td>ELO 107 matD4ELO213endüstri EEL</td><td>ELO107 matD4ELO213endüstri EEL</td><td>ETS101üykTTLETS215Proj.gel.tek.EEL</td><td>ETS101üykTTLETS215Proj.gel.tek.EEL</td><td>ETS217elktrmknk.kumD4</td><td>ETS217elktrmknk.kumD4</td><td>ELO263sens.D4</td><td>ELO263sens.D4</td></tr><tr><td>PERŞEMBE</td><td>ELO135dadaEEL</td><td>ETS117ofisBL</td><td>ELO137elktrnk.d.tasD6</td><td>ELO137elktrnk.d.tasD6</td><td>ETS219telekom.tek.TTL</td><td>ETS219Telekom.tek.TTL</td><td>ETS125yenilenebilirD4ETS219Telekom.tek.TTL</td><td>ETS117ofisBL</td></tr><tr><td>CUMA</td><td>UIN101ETS217elktrmknk.kumD4</td><td>UIN101ETS215Proj.gel.tek.D6</td><td>UTD101ELO221elktrnk1 D4</td><td>UTD101</td><td></td><td>UAI101</td><td>UAI101ELO263sens.D6</td><td></td></tr></table>",
+                                            "image_path": "29bf548ddd4b1583dd7b64ae9b13f2e6feb1fc833a2a85d22f6fde82cf6cf768.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 0
+                        }
+                    ],
+                    "index": 0
+                }
+            ],
+            "discarded_blocks": [
+                {
+                    "bbox": [
+                        84,
+                        560,
+                        699,
+                        576
+                    ],
+                    "type": "footer",
+                    "angle": 0,
+                    "index": 1,
+                    "lines": [
+                        {
+                            "bbox": [
+                                86,
+                                561,
+                                698,
+                                575
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        86,
+                                        561,
+                                        519,
+                                        575
+                                    ],
+                                    "type": "text",
+                                    "content": "MİNE TÜLİN ZATEROĞLU NAZIM AKSAKER MURAT ÇIKAN EŞREF ERDOĞAN",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        523,
+                                        561,
+                                        618,
+                                        575
+                                    ],
+                                    "type": "text",
+                                    "content": "AYKUT SÖNMEZ",
+                                    "score": 1.0
+                                },
+                                {
+                                    "bbox": [
+                                        623,
+                                        563,
+                                        698,
+                                        574
+                                    ],
+                                    "type": "text",
+                                    "content": "TUĞBA ATAL",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "page_size": [
+                842,
+                596
+            ],
+            "page_idx": 0,
+            "para_blocks": [
+                {
+                    "type": "table",
+                    "bbox": [
+                        34,
+                        22,
+                        799,
+                        538
+                    ],
+                    "blocks": [
+                        {
+                            "bbox": [
+                                34,
+                                22,
+                                799,
+                                538
+                            ],
+                            "type": "table_body",
+                            "angle": 0,
+                            "lines": [
+                                {
+                                    "bbox": [
+                                        34,
+                                        22,
+                                        799,
+                                        538
+                                    ],
+                                    "spans": [
+                                        {
+                                            "bbox": [
+                                                34,
+                                                22,
+                                                799,
+                                                538
+                                            ],
+                                            "type": "table",
+                                            "html": "<table><tr><td>ELEKTRONİK</td><td>08.00</td><td>09.00</td><td>10.00</td><td>11.00</td><td>13.00</td><td>14.00</td><td>15.00</td><td>16.00</td></tr><tr><td>PAZARTESİ</td><td></td><td>ELO245güç.elD6</td><td>ELO139ölçmettLELO245güç.elD6</td><td>ELO139ölçmettLELO245güç.elD6</td><td>ELO135dadaD4ELO247mikro.d.BL</td><td>ELO135dadaD4ELO247mikro.d.BL</td><td>ELO135dadaD4ELO247mikro.d.D6</td><td>ETS113HaberleşmeD4ELO247mikro.d.D6</td></tr><tr><td>SALI</td><td>ELO243Say.tas.D6ETS113HaberleşmeTTL</td><td>ELO243Say.tas D6ETS113HaberleşmeTTL</td><td>ELO243say.tas.D6ETS125yenilenebilirTTL</td><td>ELO243Say.tas.D6ETS125YenilenebilirTTL</td><td>ELO221elktrnk1 TTLETS123Yapay zekaEEL</td><td>ELO221elktrnk1 TTLETS123Yapay zekaEEL</td><td>ETS123Yapay zekaEEL</td><td></td></tr><tr><td>ÇARŞAMBA</td><td>ELO 107 matD4ELO213endüstri EEL</td><td>ELO107 matD4ELO213endüstri EEL</td><td>ETS101üykTTLETS215Proj.gel.tek.EEL</td><td>ETS101üykTTLETS215Proj.gel.tek.EEL</td><td>ETS217elktrmknk.kumD4</td><td>ETS217elktrmknk.kumD4</td><td>ELO263sens.D4</td><td>ELO263sens.D4</td></tr><tr><td>PERŞEMBE</td><td>ELO135dadaEEL</td><td>ETS117ofisBL</td><td>ELO137elktrnk.d.tasD6</td><td>ELO137elktrnk.d.tasD6</td><td>ETS219telekom.tek.TTL</td><td>ETS219Telekom.tek.TTL</td><td>ETS125yenilenebilirD4ETS219Telekom.tek.TTL</td><td>ETS117ofisBL</td></tr><tr><td>CUMA</td><td>UIN101ETS217elktrmknk.kumD4</td><td>UIN101ETS215Proj.gel.tek.D6</td><td>UTD101ELO221elktrnk1 D4</td><td>UTD101</td><td></td><td>UAI101</td><td>UAI101ELO263sens.D6</td><td></td></tr></table>",
+                                            "image_path": "29bf548ddd4b1583dd7b64ae9b13f2e6feb1fc833a2a85d22f6fde82cf6cf768.jpg"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "index": 0
+                        }
+                    ],
+                    "index": 0
+                }
+            ]
+        },
+        {
+            "preproc_blocks": [
+                {
+                    "bbox": [
+                        82,
+                        23,
+                        656,
+                        39
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                85,
+                                23,
+                                653,
+                                38
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        85,
+                                        23,
+                                        653,
+                                        38
+                                    ],
+                                    "type": "text",
+                                    "content": "D: DERSLİK, TTL: TELEKOM TEKNOLOJİLERİ LAB., EEL: ELEKTRİK-ELEKTRONİK LAB., U:UZAKTAN",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                }
+            ],
+            "discarded_blocks": [],
+            "page_size": [
+                842,
+                596
+            ],
+            "page_idx": 1,
+            "para_blocks": [
+                {
+                    "bbox": [
+                        82,
+                        23,
+                        656,
+                        39
+                    ],
+                    "type": "text",
+                    "angle": 0,
+                    "index": 0,
+                    "lines": [
+                        {
+                            "bbox": [
+                                85,
+                                23,
+                                653,
+                                38
+                            ],
+                            "spans": [
+                                {
+                                    "bbox": [
+                                        85,
+                                        23,
+                                        653,
+                                        38
+                                    ],
+                                    "type": "text",
+                                    "content": "D: DERSLİK, TTL: TELEKOM TEKNOLOJİLERİ LAB., EEL: ELEKTRİK-ELEKTRONİK LAB., U:UZAKTAN",
+                                    "score": 1.0
+                                }
+                            ]
+                        }
+                    ],
+                    "merge_prev": false
+                }
+            ]
+        }
+    ],
+    "_backend": "hybrid",
+    "_effort": "medium",
+    "_ocr_enable": false,
+    "_version_name": "3.4.0"
+}

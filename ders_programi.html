@@ -526,6 +526,53 @@
             margin-bottom: 0;
         }
 
+        #schedule-search:focus {
+            border-color: #6c5ce7 !important;
+            box-shadow: 0 0 10px rgba(108, 92, 231, 0.45) !important;
+            background: var(--bg-card) !important;
+        }
+
+        .ders-block.highlight {
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.35) !important;
+            border-top: 1px solid rgba(108, 92, 231, 0.4) !important;
+            border-right: 1px solid rgba(108, 92, 231, 0.4) !important;
+            border-bottom: 1px solid rgba(108, 92, 231, 0.4) !important;
+            z-index: 5;
+        }
+
+        .current-class-highlight {
+            border: 2px solid #00cec9 !important;
+            animation: pulse-border 2s infinite ease-in-out;
+            position: relative;
+        }
+
+        td.current-time-cell {
+            background: rgba(0, 206, 201, 0.04) !important;
+            border: 1px dashed rgba(0, 206, 201, 0.3) !important;
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: rgba(0, 206, 201, 0.3); }
+            50% { border-color: rgba(0, 206, 201, 1); box-shadow: 0 0 10px rgba(0, 206, 201, 0.2); }
+            100% { border-color: rgba(0, 206, 201, 0.3); }
+        }
+
+        @keyframes pulse-neon {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 206, 201, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(0, 206, 201, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(0, 206, 201, 0);
+            }
+        }
+
         .ders-block.editable:hover {
             transform: translateX(2px);
             box-shadow: 0 2px 14px rgba(0, 0, 0, 0.25);
@@ -738,6 +785,16 @@
         .action-btn.reset-btn:hover {
             background: linear-gradient(135deg, rgba(253,121,168,0.35), rgba(253,121,168,0.2));
             box-shadow: 0 0 20px rgba(253,121,168,0.15);
+            transform: translateY(-1px);
+        }
+        .action-btn.export-btn {
+            background: linear-gradient(135deg, rgba(162,217,206,0.2), rgba(22,160,133,0.15));
+            color: #1abc9c;
+            border-color: rgba(26,188,156,0.4);
+        }
+        .action-btn.export-btn:hover {
+            background: linear-gradient(135deg, rgba(162,217,206,0.35), rgba(22,160,133,0.25));
+            box-shadow: 0 0 20px rgba(26,188,156,0.15);
             transform: translateY(-1px);
         }
         .action-btn:disabled {
@@ -1288,6 +1345,20 @@
             <span class="mekan-badge-legend">EEL = Elektrik-Elektronik Lab.</span>
             <span class="mekan-badge-legend">BL = Bilgisayar Lab.</span>
             <span class="mekan-badge-legend">U = Uzaktan Öğretim</span>
+        <div class="search-bar-container" style="display: flex; justify-content: center; margin-bottom: 25px; padding: 0 10px;">
+            <div style="position: relative; width: 100%; max-width: 450px;">
+                <input type="text" id="schedule-search" placeholder="🔍 Ders kodu, ders adı, öğretmen veya mekan ara..." 
+                       style="width: 100%; padding: 11px 18px 11px 40px; border-radius: 25px; border: 1px solid var(--border); background: var(--glass-bg); backdrop-filter: blur(10px); color: var(--text-primary); outline: none; font-size: 0.85rem; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.05);"
+                       oninput="window.handleSearch()">
+                <span style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 1rem; color: var(--text-secondary); pointer-events: none;"></span>
+            </div>
+        </div>
+
+        <div id="live-tracker-widget" style="text-align: center; margin-bottom: 25px; display: none;">
+            <div style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 30px; background: rgba(108, 92, 231, 0.08); border: 1px solid rgba(108, 92, 231, 0.25); color: #a29bfe; font-size: 0.8rem; font-weight: 600; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.05); backdrop-filter: blur(5px);">
+                <span class="live-pulse" style="display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #00cec9; box-shadow: 0 0 10px #00cec9; animation: pulse-neon 1.6s infinite;"></span>
+                <span id="live-tracker-text">Şu an aktif ders bulunmuyor.</span>
+            </div>
         </div>
 
         <div class="tabs">
@@ -1305,7 +1376,7 @@
 
         <div id="hoca-view-selector" style="display: none; text-align: center; margin-bottom: 25px;">
             <label for="hoca-select" style="font-weight: 600; margin-right: 10px; color: var(--text-secondary); font-size: 0.9rem;">Öğretmen Seçin:</label>
-            <select id="hoca-select" onchange="window.renderSchedule()" style="padding: 8px 16px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); font-family: 'Inter', sans-serif; cursor: pointer; outline: none; font-size: 0.85rem;">
+            <select id="hoca-select" onchange="window.renderSchedule(); window.updateURLParams();" style="padding: 8px 16px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); font-family: 'Inter', sans-serif; cursor: pointer; outline: none; font-size: 0.85rem;">
                 <option value="zateri">MİNE TÜLİN ZATEROĞLU</option>
                 <option value="aksaker">NAZIM AKSAKER</option>
                 <option value="cikan">MURAT ÇIKAN</option>
@@ -1328,10 +1399,11 @@
             <button class="filter-btn active" data-hoca="ortak" onclick="filterHoca('ortak')">Ortak</button>
         </div>
 
-        <div class="action-bar" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
+        <div class="action-bar" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
             <button class="action-btn save-btn" onclick="window.saveSchedule()">💾 Son Hali Kaydet</button>
             <button class="action-btn load-btn" onclick="window.loadSchedule()" id="btn-load">📂 Son Haline Getir</button>
             <button class="action-btn reset-btn" onclick="window.resetSchedule()">🔄 Orijinale Dön</button>
+            <button class="action-btn export-btn" onclick="window.exportToiCal()">📅 Takvimi Dışa Aktar</button>
         </div>
 
         <!-- ==================== ELEKTRİK ==================== -->
@@ -2289,6 +2361,21 @@
     <!-- Toast -->
     <div class="toast" id="toast">Başarıyla giriş yapıldı!</div>
 
+    <!-- Premium Çakışma / Onay Modalı -->
+    <div id="confirm-overlay" style="display:none; position:fixed; inset:0; z-index:2000; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; transition: opacity 0.25s ease;">
+        <div id="confirm-modal-box" style="background:var(--bg-card); border:1px solid var(--border); border-radius:20px; padding:30px 32px; max-width:480px; width:100%; box-shadow:0 25px 60px rgba(0,0,0,0.5); transform:scale(0.9); transition:transform 0.25s ease; font-family:'Inter',sans-serif;">
+            <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+                <div id="confirm-icon" style="font-size:2.2rem; flex-shrink:0;">⚠️</div>
+                <h3 id="confirm-title" style="margin:0; font-size:1.1rem; font-weight:700; color:var(--text-primary);">Onay Gerekiyor</h3>
+            </div>
+            <div id="confirm-body" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.65; margin-bottom:22px; white-space:pre-line;"></div>
+            <div style="display:flex; justify-content:flex-end; gap:12px;">
+                <button id="confirm-cancel-btn" style="padding:10px 22px; border-radius:10px; border:1px solid var(--border); background:transparent; color:var(--text-secondary); font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:600; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background='transparent'">İptal</button>
+                <button id="confirm-ok-btn" style="padding:10px 22px; border-radius:10px; border:1px solid rgba(253,121,168,0.5); background:linear-gradient(135deg,rgba(253,121,168,0.25),rgba(253,121,168,0.1)); color:#fd79a8; font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='linear-gradient(135deg,rgba(253,121,168,0.45),rgba(253,121,168,0.2))'" onmouseout="this.style.background='linear-gradient(135deg,rgba(253,121,168,0.25),rgba(253,121,168,0.1))'">Onayla</button>
+            </div>
+        </div>
+    </div>
+
     <script>
 let scheduleData = {};
 let activeTab = 'elektrik';
@@ -2377,8 +2464,68 @@ window.init = function() {
         }
     } catch(e) {}
 
+    // Parse URL params
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Tab parameter
+        const tabParam = urlParams.get('tab');
+        if (tabParam && ['elektrik', 'elektronik', 'birlesik', 'hoca'].includes(tabParam)) {
+            activeTab = tabParam;
+        }
+        
+        // Class parameter
+        const classParam = urlParams.get('class');
+        if (classParam && ['all', '1', '2'].includes(classParam)) {
+            activeClassFilter = classParam === 'all' ? 'all' : parseInt(classParam);
+        }
+    } catch(e) {}
+
     window.updateAdminUI();
+    
+    // Sync tab button UI
+    document.querySelectorAll('.tab-btn').forEach(b => {
+        if (b.id === 'tab-' + activeTab) b.classList.add('active');
+        else b.classList.remove('active');
+    });
+    const hocaSelector = document.getElementById('hoca-view-selector');
+    if (hocaSelector) {
+        hocaSelector.style.display = activeTab === 'hoca' ? 'block' : 'none';
+    }
+    const filterBar = document.querySelector('.filter-bar');
+    if (filterBar) {
+        filterBar.style.display = (activeTab === 'hoca' || activeTab === 'birlesik') ? 'none' : 'flex';
+    }
+    
+    // Sync hoca select option UI
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const hocaParam = urlParams.get('hoca');
+        if (hocaParam && activeTab === 'hoca') {
+            const hocaSelect = document.getElementById('hoca-select');
+            if (hocaSelect) {
+                hocaSelect.value = hocaParam;
+            }
+        }
+    } catch(e) {}
+
+    // Sync class filter button UI
+    document.querySelectorAll('[data-class-filter]').forEach(b => {
+        if (b.getAttribute('data-class-filter') === String(activeClassFilter)) {
+            b.classList.add('active');
+        } else {
+            b.classList.remove('active');
+        }
+    });
+
     window.renderSchedule();
+    
+    // Start live tracker - updates every 60 seconds
+    setInterval(function() {
+        if (typeof window.updateLiveTracker === 'function') {
+            window.updateLiveTracker();
+        }
+    }, 60000);
 };
 
 window.toggleAdminMode = function() {
@@ -2419,6 +2566,24 @@ window.updateAdminUI = function() {
     }
 };
 
+window.updateURLParams = function() {
+    try {
+        const params = new URLSearchParams();
+        params.set('tab', activeTab);
+        params.set('class', activeClassFilter);
+        if (activeTab === 'hoca') {
+            const hocaSelect = document.getElementById('hoca-select');
+            if (hocaSelect) {
+                params.set('hoca', hocaSelect.value);
+            }
+        }
+        const newURL = window.location.pathname + '?' + params.toString();
+        window.history.replaceState({ path: newURL }, '', newURL);
+    } catch(e) {
+        console.error("Failed to update URL parameters", e);
+    }
+};
+
 window.switchTab = function(tabId) {
     activeTab = tabId.replace('tab-', '');
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -2436,6 +2601,7 @@ window.switchTab = function(tabId) {
     
     window.filterHoca('all');
     window.renderSchedule();
+    window.updateURLParams();
 };
 
 window.switchClassFilter = function(val) {
@@ -2448,6 +2614,7 @@ window.switchClassFilter = function(val) {
         }
     });
     window.renderSchedule();
+    window.updateURLParams();
 };
 
 window.renderSchedule = function() {
@@ -2719,6 +2886,12 @@ window.renderSchedule = function() {
     }
     
     container.innerHTML = html;
+    if (typeof window.handleSearch === 'function') {
+        window.handleSearch();
+    }
+    if (typeof window.updateLiveTracker === 'function') {
+        window.updateLiveTracker();
+    }
 };
 
 function createBlockHTML(b, dept, cellIdx, bIdx, year) {
@@ -2802,6 +2975,275 @@ window.showMekanPicker = function(course) {
     content.innerHTML = html;
 };
 
+window.exportToiCal = function() {
+    const today = new Date();
+    const day = today.getDay();
+    const diff = today.getDate() - day + (day === 0 ? -6 : 1);
+    const startMonday = new Date(today.setDate(diff));
+    startMonday.setHours(0, 0, 0, 0);
+    
+    const pad = (n) => String(n).padStart(2, '0');
+    const formatDT = (date) => {
+        return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}T${pad(date.getHours())}${pad(date.getMinutes())}00`;
+    };
+    
+    let icsEvents = [];
+    
+    // We determine which departments to process
+    let depts = [];
+    if (activeTab === 'birlesik') {
+        depts = ['elektrik', 'elektronik'];
+    } else if (activeTab === 'hoca') {
+        depts = ['elektrik', 'elektronik'];
+    } else {
+        depts = [activeTab];
+    }
+    
+    const targetHoca = activeTab === 'hoca' ? document.getElementById('hoca-select').value : null;
+    
+    // Map hour indices to [startHour, startMinute, endHour, endMinute]
+    const slotTimes = [
+        [8, 0, 8, 50],
+        [9, 0, 9, 50],
+        [10, 0, 10, 50],
+        [11, 0, 11, 50],
+        [13, 0, 13, 50],
+        [14, 0, 14, 50],
+        [15, 0, 15, 50],
+        [16, 0, 16, 50]
+    ];
+    
+    const dayNamesEn = ['MO', 'TU', 'WE', 'TH', 'FR'];
+    
+    depts.forEach(dept => {
+        const deptData = scheduleData[dept] || {};
+        Object.keys(deptData).forEach(cellIdx => {
+            const idx = parseInt(cellIdx);
+            // Reconstruct hour and day index
+            const dIdx = Math.floor((idx - 1) / 9);
+            const hIdx = (idx - 1) % 9;
+            
+            if (dIdx < 0 || dIdx > 4 || hIdx < 0 || hIdx > 7) return;
+            
+            const list = deptData[cellIdx] || [];
+            list.forEach(entry => {
+                // Filter by class year
+                if (activeClassFilter !== 'all' && entry.sinif !== parseInt(activeClassFilter)) {
+                    return;
+                }
+                // Filter by teacher if in teacher tab
+                if (targetHoca && entry.hoca !== targetHoca) {
+                    return;
+                }
+                
+                // Calculate date and times
+                const eventDate = new Date(startMonday);
+                eventDate.setDate(startMonday.getDate() + dIdx);
+                
+                const start = new Date(eventDate);
+                start.setHours(slotTimes[hIdx][0], slotTimes[hIdx][1], 0, 0);
+                
+                const end = new Date(eventDate);
+                end.setHours(slotTimes[hIdx][2], slotTimes[hIdx][3], 0, 0);
+                
+                const uuid = `event-${dept}-${idx}-${entry.sinif}-${entry.kod.replace(/\s+/g, '')}@dersprogrami`;
+                const hocaRealName = typeof getHocaRealName === 'function' ? getHocaRealName(entry.hoca) : entry.hoca;
+                const mekanObj = mekanOptions.find(m => m.key === entry.mekan) || { label: entry.mekan || '' };
+                const summary = `${entry.kod} - ${entry.ad}`;
+                const description = `Ogretmen: ${hocaRealName}\\nSinif: ${entry.sinif}. Sinif\\nBolum: ${dept.toUpperCase()}`;
+                
+                const eventLines = [
+                    'BEGIN:VEVENT',
+                    `UID:${uuid}`,
+                    `DTSTAMP:${formatDT(new Date())}`,
+                    `DTSTART:${formatDT(start)}`,
+                    `DTEND:${formatDT(end)}`,
+                    `RRULE:FREQ=WEEKLY;BYDAY=${dayNamesEn[dIdx]};COUNT=14`,
+                    `SUMMARY:${summary}`,
+                    `DESCRIPTION:${description}`,
+                    `LOCATION:${mekanObj.label.toUpperCase()}`,
+                    'END:VEVENT'
+                ];
+                icsEvents.push(eventLines.join('\r\n'));
+            });
+        });
+    });
+    
+    if (icsEvents.length === 0) {
+        window.showToast("Dışa aktarılacak ders bulunamadı!");
+        return;
+    }
+    
+    const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Ders Programi//EN',
+        'CALSCALE:GREGORIAN',
+        icsEvents.join('\r\n'),
+        'END:VCALENDAR'
+    ].join('\r\n');
+    
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    
+    // Custom filename based on tab and filters
+    let filename = `Ders_Programi_${activeTab}`;
+    if (activeClassFilter !== 'all') {
+        filename += `_Sinif_${activeClassFilter}`;
+    }
+    if (targetHoca) {
+        filename += `_${targetHoca}`;
+    }
+    link.download = `${filename}.ics`;
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.showToast("Takvim başarıyla dışa aktarıldı!");
+};
+
+window.updateLiveTracker = function() {
+    const trackerWidget = document.getElementById('live-tracker-widget');
+    const trackerText = document.getElementById('live-tracker-text');
+    if (!trackerWidget || !trackerText) return;
+    
+    // Clear old highlights
+    document.querySelectorAll('.current-time-cell').forEach(el => el.classList.remove('current-time-cell'));
+    document.querySelectorAll('.current-class-highlight').forEach(el => el.classList.remove('current-class-highlight'));
+    
+    const now = new Date();
+    const dayIdx = now.getDay() - 1; // 0: Pazartesi, 1: Salı, ..., 4: Cuma
+    if (dayIdx < 0 || dayIdx > 4) {
+        trackerWidget.style.display = 'none';
+        return;
+    }
+    
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const timeInMinutes = currentHour * 60 + currentMinute;
+    
+    const slotTimes = [
+        [8, 0, 8, 50],
+        [9, 0, 9, 50],
+        [10, 0, 10, 50],
+        [11, 0, 11, 50],
+        [13, 0, 13, 50],
+        [14, 0, 14, 50],
+        [15, 0, 15, 50],
+        [16, 0, 16, 50]
+    ];
+    
+    let activeHIdx = -1;
+    for (let i = 0; i < slotTimes.length; i++) {
+        const startMin = slotTimes[i][0] * 60 + slotTimes[i][1];
+        const endMin = slotTimes[i][2] * 60 + slotTimes[i][3];
+        if (timeInMinutes >= startMin && timeInMinutes <= endMin) {
+            activeHIdx = i;
+            break;
+        }
+    }
+    
+    if (activeHIdx === -1) {
+        trackerWidget.style.display = 'none';
+        return;
+    }
+    
+    const oldIdx = dayIdx * 9 + activeHIdx + 1;
+    let activeClassesText = [];
+    
+    // Determine which depts are rendered on screen
+    let depts = [];
+    if (activeTab === 'birlesik') {
+        depts = ['elektrik', 'elektronik'];
+    } else if (activeTab === 'hoca') {
+        depts = ['elektrik', 'elektronik'];
+    } else {
+        depts = [activeTab];
+    }
+    
+    const targetHoca = activeTab === 'hoca' ? document.getElementById('hoca-select').value : null;
+    
+    depts.forEach(dept => {
+        const cellEl = document.querySelector(`[data-cell-id="${dept}-${oldIdx}"]`);
+        if (cellEl) {
+            cellEl.classList.add('current-time-cell');
+            const blocks = cellEl.querySelectorAll('.ders-block');
+            blocks.forEach(block => {
+                // Filter hoca if on teacher tab
+                if (targetHoca) {
+                    const blockHoca = block.className.match(/hoca-([a-z]+)/)?.[1];
+                    if (blockHoca !== targetHoca) return;
+                }
+                
+                block.classList.add('current-class-highlight');
+                const kod = block.querySelector('.ders-kod')?.textContent || '';
+                const ad = block.querySelector('.ders-ad')?.textContent || '';
+                const mekan = block.querySelector('.mekan-badge')?.textContent || block.querySelector('.mekan-badge-inline')?.textContent || '';
+                activeClassesText.push(`[${dept.toUpperCase()}] ${kod} ${ad} (${mekan})`);
+            });
+        }
+    });
+    
+    if (activeClassesText.length > 0) {
+        trackerText.textContent = `Şu Anki Ders: ${activeClassesText.join(' | ')}`;
+        trackerWidget.style.display = 'block';
+    } else {
+        trackerText.textContent = `Şu an aktif dersiniz bulunmuyor (Boş saat).`;
+        trackerWidget.style.display = 'block';
+    }
+};
+
+window.handleSearch = function() {
+    const searchEl = document.getElementById('schedule-search');
+    if (!searchEl) return;
+    const q = searchEl.value.trim().toLowerCase();
+    
+    // Turkish char normalization
+    const normalize = (str) => {
+        return str.toLowerCase()
+            .replace(/ı/g, 'i')
+            .replace(/ş/g, 's')
+            .replace(/ğ/g, 'g')
+            .replace(/ç/g, 'c')
+            .replace(/ö/g, 'o')
+            .replace(/ü/g, 'u')
+            .replace(/\s+/g, '');
+    };
+    
+    const normalizedQuery = normalize(q);
+    const blocks = document.querySelectorAll('.ders-block');
+    
+    if (!normalizedQuery) {
+        blocks.forEach(b => {
+            b.classList.remove('dim');
+            b.classList.remove('highlight');
+        });
+        return;
+    }
+    
+    blocks.forEach(b => {
+        const kod = normalize(b.querySelector('.ders-kod')?.textContent || '');
+        const ad = normalize(b.querySelector('.ders-ad')?.textContent || '');
+        const hocaKey = b.className.match(/hoca-([a-z]+)/)?.[1] || '';
+        const hocaReal = normalize(getHocaRealName(hocaKey));
+        const mekan = normalize(b.querySelector('.mekan-badge')?.textContent || b.querySelector('.mekan-badge-inline')?.textContent || '');
+        
+        const isMatch = kod.includes(normalizedQuery) || 
+                        ad.includes(normalizedQuery) || 
+                        hocaReal.includes(normalizedQuery) ||
+                        mekan.includes(normalizedQuery);
+                        
+        if (isMatch) {
+            b.classList.add('highlight');
+            b.classList.remove('dim');
+        } else {
+            b.classList.remove('highlight');
+            b.classList.add('dim');
+        }
+    });
+};
+
 function getHocaRealName(key) {
     const names = {
         zateri: 'MİNE TÜLİN ZATEROĞLU',
@@ -2815,7 +3257,7 @@ function getHocaRealName(key) {
     return names[key] || key;
 }
 
-window.finalizeCourseUpdate = function(courseKod, mekan) {
+window.finalizeCourseUpdate = async function(courseKod, mekan) {
     if (!isAdmin) return;
     const { dept, cellIdx, bIdx, year } = currentEditState;
     const course = courses.find(c => c.kod === courseKod);
@@ -2847,10 +3289,15 @@ window.finalizeCourseUpdate = function(courseKod, mekan) {
     });
     
     if (conflicts.length > 0) {
-        const msg = `⚠️ ÇAKIŞMA TESPİT EDİLDİ!\n\n${conflicts.join('\n')}\n\nDeğişikliği yine de kaydetmek istiyor musunuz?`;
-        if (!confirm(msg)) {
-            return;
-        }
+        const body = `Aşağıdaki çakışmalar tespit edildi:\n\n${conflicts.join('\n')}\n\nDeğişikliği yine de kaydetmek istiyor musunuz?`;
+        const ok = await window.showConfirmModal({
+            icon: '⚠️',
+            title: 'Çakışma Tespit Edildi!',
+            body: body,
+            okLabel: 'Yine de Kaydet',
+            cancelLabel: 'Vazgeç'
+        });
+        if (!ok) return;
     }
     
     if (!scheduleData[dept][cellIdx]) scheduleData[dept][cellIdx] = [];
@@ -2872,6 +3319,56 @@ window.finalizeCourseUpdate = function(courseKod, mekan) {
 
 window.closeModal = function() {
     document.getElementById('modal-overlay').classList.remove('show');
+};
+
+/**
+ * Premium animated confirm dialog. Replaces native confirm().
+ * @param {object} opts - { title, body, icon, okLabel, cancelLabel }
+ * @returns {Promise<boolean>} - resolves true (ok) or false (cancel)
+ */
+window.showConfirmModal = function(opts = {}) {
+    return new Promise((resolve) => {
+        const overlay = document.getElementById('confirm-overlay');
+        const box = document.getElementById('confirm-modal-box');
+        const iconEl = document.getElementById('confirm-icon');
+        const titleEl = document.getElementById('confirm-title');
+        const bodyEl = document.getElementById('confirm-body');
+        const okBtn = document.getElementById('confirm-ok-btn');
+        const cancelBtn = document.getElementById('confirm-cancel-btn');
+        
+        iconEl.textContent = opts.icon || '⚠️';
+        titleEl.textContent = opts.title || 'Onay Gerekiyor';
+        bodyEl.textContent = opts.body || '';
+        okBtn.textContent = opts.okLabel || 'Onayla';
+        cancelBtn.textContent = opts.cancelLabel || 'İptal';
+        
+        // Show with animation
+        overlay.style.display = 'flex';
+        requestAnimationFrame(() => {
+            overlay.style.opacity = '1';
+            box.style.transform = 'scale(1)';
+        });
+        
+        const cleanup = (result) => {
+            overlay.style.opacity = '0';
+            box.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 260);
+            okBtn.removeEventListener('click', onOk);
+            cancelBtn.removeEventListener('click', onCancel);
+            overlay.removeEventListener('click', onOverlay);
+            resolve(result);
+        };
+        
+        const onOk = () => cleanup(true);
+        const onCancel = () => cleanup(false);
+        const onOverlay = (e) => { if (e.target === overlay) cleanup(false); };
+        
+        okBtn.addEventListener('click', onOk);
+        cancelBtn.addEventListener('click', onCancel);
+        overlay.addEventListener('click', onOverlay);
+    });
 };
 
 window.showToast = function(msg) {
@@ -2903,9 +3400,16 @@ window.loadSchedule = function() {
     } catch(e) {}
 };
 
-window.resetSchedule = function() {
+window.resetSchedule = async function() {
     if (!isAdmin) return;
-    if(confirm("Tüm değişiklikleriniz silinecek ve ilk sürüme dönülecek. Emin misiniz?")) {
+    const ok = await window.showConfirmModal({
+        icon: '🔄',
+        title: 'Orijinale Dön',
+        body: 'Tüm değişiklikleriniz silinecek ve ilk sürüme dönülecek.\n\nBu işlem geri alınamaz. Emin misiniz?',
+        okLabel: 'Evet, Sıfırla',
+        cancelLabel: 'Vazgeç'
+    });
+    if (ok) {
         try { localStorage.removeItem('ders_programi_v2'); } catch(e) {}
         window.init();
         window.showToast("Orijinal programa dönüldü!");
