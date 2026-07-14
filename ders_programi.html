@@ -20,29 +20,29 @@
             --glass-border: rgba(255, 255, 255, 0.06);
 
             /* Hoca renkleri */
-            --hoca-zateri-bg: #00ffff;
+            --hoca-zateri-bg: rgba(0, 255, 255, 0.12);
             --hoca-zateri-border: #00cccc;
-            --hoca-zateri-text: #000000;
+            --hoca-zateri-text: #81ecec;
 
-            --hoca-cikan-bg: #ff00ff;
+            --hoca-cikan-bg: rgba(255, 0, 255, 0.12);
             --hoca-cikan-border: #cc00cc;
-            --hoca-cikan-text: #000000;
+            --hoca-cikan-text: #fd79a8;
 
-            --hoca-erdogan-bg: #cccccc;
+            --hoca-erdogan-bg: rgba(200, 200, 200, 0.12);
             --hoca-erdogan-border: #b5b5b5;
-            --hoca-erdogan-text: #000000;
+            --hoca-erdogan-text: #dfe6e9;
 
-            --hoca-atal-bg: #00ff00;
+            --hoca-atal-bg: rgba(0, 255, 0, 0.10);
             --hoca-atal-border: #00cc00;
-            --hoca-atal-text: #000000;
+            --hoca-atal-text: #55efc4;
 
-            --hoca-sonmez-bg: #ffff00;
+            --hoca-sonmez-bg: rgba(255, 255, 0, 0.10);
             --hoca-sonmez-border: #cccc00;
-            --hoca-sonmez-text: #000000;
+            --hoca-sonmez-text: #ffeaa7;
 
-            --hoca-ortak-bg: #ffa500;
+            --hoca-ortak-bg: rgba(255, 165, 0, 0.12);
             --hoca-ortak-border: #cc8400;
-            --hoca-ortak-text: #000000;
+            --hoca-ortak-text: #ffb8b8;
         }
 
         * {
@@ -906,7 +906,30 @@
             --glass-bg: rgba(255, 255, 255, 0.8);
             --glass-border: rgba(0, 0, 0, 0.08);
 
+            /* Hoca renkleri - Light Mode */
+            --hoca-zateri-bg: rgba(0, 255, 255, 0.12);
+            --hoca-zateri-border: #00a8a8;
+            --hoca-zateri-text: #007373;
 
+            --hoca-cikan-bg: rgba(255, 0, 255, 0.12);
+            --hoca-cikan-border: #cc00cc;
+            --hoca-cikan-text: #990099;
+
+            --hoca-erdogan-bg: rgba(180, 180, 180, 0.15);
+            --hoca-erdogan-border: #999999;
+            --hoca-erdogan-text: #444444;
+
+            --hoca-atal-bg: rgba(0, 255, 0, 0.12);
+            --hoca-atal-border: #00b300;
+            --hoca-atal-text: #006600;
+
+            --hoca-sonmez-bg: rgba(230, 230, 0, 0.12);
+            --hoca-sonmez-border: #b3b300;
+            --hoca-sonmez-text: #808000;
+
+            --hoca-ortak-bg: rgba(255, 165, 0, 0.12);
+            --hoca-ortak-border: #cc8400;
+            --hoca-ortak-text: #996300;
         }
 
         body.light-mode .background-effects {
@@ -1181,19 +1204,12 @@
                 print-color-adjust: exact !important;
                 -webkit-print-color-adjust: exact !important;
             }
-            .legend-item.hoca-zateri { background-color: var(--hoca-zateri-bg) !important; color: var(--hoca-zateri-text) !important; border-color: var(--hoca-zateri-border) !important; }
-            .legend-item.hoca-cikan { background-color: var(--hoca-cikan-bg) !important; color: var(--hoca-cikan-text) !important; border-color: var(--hoca-cikan-border) !important; }
-            .legend-item.hoca-erdogan { background-color: var(--hoca-erdogan-bg) !important; color: var(--hoca-erdogan-text) !important; border-color: var(--hoca-erdogan-border) !important; }
-            .legend-item.hoca-atal { background-color: var(--hoca-atal-bg) !important; color: var(--hoca-atal-text) !important; border-color: var(--hoca-atal-border) !important; }
-            .legend-item.hoca-sonmez { background-color: var(--hoca-sonmez-bg) !important; color: var(--hoca-sonmez-text) !important; border-color: var(--hoca-sonmez-border) !important; }
-            .legend-item.hoca-ortak { background-color: var(--hoca-ortak-bg) !important; color: var(--hoca-ortak-text) !important; border-color: var(--hoca-ortak-border) !important; }
-
-            .ders-block.hoca-zateri { background-color: var(--hoca-zateri-bg) !important; color: var(--hoca-zateri-text) !important; border-color: var(--hoca-zateri-border) !important; }
-            .ders-block.hoca-cikan { background-color: var(--hoca-cikan-bg) !important; color: var(--hoca-cikan-text) !important; border-color: var(--hoca-cikan-border) !important; }
-            .ders-block.hoca-erdogan { background-color: var(--hoca-erdogan-bg) !important; color: var(--hoca-erdogan-text) !important; border-color: var(--hoca-erdogan-border) !important; }
-            .ders-block.hoca-atal { background-color: var(--hoca-atal-bg) !important; color: var(--hoca-atal-text) !important; border-color: var(--hoca-atal-border) !important; }
-            .ders-block.hoca-sonmez { background-color: var(--hoca-sonmez-bg) !important; color: var(--hoca-sonmez-text) !important; border-color: var(--hoca-sonmez-border) !important; }
-            .ders-block.hoca-ortak { background-color: var(--hoca-ortak-bg) !important; color: var(--hoca-ortak-text) !important; border-color: var(--hoca-ortak-border) !important; }
+            .legend-item.hoca-zateri, .ders-block.hoca-zateri { background-color: rgba(0, 255, 255, 0.12) !important; color: #007373 !important; border-color: #00a8a8 !important; }
+            .legend-item.hoca-cikan, .ders-block.hoca-cikan { background-color: rgba(255, 0, 255, 0.12) !important; color: #990099 !important; border-color: #cc00cc !important; }
+            .legend-item.hoca-erdogan, .ders-block.hoca-erdogan { background-color: rgba(180, 180, 180, 0.15) !important; color: #444444 !important; border-color: #999999 !important; }
+            .legend-item.hoca-atal, .ders-block.hoca-atal { background-color: rgba(0, 255, 0, 0.12) !important; color: #006600 !important; border-color: #00b300 !important; }
+            .legend-item.hoca-sonmez, .ders-block.hoca-sonmez { background-color: rgba(230, 230, 0, 0.12) !important; color: #808000 !important; border-color: #b3b300 !important; }
+            .legend-item.hoca-ortak, .ders-block.hoca-ortak { background-color: rgba(255, 165, 0, 0.12) !important; color: #996300 !important; border-color: #cc8400 !important; }
         }
 
     
