@@ -382,7 +382,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 1000px;
+            min-width: 1380px;
         }
 
         thead th {
@@ -397,13 +397,14 @@
             position: sticky;
             top: 0;
             z-index: 10;
+            min-width: 260px;
         }
 
         thead th:first-child {
             text-align: center;
             padding: 14px 10px;
-            min-width: 80px;
-            width: 80px;
+            min-width: 80px !important;
+            width: 80px !important;
         }
 
         tbody td:first-child {
@@ -411,6 +412,8 @@
             vertical-align: middle;
             font-weight: 700;
             color: var(--text-primary);
+            min-width: 80px !important;
+            width: 80px !important;
         }
 
         tbody tr {
@@ -429,7 +432,7 @@
             padding: 8px 6px;
             vertical-align: top;
             font-size: 0.76rem;
-            min-width: 135px;
+            min-width: 260px;
             height: 1px; /* trick: lets inner div stretch to row height */
         }
 
