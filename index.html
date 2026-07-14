@@ -876,6 +876,8 @@
         </div>
 
         <div class="action-bar" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px;">
+            <button class="action-btn save-btn" onclick="window.saveSchedule()">💾 Son Hali Kaydet</button>
+            <button class="action-btn load-btn" onclick="window.loadSchedule()" id="btn-load">📂 Son Haline Getir</button>
             <button class="action-btn reset-btn" onclick="window.resetSchedule()">🔄 Orijinale Dön</button>
         </div>
 
@@ -2474,7 +2476,7 @@
     </div>
 
     <!-- Toast -->
-    <div class="toast" id="toast"></div>
+    <div class="toast" id="toast">Başarıyla giriş yapıldı!</div>
 
     <script>
 let scheduleData = {};
@@ -2667,6 +2669,9 @@ window.openCourseModal = function(dept, cellIdx, bIdx, year) {
     const isElektronik = dept === 'elektronik';
     
     let html = `<h3>Ders Seçin</h3><div class="ders-grid">`;
+    html += `<div class="ders-option" style="background:#b2bec3" onclick="window.closeModal()">
+                <div class="ders-kod">❌</div><div class="ders-ad">İPTAL ET</div>
+             </div>`;
     html += `<div class="ders-option hoca-bos" style="background:#ff7675" onclick="window.selectCourseAction('empty')">
                 <div class="ders-kod">—</div><div class="ders-ad">BOŞ BIRAK</div>
              </div>`;
@@ -2711,6 +2716,9 @@ window.showMekanPicker = function(course) {
     if (!isAdmin) return;
     const content = document.getElementById('modal-content');
     let html = `<h3>Mekan Seç</h3><div class="modal-sub">${course.kod} — ${course.ad}</div><div class="ders-grid">`;
+    html += `<div class="ders-option" style="background:#b2bec3" onclick="window.closeModal()">
+                <div class="ders-kod">❌</div><div class="ders-ad">İPTAL ET</div>
+             </div>`;
     mekanOptions.forEach(m => {
         html += `<div class="ders-option" style="display:flex; justify-content:center; align-items:center; height:60px;" onclick="window.finalizeCourseUpdate('${course.kod}', '${m.key}')">
                 <span class="mekan-badge ${m.css}" style="font-size:14px; padding:6px 12px">${m.label.toUpperCase()}</span>
@@ -2757,6 +2765,24 @@ window.autoSave = function() {
     try { localStorage.setItem('ders_programi_v2', JSON.stringify(scheduleData)); } catch(e) {}
 };
 
+window.saveSchedule = function() {
+    window.autoSave();
+    window.showToast('💾 Tarayıcıya Kaydedildi!');
+};
+
+window.loadSchedule = function() {
+    try {
+        const local = localStorage.getItem('ders_programi_v2');
+        if (local) {
+            scheduleData = JSON.parse(local);
+            window.renderSchedule();
+            window.showToast('📂 Kayıtlı program yüklendi!');
+        } else {
+            window.showToast('⚠️ Tarayıcıda kayıtlı program bulunamadı!');
+        }
+    } catch(e) {}
+};
+
 window.resetSchedule = function() {
     if (!isAdmin) return;
     if(confirm("Tüm değişiklikleriniz silinecek ve ilk sürüme dönülecek. Emin misiniz?")) {
@@ -2780,10 +2806,9 @@ window.closeGithubSettings = function() {
 
 window.saveAndPushToGithub = async function() {
     if (!isAdmin) return;
-    const rawToken = document.getElementById('github-token-input').value.trim();
-    const token = rawToken.replace(/[^a-zA-Z0-9_]/g, '');
+    const token = document.getElementById('github-token-input').value.trim();
     if (!token) {
-        alert("Lütfen geçerli bir Token girin.");
+        alert("Lütfen bir Token girin.");
         return;
     }
     try { localStorage.setItem('gh_token', token); } catch(e) {}
@@ -2831,6 +2856,14 @@ window.saveAndPushToGithub = async function() {
         btn.style.opacity = "1";
     }
 };
+
+// Listen to Escape key to close modals
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        window.closeModal();
+        window.closeGithubSettings();
+    }
+});
 
 window.addEventListener('DOMContentLoaded', window.init);
 
