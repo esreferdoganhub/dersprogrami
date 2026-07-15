@@ -2775,6 +2775,9 @@
                     </form>
                 </div>
 
+                                <div style="margin-bottom: 15px;">
+                    <input type="text" id="course-search-input" class="course-form-input" placeholder="🔍 Ders Kodu, Adı veya Hoca Ara..." oninput="window.renderCourseList()">
+                </div>
                 <div class="course-list-container" id="course-list-container">
                     <!-- Dersler buraya javascript ile eklenecek -->
                 </div>
@@ -2876,6 +2879,7 @@
                     console.error("Veri etiketi bulunamadı!");
                     return;
                 }
+                
                 try {
                     scheduleData = JSON.parse(el.textContent);
                 } catch (e) {
@@ -2930,6 +2934,26 @@
                         activeClassFilter = classParam === 'all' ? 'all' : parseInt(classParam);
                     }
                 } catch (e) { }
+
+                // Sync scheduleData courses to courses array
+                const uniqueCourseCodes = new Set(courses.map(c => c.kod));
+                ['elektrik', 'elektronik'].forEach(dept => {
+                    if(scheduleData[dept]) {
+                        Object.keys(scheduleData[dept]).forEach(cellIdx => {
+                            scheduleData[dept][cellIdx].forEach(item => {
+                                if(!uniqueCourseCodes.has(item.kod)) {
+                                    courses.push({
+                                        kod: item.kod,
+                                        ad: item.ad || '',
+                                        sinif: item.sinif || 1,
+                                        hoca: item.hoca || 'ortak'
+                                    });
+                                    uniqueCourseCodes.add(item.kod);
+                                }
+                            });
+                        });
+                    }
+                });
 
                 window.updateAdminUI();
 
@@ -4004,8 +4028,22 @@
                 const container = document.getElementById('course-list-container');
                 let html = '';
                 
-                // Sort by code for easy reading
-                const sortedCourses = [...courses].sort((a,b) => a.kod.localeCompare(b.kod));
+                const searchInput = document.getElementById('course-search-input');
+                const filterText = searchInput ? searchInput.value.toLowerCase() : '';
+                
+                // Sort by sinif ascending, then by kod
+                let sortedCourses = [...courses].sort((a,b) => {
+                    if (a.sinif !== b.sinif) return a.sinif - b.sinif;
+                    return a.kod.localeCompare(b.kod);
+                });
+                
+                if (filterText) {
+                    sortedCourses = sortedCourses.filter(c => 
+                        c.kod.toLowerCase().includes(filterText) || 
+                        c.ad.toLowerCase().includes(filterText) ||
+                        getHocaRealName(c.hoca).toLowerCase().includes(filterText)
+                    );
+                }
                 
                 sortedCourses.forEach(c => {
                     const hocaRealName = getHocaRealName(c.hoca);
