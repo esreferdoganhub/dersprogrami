@@ -1716,7 +1716,7 @@
 
         <div class="action-bar"
             style="display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap;">
-            <button class="action-btn save-btn" onclick="window.saveSchedule()">💾 Son Hali Kaydet</button>
+            <button class="action-btn save-btn" onclick="window.saveSchedule()">☁️ Buluta Kaydet</button>
             <button class="action-btn load-btn" onclick="window.loadSchedule()" id="btn-load">📂 Son Haline
                 Getir</button>
             <button class="action-btn reset-btn" onclick="window.resetSchedule()">🔄 Orijinale Dön</button>
@@ -3015,17 +3015,15 @@
                 }
             };
 
-            window.loadSchedule = function () {
-                try {
-                    const local = localStorage.getItem('ders_programi_v2');
-                    if (local) {
-                        scheduleData = JSON.parse(local);
-                        window.renderSchedule();
-                        window.showToast('📂 Kayıtlı program yüklendi!');
-                    } else {
-                        window.showToast('⚠️ Tarayıcıda kayıtlı program bulunamadı!');
-                    }
-                } catch (e) { }
+            window.loadSchedule = async function () {
+                window.showToast('Buluttan yükleniyor... ⏳');
+                const success = await window.fetchFromCloud();
+                if(success) {
+                    window.renderSchedule();
+                    window.showToast('📂 Buluttaki son hal yüklendi!');
+                } else {
+                    window.showToast('⚠️ Bağlantı hatası!');
+                }
             };
 
             window.resetSchedule = async function () {
