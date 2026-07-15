@@ -1523,12 +1523,18 @@
             }
         /* Course Management Modal Styles */
         #course-management-modal .modal-content {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             max-width: 600px;
             width: 95%;
-            max-height: 90vh;
+            max-height: 85vh;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .course-form-grid {
             display: grid;
@@ -1541,8 +1547,8 @@
         .course-form-input {
             width: 100%;
             padding: 10px;
-            background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(128, 128, 128, 0.1);
+            border: 1px solid var(--border);
             border-radius: 8px;
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
@@ -1558,14 +1564,14 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px;
-            background: rgba(255,255,255,0.03);
+            background: rgba(128, 128, 128, 0.05);
             border: 1px solid var(--border);
             border-radius: 8px;
             margin-bottom: 10px;
             transition: all 0.2s;
         }
         .course-list-item:hover {
-            background: rgba(255,255,255,0.06);
+            background: rgba(128, 128, 128, 0.1);
             border-color: #6c5ce7;
         }
         .course-info {
