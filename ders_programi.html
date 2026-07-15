@@ -1524,14 +1524,15 @@
         /* Course Management Modal Styles */
         #course-management-modal .modal-content {
             max-width: 600px;
-            width: 90%;
+            width: 95%;
             max-height: 90vh;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
         .course-form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-bottom: 20px;
             padding-bottom: 20px;
