@@ -1731,92 +1731,6 @@
             <button class="action-btn" id="course-management-btn" onclick="openCourseManagement()" style="display:none; background:#6c5ce7;">📚 Dersleri Yönet</button>
         </div>
 
-        <!-- SİSTEM ÖZELLİKLERİ MODALI -->
-        <div class="modal-overlay" id="features-modal">
-            <div class="modal-content" style="max-width: 700px; text-align: left; max-height: 80vh; overflow-y: auto; background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                <div class="modal-header" style="margin-bottom: 20px;">
-                    <h3 style="margin:0; color:#00cec9;">🌟 Akıllı Ders Programı Yönetim Sistemi</h3>
-                    <button class="close-btn" onclick="closeFeaturesModal()">×</button>
-                </div>
-                
-                <div style="font-size: 0.9rem; line-height: 1.6; color: var(--text-primary);">
-                    <p style="margin-bottom: 15px;"><strong>1. Tam Etkileşimli ve Dinamik Planlama (Sürükle-Bırak)</strong><br>
-                    <span style="color: var(--text-secondary);">Dersleri sağ taraftaki havuzdan tutup, istenilen gün ve saate sürükleyip bırakarak saniyeler içinde yerleştirebilirsiniz.</span></p>
-
-                    <p style="margin-bottom: 15px;"><strong>2. Gelişmiş Çakışma Kontrolü (Hata Önleme Sistemi)</strong><br>
-                    <span style="color: var(--text-secondary);"><strong>Öğretmen Çakışması:</strong> Aynı hocanın, aynı gün ve saatte birden fazla derse atanmasını otomatik olarak engeller. <br>
-                    <strong>Mekan Çakışması:</strong> Aynı dersliğin veya laboratuvarın aynı saatte başka bir derse verilmesini engeller. *(Hem Elektrik hem de Elektronik programları arka planda eş zamanlı kontrol edilir.)*</span></p>
-
-                    <p style="margin-bottom: 15px;"><strong>3. Öğretmen Bazlı Filtreleme ve Takip</strong><br>
-                    <span style="color: var(--text-secondary);">Üst menüdeki hoca isimlerine tıklayarak, sadece o hocanın derslerini programda renkli olarak vurgulayabilirsiniz. Böylece her hocanın haftalık programı tek tıkla analiz edilebilir.</span></p>
-
-                    <p style="margin-bottom: 15px;"><strong>4. Otomatik Ders Yükü ve İstatistik Hesaplama</strong><br>
-                    <span style="color: var(--text-secondary);">Sistem, her hocanın haftalık kaç saat derse girdiğini otomatik olarak hesaplar ve sol alttaki istatistik panelinde raporlar.</span></p>
-
-                    <p style="margin-bottom: 15px;"><strong>5. Dinamik Ders Yönetimi (Yönetici Ayrıcalığı)</strong><br>
-                    <span style="color: var(--text-secondary);">Yeni bir ders açıldığında veya mevcut bir dersin adı/hocası değiştiğinde kodlamaya ihtiyaç yoktur. Yönetici panelindeki "Dersleri Yönet" ekranından anında yeni ders eklenebilir, mevcut dersler düzenlenebilir. Değişiklikler anında tüm programa yansır.</span></p>
-
-                    <p style="margin-bottom: 15px;"><strong>6. Canlı Yayına Tek Tıkla Aktarım (Bulut Senkronizasyonu)</strong><br>
-                    <span style="color: var(--text-secondary);">Hazırlanan ders programı terminal kullanmadan sadece yönetici onayıyla tek tıkla okulun canlı web sitesine aktarılabilir.</span></p>
-
-                    <p style="margin-bottom: 15px;"><strong>7. Takvim Entegrasyonu (.ics Dışa Aktarma)</strong><br>
-                    <span style="color: var(--text-secondary);">Hazırlanan ders programı "Takvimi Dışa Aktar" butonuyla indirilebilir; hocalar ve öğrenciler bu dosyayı Google Takvim, Apple Takvim veya Outlook hesaplarına ekleyebilirler.</span></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- DERS YÖNETİM MODALI -->
-        <div class="modal-overlay" id="course-management-modal">
-            <div class="modal-content">
-                <div class="modal-header" style="margin-bottom: 20px;">
-                    <h3 style="margin:0;">Ders Yönetimi</h3>
-                    <button class="close-btn" onclick="closeCourseManagement()">×</button>
-                </div>
-                
-                <div style="background: rgba(108, 92, 231, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                    <h4 id="course-form-title" style="margin-top:0; margin-bottom:15px; color:#a29bfe;">Yeni Ders Ekle</h4>
-                    <form id="course-form" onsubmit="saveCourse(event)">
-                        <input type="hidden" id="edit-course-old-kod" value="">
-                        <div class="course-form-grid">
-                            <div>
-                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Ders Kodu (Örn: ELT 301)</label>
-                                <input type="text" id="course-kod" class="course-form-input" required>
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Ders Adı</label>
-                                <input type="text" id="course-ad" class="course-form-input" required>
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Sınıf</label>
-                                <select id="course-sinif" class="course-form-input" required>
-                                    <option value="1">1. Sınıf</option>
-                                    <option value="2">2. Sınıf</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Hoca</label>
-                                <select id="course-hoca" class="course-form-input" required>
-                                    <option value="zateri">Zateroğlu</option>
-                                    <option value="cikan">Çıkan</option>
-                                    <option value="erdogan">Erdoğan</option>
-                                    <option value="atal">Atal</option>
-                                    <option value="sonmez">Sönmez</option>
-                                    <option value="ortak">Ortak</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:10px; justify-content:flex-end;">
-                            <button type="button" class="action-btn" id="course-cancel-btn" onclick="resetCourseForm()" style="display:none; background:#b2bec3; padding:8px 16px; font-size:12px;">İptal</button>
-                            <button type="submit" class="action-btn" id="course-save-btn" style="background:#00cec9; padding:8px 16px; font-size:12px;">Ekle / Kaydet</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="course-list-container" id="course-list-container">
-                    <!-- Dersler buraya javascript ile eklenecek -->
-                </div>
-            </div>
-        </div>
 
         <script id="schedule-data" type="application/json">
 {
@@ -2778,6 +2692,92 @@
             </div>
         </div>
 
+        <!-- SİSTEM ÖZELLİKLERİ MODALI -->
+        <div class="modal-overlay" id="features-modal">
+            <div class="modal-content" style="max-width: 700px; text-align: left; max-height: 80vh; overflow-y: auto; background: var(--bg-card); padding: 25px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <div class="modal-header" style="margin-bottom: 20px;">
+                    <h3 style="margin:0; color:#00cec9;">🌟 Akıllı Ders Programı Yönetim Sistemi</h3>
+                    <button class="close-btn" onclick="closeFeaturesModal()">×</button>
+                </div>
+                
+                <div style="font-size: 0.9rem; line-height: 1.6; color: var(--text-primary);">
+                    <p style="margin-bottom: 15px;"><strong>1. Tam Etkileşimli ve Dinamik Planlama (Sürükle-Bırak)</strong><br>
+                    <span style="color: var(--text-secondary);">Dersleri sağ taraftaki havuzdan tutup, istenilen gün ve saate sürükleyip bırakarak saniyeler içinde yerleştirebilirsiniz.</span></p>
+
+                    <p style="margin-bottom: 15px;"><strong>2. Gelişmiş Çakışma Kontrolü (Hata Önleme Sistemi)</strong><br>
+                    <span style="color: var(--text-secondary);"><strong>Öğretmen Çakışması:</strong> Aynı hocanın, aynı gün ve saatte birden fazla derse atanmasını otomatik olarak engeller. <br>
+                    <strong>Mekan Çakışması:</strong> Aynı dersliğin veya laboratuvarın aynı saatte başka bir derse verilmesini engeller. *(Hem Elektrik hem de Elektronik programları arka planda eş zamanlı kontrol edilir.)*</span></p>
+
+                    <p style="margin-bottom: 15px;"><strong>3. Öğretmen Bazlı Filtreleme ve Takip</strong><br>
+                    <span style="color: var(--text-secondary);">Üst menüdeki hoca isimlerine tıklayarak, sadece o hocanın derslerini programda renkli olarak vurgulayabilirsiniz. Böylece her hocanın haftalık programı tek tıkla analiz edilebilir.</span></p>
+
+                    <p style="margin-bottom: 15px;"><strong>4. Otomatik Ders Yükü ve İstatistik Hesaplama</strong><br>
+                    <span style="color: var(--text-secondary);">Sistem, her hocanın haftalık kaç saat derse girdiğini otomatik olarak hesaplar ve sol alttaki istatistik panelinde raporlar.</span></p>
+
+                    <p style="margin-bottom: 15px;"><strong>5. Dinamik Ders Yönetimi (Yönetici Ayrıcalığı)</strong><br>
+                    <span style="color: var(--text-secondary);">Yeni bir ders açıldığında veya mevcut bir dersin adı/hocası değiştiğinde kodlamaya ihtiyaç yoktur. Yönetici panelindeki "Dersleri Yönet" ekranından anında yeni ders eklenebilir, mevcut dersler düzenlenebilir. Değişiklikler anında tüm programa yansır.</span></p>
+
+                    <p style="margin-bottom: 15px;"><strong>6. Canlı Yayına Tek Tıkla Aktarım (Bulut Senkronizasyonu)</strong><br>
+                    <span style="color: var(--text-secondary);">Hazırlanan ders programı terminal kullanmadan sadece yönetici onayıyla tek tıkla okulun canlı web sitesine aktarılabilir.</span></p>
+
+                    <p style="margin-bottom: 15px;"><strong>7. Takvim Entegrasyonu (.ics Dışa Aktarma)</strong><br>
+                    <span style="color: var(--text-secondary);">Hazırlanan ders programı "Takvimi Dışa Aktar" butonuyla indirilebilir; hocalar ve öğrenciler bu dosyayı Google Takvim, Apple Takvim veya Outlook hesaplarına ekleyebilirler.</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DERS YÖNETİM MODALI -->
+        <div class="modal-overlay" id="course-management-modal">
+            <div class="modal-content">
+                <div class="modal-header" style="margin-bottom: 20px;">
+                    <h3 style="margin:0;">Ders Yönetimi</h3>
+                    <button class="close-btn" onclick="closeCourseManagement()">×</button>
+                </div>
+                
+                <div style="background: rgba(108, 92, 231, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <h4 id="course-form-title" style="margin-top:0; margin-bottom:15px; color:#a29bfe;">Yeni Ders Ekle</h4>
+                    <form id="course-form" onsubmit="saveCourse(event)">
+                        <input type="hidden" id="edit-course-old-kod" value="">
+                        <div class="course-form-grid">
+                            <div>
+                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Ders Kodu (Örn: ELT 301)</label>
+                                <input type="text" id="course-kod" class="course-form-input" required>
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Ders Adı</label>
+                                <input type="text" id="course-ad" class="course-form-input" required>
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Sınıf</label>
+                                <select id="course-sinif" class="course-form-input" required>
+                                    <option value="1">1. Sınıf</option>
+                                    <option value="2">2. Sınıf</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size:12px; color:var(--text-secondary); display:block; margin-bottom:5px;">Hoca</label>
+                                <select id="course-hoca" class="course-form-input" required>
+                                    <option value="zateri">Zateroğlu</option>
+                                    <option value="cikan">Çıkan</option>
+                                    <option value="erdogan">Erdoğan</option>
+                                    <option value="atal">Atal</option>
+                                    <option value="sonmez">Sönmez</option>
+                                    <option value="ortak">Ortak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; justify-content:flex-end;">
+                            <button type="button" class="action-btn" id="course-cancel-btn" onclick="resetCourseForm()" style="display:none; background:#b2bec3; padding:8px 16px; font-size:12px;">İptal</button>
+                            <button type="submit" class="action-btn" id="course-save-btn" style="background:#00cec9; padding:8px 16px; font-size:12px;">Ekle / Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="course-list-container" id="course-list-container">
+                    <!-- Dersler buraya javascript ile eklenecek -->
+                </div>
+            </div>
+        </div>
         <!-- Toast -->
         <div class="toast" id="toast">Başarıyla giriş yapıldı!</div>
 
@@ -3870,6 +3870,16 @@
                 document.getElementById('features-modal').classList.add('show');
             };
 
+            
+            // Overlay click to close
+            document.getElementById('features-modal').addEventListener('click', function(e) {
+                if(e.target === this) window.closeFeaturesModal();
+                    if(typeof window.closeCourseManagement === 'function') window.closeCourseManagement();
+            });
+            document.getElementById('course-management-modal').addEventListener('click', function(e) {
+                if(e.target === this) window.closeCourseManagement();
+            });
+
             window.closeFeaturesModal = function() {
                 document.getElementById('features-modal').classList.remove('show');
             };
@@ -3878,6 +3888,7 @@
                 if (e.key === 'Escape') {
                     window.closeModal();
                     window.closeFeaturesModal();
+                    if(typeof window.closeCourseManagement === 'function') window.closeCourseManagement();
                 }
             });
 
