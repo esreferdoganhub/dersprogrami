@@ -2503,7 +2503,10 @@
                 const content = document.getElementById('modal-content');
                 const isElektronik = dept === 'elektronik';
 
-                let html = `<h3>Ders Seçin</h3><div class="ders-grid">`;
+                let html = `<h3>Ders Seçin</h3>
+                <input type="text" id="course-select-search" class="search-input" placeholder="Ders Ara..." onkeyup="window.filterCourseSelect()" style="width:100%; box-sizing:border-box; margin-bottom:15px; padding:8px; border-radius:6px; border:1px solid #ddd;">
+                <div class="ders-grid" id="course-select-grid">`;
+                
                 html += `<div class="ders-option" style="background:#b2bec3" onclick="window.closeModal()">
                 <div class="ders-kod">❌</div><div class="ders-ad">İPTAL ET</div>
              </div>`;
@@ -2515,7 +2518,7 @@
                     if (isElektronik && c.kod.startsWith('ELT')) return;
                     if (!isElektronik && c.kod.startsWith('ELO')) return;
 
-                    html += `<div class="ders-option hoca-${c.hoca}" onclick="window.selectCourseAction('${c.kod}')">
+                    html += `<div class="ders-option selectable-course hoca-${c.hoca}" onclick="window.selectCourseAction('${c.kod}')" data-kod="${c.kod.toLowerCase()}" data-ad="${c.ad.toLowerCase()}">
                 <div class="ders-kod">${c.kod}</div>
                 <div class="ders-ad">${c.ad}</div>
                 <div style="font-size:11px; opacity:0.8; margin-top:4px">${c.sinif}. Sınıf</div>
@@ -2525,6 +2528,21 @@
 
                 content.innerHTML = html;
                 modal.classList.add('show');
+            };
+
+            
+            window.filterCourseSelect = function() {
+                const search = document.getElementById('course-select-search').value.toLowerCase();
+                const items = document.querySelectorAll('#course-select-grid .selectable-course');
+                items.forEach(item => {
+                    const kod = item.getAttribute('data-kod');
+                    const ad = item.getAttribute('data-ad');
+                    if(kod.includes(search) || ad.includes(search)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             };
 
             window.selectCourseAction = function (action) {
