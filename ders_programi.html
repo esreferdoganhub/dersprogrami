@@ -1730,7 +1730,8 @@
 
         <!-- YÖNETİCİ BUTONLARI -->
         <div style="display:flex; justify-content:center; gap:10px; margin-top:20px; flex-wrap:wrap;">
-            <button class="action-btn" id="course-management-btn" onclick="openCourseManagement()" style="display:none; background:#6c5ce7;">📚 Dersleri Yönet</button>
+                        <button class="action-btn" id="course-management-btn" onclick="openCourseManagement()" style="display:none; background:#6c5ce7;">📚 Dersleri Yönet</button>
+            <button class="action-btn" id="copy-data-btn" onclick="copyDataToClipboard()" style="display:none; background:#e17055;">💾 Verileri Yedekle (Kopyala)</button>
         </div>
 
 
@@ -3025,6 +3026,7 @@
                 const btn = document.getElementById('admin-toggle-btn');
                 const actionBar = document.querySelector('.action-bar');
                 const courseBtn = document.getElementById('course-management-btn');
+                const copyBtn = document.getElementById('copy-data-btn');
 
                 document.body.classList.toggle('admin-logged-in', isAdmin);
 
@@ -3037,6 +3039,9 @@
                 }
                 if (courseBtn) {
                     courseBtn.style.display = isAdmin ? 'inline-block' : 'none';
+                }
+                if (copyBtn) {
+                    copyBtn.style.display = isAdmin ? 'inline-block' : 'none';
                 }
             };
 
@@ -4013,6 +4018,20 @@
             };
 
             // Course Management Logic
+            
+            window.copyDataToClipboard = function() {
+                const data = {
+                    schedule: scheduleData,
+                    courses: courses
+                };
+                const str = JSON.stringify(data);
+                navigator.clipboard.writeText(str).then(() => {
+                    alert("Tüm ders programı verileri panoya kopyalandı! Lütfen şimdi bu veriyi yapay zekaya (bana) yapıştırarak gönderin ki kalıcı olarak siteye ekleyebileyim.");
+                }).catch(err => {
+                    alert("Kopyalama başarısız oldu. Lütfen manuel olarak alın.");
+                });
+            };
+
             window.openCourseManagement = function() {
                 if (!isAdmin) return;
                 document.getElementById('course-management-modal').classList.add('show');
