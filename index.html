@@ -2906,6 +2906,17 @@
                     if (localCourses) courses = JSON.parse(localCourses);
                 } catch (e) { }
 
+                // Migrate legacy object format to array format
+                ['elektrik', 'elektronik'].forEach(dept => {
+                    if (scheduleData[dept]) {
+                        Object.keys(scheduleData[dept]).forEach(cellIdx => {
+                            if (scheduleData[dept][cellIdx] && !Array.isArray(scheduleData[dept][cellIdx])) {
+                                scheduleData[dept][cellIdx] = [scheduleData[dept][cellIdx]];
+                            }
+                        });
+                    }
+                });
+
                 try {
                     if (sessionStorage.getItem('is_admin') === 'true' || localStorage.getItem('gh_token')) {
                         isAdmin = true;
