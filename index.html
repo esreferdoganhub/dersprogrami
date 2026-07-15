@@ -2045,7 +2045,8 @@
                 } catch (e) { }
 
                 // Sync scheduleData courses to courses array
-                const uniqueCourseCodes = new Set(courses.map(c => c.kod));
+                courses = []; // Clear old courses and strictly rebuild from scheduleData
+                const uniqueCourseCodes = new Set();
                 ['elektrik', 'elektronik'].forEach(dept => {
                     if(scheduleData[dept]) {
                         Object.keys(scheduleData[dept]).forEach(cellIdx => {
@@ -3282,16 +3283,32 @@
                 const ok = await window.showConfirmModal({
                     icon: '🗑️',
                     title: 'Dersi Sil',
-                    body: `"${kod}" dersini silmek istediğinize emin misiniz? Bu ders programdaki yerlerinden silinmez, sadece seçim listesinden kaldırılır.`,
-                    okLabel: 'Evet, Sil',
+                    body: `"${kod}" dersini silmek istediğinize emin misiniz? Bu işlem dersi TESPİT EDİLDİĞİ TÜM SINIF VE SAATLERDEN kalıcı olarak silecektir!`,
+                    okLabel: 'Evet, Kalıcı Olarak Sil',
                     cancelLabel: 'Vazgeç'
                 });
                 
                 if (ok) {
+                    // Remove from courses list
                     courses = courses.filter(c => c.kod !== kod);
+                    
+                    // Remove from scheduleData
+                    ['elektrik', 'elektronik'].forEach(dept => {
+                        Object.keys(scheduleData[dept] || {}).forEach(cellIdx => {
+                            let list = scheduleData[dept][cellIdx];
+                            list = list.filter(item => item.kod !== kod);
+                            if (list.length > 0) {
+                                scheduleData[dept][cellIdx] = list;
+                            } else {
+                                delete scheduleData[dept][cellIdx];
+                            }
+                        });
+                    });
+
                     window.autoSave();
+                    window.renderSchedule();
                     window.renderCourseList();
-                    window.showToast("Ders silindi!");
+                    window.showToast("Ders tüm programdan silindi!");
                 }
             };
 
